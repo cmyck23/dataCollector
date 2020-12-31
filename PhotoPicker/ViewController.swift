@@ -7,17 +7,29 @@ The main view controller for this sample app.
 
 import UIKit
 import AVFoundation
+import UIKit
+import CoreMotion
+import CoreLocation
+import AVFoundation
+import CoreMedia
+import CoreVideo
 
-class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
 
+    var motionManager = CMMotionManager()
+    
+    // Used to start getting the users location
+    let locationManager = CLLocationManager()
+    
+    
 	@IBOutlet var imageView: UIImageView?
 	@IBOutlet var cameraButton: UIBarButtonItem?
 	@IBOutlet var overlayView: UIView?
 	
 	/// The camera controls in the overlay view.
-	@IBOutlet var takePictureButton: UIBarButtonItem?
+	//@IBOutlet var takePictureButton: UIBarButtonItem?
 	@IBOutlet var startStopButton: UIBarButtonItem?
-	@IBOutlet var delayedPhotoButton: UIBarButtonItem?
+	//@IBOutlet var delayedPhotoButton: UIBarButtonItem?
 	@IBOutlet var doneButton: UIBarButtonItem?
 
     /// An image picker controller instance.
@@ -30,6 +42,19 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 	// MARK: - View Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        // For use when the app is open & in the background
+        locationManager.requestAlwaysAuthorization()
+        
+        // For use when the app is open
+        //locationManager.requestWhenInUseAuthorization()
+        
+        // If location services is enabled get the users location
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest // You can change the locaiton accuary here.
+            locationManager.startUpdatingLocation()
+        }
 
 		imagePickerController.modalPresentationStyle = .currentContext
         /*
@@ -40,7 +65,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         */
 		imagePickerController.delegate = self
 
-        /*
+        /*-------
          This app requires use of the device's camera. The app checks for device
          availability using the `isSourceTypeAvailable` method. If the
          camera isn't available, the app removes the camera button from the
@@ -49,6 +74,66 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
 			toolbarItems = self.toolbarItems?.filter { $0 != cameraButton }
 		}
+    }
+    
+    
+    
+    // If we have been deined access give the user the option to change it
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(status == CLAuthorizationStatus.denied) {
+            showLocationDisabledPopUp()
+        }
+    }
+    
+    // Show the popup to the user if we have been denied access
+    func showLocationDisabledPopUp() {
+        let alertController = UIAlertController(title: "Background Location Access Disabled",
+                                                message: "In order to deliver pizza we need your location",
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        alertController.addAction(openAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        motionManager.accelerometerUpdateInterval = 0.2
+        
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
+            if let myData = data
+            {
+                //--This is to create a date object to display the time later.
+                print("-------------------------")
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                let dateTimeString = formatter.string(from: currentDateTime)
+                
+                //-Print time
+                print (dateTimeString)
+                
+                print ("Displaying latitude and longitude (GPS DATA)")
+                print(self.locationManager.location!.coordinate.latitude)
+                print(self.locationManager.location!.coordinate.longitude)
+                
+                print ("Displaying accelerometer data")
+                print( myData.acceleration.x)
+                print( myData.acceleration.y)
+                print( myData.acceleration.z)
+                    
+            }
+        }
     }
 
 	func finishAndUpdate() {
@@ -64,7 +149,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 				} else {
                     /*
                      The camera captured multiple pictures. Cycle through the
-                     captured frames in the view, showing each one for 5 seconds
+                     captured frames in the view, showing each one for 0.2 seconds
                      in an animation.
                     */
 					self.imageView?.animationImages = self.capturedImages
@@ -221,31 +306,31 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		imagePickerController.takePicture()
 	}
 
-    /// - Tag: DelayedPhoto
-	@IBAction func delayedTakePhoto(_ sender: UIBarButtonItem) {
-        /*
-         Disable the photo controls during the delay time period.
-         The code in the timer completion block below captures a still image
-         when the delay period expires, and enables the controls.
-        */
-		doneButton?.isEnabled = false
-		takePictureButton?.isEnabled = false
-		delayedPhotoButton?.isEnabled = false
-		startStopButton?.isEnabled = false
-		
-		let fireDate = Date(timeIntervalSinceNow: 5)
-		cameraTimer = Timer(fire: fireDate, interval: 1.0, repeats: false, block: { timer in
-            // The time interval expired. Capture a still image.
-			self.imagePickerController.takePicture()
-
-            // Enable the delayed photos controls.
-			self.doneButton?.isEnabled = true
-			self.takePictureButton?.isEnabled = true
-			self.delayedPhotoButton?.isEnabled = true
-			self.startStopButton?.isEnabled = true
-		})
-		RunLoop.main.add(cameraTimer, forMode: RunLoop.Mode.default)
-	}
+//    /// - Tag: DelayedPhoto
+//	@IBAction func delayedTakePhoto(_ sender: UIBarButtonItem) {
+//        /*
+//         Disable the photo controls during the delay time period.
+//         The code in the timer completion block below captures a still image
+//         when the delay period expires, and enables the controls.
+//        */
+//		doneButton?.isEnabled = false
+//		takePictureButton?.isEnabled = false
+//		delayedPhotoButton?.isEnabled = false
+//		startStopButton?.isEnabled = false
+//
+//		let fireDate = Date(timeIntervalSinceNow: 5)
+//		cameraTimer = Timer(fire: fireDate, interval: 1.0, repeats: false, block: { timer in
+//            // The time interval expired. Capture a still image.
+//			self.imagePickerController.takePicture()
+//
+//            // Enable the delayed photos controls.
+//			self.doneButton?.isEnabled = true
+//			self.takePictureButton?.isEnabled = true
+//			self.delayedPhotoButton?.isEnabled = true
+//			self.startStopButton?.isEnabled = true
+//		})
+//		RunLoop.main.add(cameraTimer, forMode: RunLoop.Mode.default)
+//	}
 
     /// - Tag: PhotoAtInterval
 	@IBAction func startTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {
@@ -256,11 +341,11 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		
         // Enable these buttons while capturing photos.
 		doneButton?.isEnabled = false
-		delayedPhotoButton?.isEnabled = false
-		takePictureButton?.isEnabled = false
+//		delayedPhotoButton?.isEnabled = false
+		//takePictureButton?.isEnabled = false
 
 		// Start taking pictures.
-		cameraTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+        cameraTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
 			self.imagePickerController.takePicture()
 		}
 	}
@@ -274,8 +359,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		
 		// Make these buttons available again.
 		self.doneButton?.isEnabled = true
-		self.takePictureButton?.isEnabled = true
-		self.delayedPhotoButton?.isEnabled = true
+		//self.takePictureButton?.isEnabled = true
+//		self.delayedPhotoButton?.isEnabled = true
 		
 		startStopButton?.title = NSLocalizedString("Start", comment: "Title for overlay view controller start/stop button")
 		startStopButton?.action = #selector(startTakingPicturesAtIntervals)
@@ -332,7 +417,16 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         */
 		})
 	}
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
 }
+
+
 
 // MARK: - Utilities
 private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
