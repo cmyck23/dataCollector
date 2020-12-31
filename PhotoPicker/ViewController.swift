@@ -122,7 +122,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 //
 //                //-Print time
 //                print (dateTimeString)
-//                
+//
 //                print ("Displaying latitude and longitude (GPS DATA)")
 //                print(self.locationManager.location!.coordinate.latitude)
 //                print(self.locationManager.location!.coordinate.longitude)
@@ -348,7 +348,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         cameraTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
             self.viewDidAppear(true)
             
-            self.motionManager.accelerometerUpdateInterval = 0.2
+            //self.motionManager.accelerometerUpdateInterval = 0.2
             
             self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
                 if let myData = data
@@ -367,6 +367,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     print ("Displaying latitude and longitude (GPS DATA)")
                     print(self.locationManager.location!.coordinate.latitude)
                     print(self.locationManager.location!.coordinate.longitude)
+                    print("Displaying Speed")
+                    //--Displaying speed of the motion of the phone in kilometer per hour.
+                    print(self.locationManager.location!.speed*3.6)
                     
                     print ("Displaying accelerometer data")
                     print( myData.acceleration.x)
@@ -455,9 +458,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         // Dispose of any resources that can be recreated.
     }
     
-    
 }
-
 
 // MARK: - Utilities
 private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
