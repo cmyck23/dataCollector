@@ -11,3 +11,7 @@
 // approach in your own projects—it's only useful for sample code projects because
 // they are frequently downloaded and don't have a development team set.
 SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
+//Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.debug.xcconfig
+//Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig
+#include "/Users/myckael/Documents/xcodeProjects/dataCollector/Pods/Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.debug.xcconfig"
+#include "/Users/myckael/Documents/xcodeProjects/dataCollector/Pods/Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig"

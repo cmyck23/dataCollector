@@ -13,6 +13,7 @@ import CoreLocation
 import AVFoundation
 import CoreMedia
 import CoreVideo
+import FirebaseDatabase
 
 class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
 
@@ -42,6 +43,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 	// MARK: - View Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        let ref = Database.database().reference()
+        ref.child("Student/name").setValue("John")
         
         // For use when the app is open & in the background
         locationManager.requestAlwaysAuthorization()
@@ -110,29 +114,29 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         motionManager.accelerometerUpdateInterval = 0.2
         
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-            if let myData = data
-            {
-//                //--This is to create a date object to display the time later.
-//                print("-------------------------")
-//                let currentDateTime = Date()
-//                let formatter = DateFormatter()
-//                formatter.timeStyle = .medium
-//                formatter.dateStyle = .long
-//                let dateTimeString = formatter.string(from: currentDateTime)
+//            if let myData = data
+//            {
+////                //--This is to create a date object to display the time later.
+////                print("-------------------------")
+////                let currentDateTime = Date()
+////                let formatter = DateFormatter()
+////                formatter.timeStyle = .medium
+////                formatter.dateStyle = .long
+////                let dateTimeString = formatter.string(from: currentDateTime)
+////
+////                //-Print time
+////                print (dateTimeString)
+////
+////                print ("Displaying latitude and longitude (GPS DATA)")
+////                print(self.locationManager.location!.coordinate.latitude)
+////                print(self.locationManager.location!.coordinate.longitude)
+////
+////                print ("Displaying accelerometer data")
+////                print( myData.acceleration.x)
+////                print( myData.acceleration.y)
+////                print( myData.acceleration.z)
 //
-//                //-Print time
-//                print (dateTimeString)
-//
-//                print ("Displaying latitude and longitude (GPS DATA)")
-//                print(self.locationManager.location!.coordinate.latitude)
-//                print(self.locationManager.location!.coordinate.longitude)
-//
-//                print ("Displaying accelerometer data")
-//                print( myData.acceleration.x)
-//                print( myData.acceleration.y)
-//                print( myData.acceleration.z)
-                    
-            }
+//            }
         }
     }
 

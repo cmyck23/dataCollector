@@ -6,6 +6,7 @@ This file defines the AppDelegate subclass of UIApplicationDelegate.
 */
 
  import UIKit
+ import Firebase
 
  @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,7 @@ This file defines the AppDelegate subclass of UIApplicationDelegate.
 
  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
      self.window?.makeKeyAndVisible()
-
+    FirebaseApp.configure()
      return true
      }
  }

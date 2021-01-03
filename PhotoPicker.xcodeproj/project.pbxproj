@@ -11,9 +11,11 @@
 		53A0CE4C1FBCC15700083090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53A0CE491FBCC15700083090 /* Main.storyboard */; };
 		53A851371FE1D2B90003FE24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53A851361FE1D2B90003FE24 /* Images.xcassets */; };
 		53A8513A1FE1D3460003FE24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53A851381FE1D3460003FE24 /* InfoPlist.strings */; };
+		9A036BD1731CD8A73D0FC6D3 /* Pods_PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7C11C8E2E3323A3B9EE5EA /* Pods_PhotoPicker.framework */; };
 		AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF822C6BEF600D3BF96 /* ViewController.swift */; };
 		AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */; };
 		AFA6DE8722C421C100414245 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AFA6DE8622C421C000414245 /* README.md */; };
+		C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C851DAFC25A2574D0030631A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +25,15 @@
 		53A0CE4A1FBCC15700083090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		53A851361FE1D2B90003FE24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		53A851391FE1D3460003FE24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6E4FE64A1516F71AF4465DEF /* Pods-PhotoPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPicker.release.xcconfig"; path = "Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig"; sourceTree = "<group>"; };
 		6FE371006FE3BF8000000001 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		6FE5C0906FE5D9F000000001 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		7444B0B16EE1C940414A1A77 /* Pods-PhotoPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPicker.debug.xcconfig"; path = "Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.debug.xcconfig"; sourceTree = "<group>"; };
+		8D7C11C8E2E3323A3B9EE5EA /* Pods_PhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF572AF822C6BEF600D3BF96 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFA6DE8622C421C000414245 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C851DAFC25A2574D0030631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,12 +41,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A036BD1731CD8A73D0FC6D3 /* Pods_PhotoPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AB19D1A13B4EDE1DC651F08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D7C11C8E2E3323A3B9EE5EA /* Pods_PhotoPicker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5320B8481AFD59C0008854DF = {
 			isa = PBXGroup;
 			children = (
@@ -49,8 +64,11 @@
 				5320B8521AFD59C0008854DF /* Products */,
 				6FE322906FE3233000000001 /* Configuration */,
 				6FE5DDB06FE5DBC000000001 /* LICENSE */,
+				E1C64A4EF5E6C3375312E4CF /* Pods */,
+				3AB19D1A13B4EDE1DC651F08 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 1;
 		};
 		5320B8521AFD59C0008854DF /* Products */ = {
 			isa = PBXGroup;
@@ -64,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */,
+				C851DAFC25A2574D0030631A /* GoogleService-Info.plist */,
 				AF572AF822C6BEF600D3BF96 /* ViewController.swift */,
 				5320B8541AFD59C0008854DF /* Supporting Files */,
 			);
@@ -98,6 +117,15 @@
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
+		E1C64A4EF5E6C3375312E4CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7444B0B16EE1C940414A1A77 /* Pods-PhotoPicker.debug.xcconfig */,
+				6E4FE64A1516F71AF4465DEF /* Pods-PhotoPicker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5320B8721AFD59C0008854DF /* Build configuration list for PBXNativeTarget "PhotoPicker" */;
 			buildPhases = (
+				EF132E3DF4133D0CA8BBF87A /* [CP] Check Pods Manifest.lock */,
 				5320B84D1AFD59C0008854DF /* Sources */,
 				5320B84E1AFD59C0008854DF /* Frameworks */,
 				5320B84F1AFD59C0008854DF /* Resources */,
+				DEFF103563E5C2526C3E0C8C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -164,10 +194,70 @@
 				AFA6DE8722C421C100414245 /* README.md in Resources */,
 				53A0CE4C1FBCC15700083090 /* Main.storyboard in Resources */,
 				53A0CE4B1FBCC15700083090 /* LaunchScreen.storyboard in Resources */,
+				C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DEFF103563E5C2526C3E0C8C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF132E3DF4133D0CA8BBF87A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhotoPicker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5320B84D1AFD59C0008854DF /* Sources */ = {
@@ -259,6 +349,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -310,6 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -327,7 +419,7 @@
 				DEVELOPMENT_TEAM = 24CV3U3X75;
 				INFOPLIST_FILE = "$(SRCROOT)/PhotoPicker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.PhotoPicker${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.engr490.photopicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -345,7 +437,7 @@
 				DEVELOPMENT_TEAM = 24CV3U3X75;
 				INFOPLIST_FILE = "$(SRCROOT)/PhotoPicker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.PhotoPicker${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.engr490.photopicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
