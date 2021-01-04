@@ -43,14 +43,11 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 	
 	var cameraTimer = Timer()
     /// An array for storing captured images to display.
-	var capturedImages = [UIImage]()
+	//var capturedImages = [UIImage]()
 	
 	// MARK: - View Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
-        let ref = Database.database().reference()
-        ref.child("Student/name").setValue("John")
         
         // For use when the app is open & in the background
         locationManager.requestAlwaysAuthorization()
@@ -86,7 +83,6 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     }
     
     
-    
     // If we have been deined access give the user the option to change it
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.denied) {
@@ -116,68 +112,15 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     
     override func viewDidAppear(_ animated: Bool)
     {
-        motionManager.accelerometerUpdateInterval = 0.2
+        
+        //This is the interval to update the acceleromter
+        //motionManager.accelerometerUpdateInterval = 2
         
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-//            if let myData = data
-//            {
-////                //--This is to create a date object to display the time later.
-////                print("-------------------------")
-////                let currentDateTime = Date()
-////                let formatter = DateFormatter()
-////                formatter.timeStyle = .medium
-////                formatter.dateStyle = .long
-////                let dateTimeString = formatter.string(from: currentDateTime)
-////
-////                //-Print time
-////                print (dateTimeString)
-////
-////                print ("Displaying latitude and longitude (GPS DATA)")
-////                print(self.locationManager.location!.coordinate.latitude)
-////                print(self.locationManager.location!.coordinate.longitude)
-////
-////                print ("Displaying accelerometer data")
-////                print( myData.acceleration.x)
-////                print( myData.acceleration.y)
-////                print( myData.acceleration.z)
-//
-//            }
+
         }
     }
 
-	func finishAndUpdate() {
-		dismiss(animated: true, completion: { [weak self] in
-			guard let self = self else {
-				return
-			}
-			
-			if !self.capturedImages.isEmpty {
-				if self.capturedImages.count == 1 {
-					// The camera took a single picture.
-					self.imageView?.image = self.capturedImages[0]
-				} else {
-                    /*
-                     The camera captured multiple pictures. Cycle through the
-                     captured frames in the view, showing each one for 0.2 seconds
-                     in an animation.
-                    */
-					self.imageView?.animationImages = self.capturedImages
-                    // Show each captured photo for 5 seconds.
-					self.imageView?.animationDuration = 5
-                    // Animate the images indefinitely (show all photos).
-					self.imageView?.animationRepeatCount = 0
-					self.imageView?.startAnimating()
-				}
-				
-				/*
-                 Clear the array of captured images to start taking pictures
-                 again.
-                */
-				self.capturedImages.removeAll()
-			}
-		})
-	}
-	
 	// MARK: - Toolbar Actions
 	
     /// - Tag: CameraSourceType
@@ -254,9 +197,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		if (imageView?.isAnimating)! {
 			imageView?.stopAnimating()
 		}
-		if !capturedImages.isEmpty {
-			capturedImages.removeAll()
-		}
+//		if !capturedImages.isEmpty {
+//			capturedImages.removeAll()
+//		}
 
 		imagePickerController.sourceType = sourceType
 		imagePickerController.modalPresentationStyle =
@@ -308,38 +251,13 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		if cameraTimer.isValid {
 			cameraTimer.invalidate()
 		}
-		finishAndUpdate()
+		//finishAndUpdate()
 	}
     /// - Tag: TakePicture
 	@IBAction func takePhoto(_ sender: UIBarButtonItem) {
 		imagePickerController.takePicture()
 	}
 
-//    /// - Tag: DelayedPhoto
-//	@IBAction func delayedTakePhoto(_ sender: UIBarButtonItem) {
-//        /*
-//         Disable the photo controls during the delay time period.
-//         The code in the timer completion block below captures a still image
-//         when the delay period expires, and enables the controls.
-//        */
-//		doneButton?.isEnabled = false
-//		takePictureButton?.isEnabled = false
-//		delayedPhotoButton?.isEnabled = false
-//		startStopButton?.isEnabled = false
-//
-//		let fireDate = Date(timeIntervalSinceNow: 5)
-//		cameraTimer = Timer(fire: fireDate, interval: 1.0, repeats: false, block: { timer in
-//            // The time interval expired. Capture a still image.
-//			self.imagePickerController.takePicture()
-//
-//            // Enable the delayed photos controls.
-//			self.doneButton?.isEnabled = true
-//			self.takePictureButton?.isEnabled = true
-//			self.delayedPhotoButton?.isEnabled = true
-//			self.startStopButton?.isEnabled = true
-//		})
-//		RunLoop.main.add(cameraTimer, forMode: RunLoop.Mode.default)
-//	}
 
     /// - Tag: PhotoAtInterval
 	@IBAction func startTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {
@@ -402,7 +320,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		// Stop and reset the timer.
 		cameraTimer.invalidate()
 
-		finishAndUpdate()
+		//finishAndUpdate()
 		
 		// Make these buttons available again.
 		self.doneButton?.isEnabled = true
@@ -434,7 +352,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
             return
         }
-        capturedImages.append(image)
+        //capturedImages.append(image)
         
         let storage = Storage.storage().reference()
         
@@ -452,19 +370,19 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         
         
 
-		if !cameraTimer.isValid {
-            /*
-             The user pressed either the Stop button while taking pictures or
-             the Done button in the overlay view. The action methods for these
-             controls invalidate the timer.
-
-             Dismiss the view controller for capturing pictures.
-
-             Cycle through any captured frames and display each one in the view
-             for 5 seconds in an animation.
-            */
-			finishAndUpdate()
-		}
+//		if !cameraTimer.isValid {
+//            /*
+//             The user pressed either the Stop button while taking pictures or
+//             the Done button in the overlay view. The action methods for these
+//             controls invalidate the timer.
+//
+//             Dismiss the view controller for capturing pictures.
+//
+//             Cycle through any captured frames and display each one in the view
+//             for 5 seconds in an animation.
+//            */
+//			//finishAndUpdate()
+//		}
 	}
 
     /**
