@@ -14,6 +14,7 @@ import AVFoundation
 import CoreMedia
 import CoreVideo
 import FirebaseDatabase
+import FirebaseStorage
 
 class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
 
@@ -26,6 +27,10 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 	@IBOutlet var imageView: UIImageView?
 	@IBOutlet var cameraButton: UIBarButtonItem?
 	@IBOutlet var overlayView: UIView?
+    
+    var index = 0
+    
+    
 	
 	/// The camera controls in the overlay view.
 	//@IBOutlet var takePictureButton: UIBarButtonItem?
@@ -349,7 +354,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 		//takePictureButton?.isEnabled = false
 
 		// Start taking pictures.
-        cameraTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
+        cameraTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
             self.viewDidAppear(true)
             
             //self.motionManager.accelerometerUpdateInterval = 0.2
@@ -379,7 +384,10 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     print( myData.acceleration.x)
                     print( myData.acceleration.y)
                     print( myData.acceleration.z)
-                        
+                    
+                   
+                    
+                   
                 }
             }
             
@@ -427,6 +435,22 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             return
         }
         capturedImages.append(image)
+        
+        let storage = Storage.storage().reference()
+        
+        
+        
+        index+=1
+        
+        
+        storage.child("images/file\(index).jpg").putData(image.jpegData(compressionQuality: 0.2)!, metadata: nil, completion: { _, error in
+        guard error == nil else {
+            print("Failed to uplaod")
+            return
+        }
+        })
+        
+        
 
 		if !cameraTimer.isValid {
             /*
