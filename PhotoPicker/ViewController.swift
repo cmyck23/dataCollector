@@ -24,6 +24,17 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     let locationManager = CLLocationManager()
     
     
+    //Create the datatype that will contain the information for each image capture.
+    public var imagesMetadata:[Dictionary<String, AnyObject>] =  Array()
+    
+    //We will create a dictionnary to store the rows values according to the columns names.
+    //This will be used later to create the csv file.
+    
+    public var diction = Dictionary<String, AnyObject>()
+    
+    
+    
+    
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var cameraButton: UIBarButtonItem?
     @IBOutlet var overlayView: UIView?
@@ -261,6 +272,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     
     /// - Tag: PhotoAtInterval
     @IBAction func startTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {
+        
         // Start the timer to take a photo every 5 seconds.
         
         startStopButton?.title = NSLocalizedString("Stop", comment: "Title for overlay view controller start/stop button")
@@ -270,6 +282,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         doneButton?.isEnabled = false
         //		delayedPhotoButton?.isEnabled = false
         //takePictureButton?.isEnabled = false
+        
+        
+        
         
         // Start taking pictures.
         cameraTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
@@ -289,10 +304,19 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     let dateTimeString = formatter.string(from: currentDateTime)
                     
                     
+                    
+                
                     //-Print time
                     print (dateTimeString)
                     
                     print ("Displaying latitude and longitude (GPS DATA)")
+                    
+//                    //Convert longitudes and latitudes to string.
+//
+//                    let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
+//                    let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
+                    
+                   
                     print(self.locationManager.location!.coordinate.latitude)
                     print(self.locationManager.location!.coordinate.longitude)
                     print("Displaying Speed")
@@ -300,18 +324,32 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     print(self.locationManager.location!.speed*3.6)
                     
                     print ("Displaying accelerometer data")
+                    
+//                    //Convert longitudes and latitudes to string.
+//
+//                    let user_accelerometerXValue = String(format: "%f", myData.acceleration.x)
+//                    let user_accelerometerYValue = String(format: "%f", myData.acceleration.y)
+//                    let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
+                    
+                    
                     print( myData.acceleration.x)
                     print( myData.acceleration.y)
                     print( myData.acceleration.z)
                     
                     
+            
                     
                     
                 }
+                
+                
             }
             
             self.imagePickerController.takePicture()
             
+            
+            print("Calling  CSV Function")
+           
             
         }
     }
@@ -350,21 +388,36 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
+        //Create an image when the phone starts taking pictures.
         guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
             return
         }
         
         print("Trying to print image description")
         
-        //capturedImages.append(image)
         
+        //Create a storage object reference for firebase
         let storage = Storage.storage().reference()
         
-
+        
+        //Get current latitude and save it as a string.
+        let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
+        //Get current longitude and save it as a string.
+        let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
+        
+        //Create a metadata that contains the gps coordinates
+        //This will be sent with the image on firebase
+        let metadataImage = StorageMetadata()
+        metadataImage.customMetadata = ["Longitude" : user_long,
+        "Latitude" : user_lat]
+        
+    
         let currentTime = Date().toMillis()
         //print(currentTime!)
         
-        storage.child("images/image\(currentTime!).jpg").putData(image.jpegData(compressionQuality: 0.2)!, metadata: nil, completion: { _, error in
+        
+        //Send the current image (upload) to firebase
+        storage.child("images/image\(currentTime!).jpg").putData(image.jpegData(compressionQuality: 0.2)!, metadata: metadataImage, completion: { _, error in
             guard error == nil else {
                 print("Failed to uplaod")
                 return
