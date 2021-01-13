@@ -6,8 +6,6 @@
  */
 
 import UIKit
-import AVFoundation
-import UIKit
 import CoreMotion
 import CoreLocation
 import AVFoundation
@@ -15,6 +13,9 @@ import CoreMedia
 import CoreVideo
 import FirebaseDatabase
 import FirebaseStorage
+import CSV
+import Foundation
+
 
 class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
     
@@ -33,13 +34,18 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     public var diction = Dictionary<String, AnyObject>()
     
     
+//    let output = OutputStream.toMemory()
+//    let csvWriter = CHCSVWriter(outputStream:output, encoding:String.Encoding.utf8.rawValue,delimiter: ",".utf16.first!)
+    
     
     
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var cameraButton: UIBarButtonItem?
     @IBOutlet var overlayView: UIView?
     
-    var index = 0
+    
+    public var csvArray:[Dictionary<String, AnyObject>] =  Array()
+
     
     
     
@@ -53,12 +59,13 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     var imagePickerController = UIImagePickerController()
     
     var cameraTimer = Timer()
-    /// An array for storing captured images to display.
-    //var capturedImages = [UIImage]()
     
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+                 
         
         // For use when the app is open & in the background
         locationManager.requestAlwaysAuthorization()
@@ -94,6 +101,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     }
     
     
+    
+    
     // If we have been deined access give the user the option to change it
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.denied) {
@@ -120,6 +129,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         self.present(alertController, animated: true, completion: nil)
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool)
     {
@@ -290,6 +302,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         cameraTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
             self.viewDidAppear(true)
             
+            
+            
             //self.motionManager.accelerometerUpdateInterval = 0.2
             
             self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
@@ -303,44 +317,52 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     formatter.dateStyle = .long
                     let dateTimeString = formatter.string(from: currentDateTime)
                     
-                    
-                    
                 
                     //-Print time
                     print (dateTimeString)
                     
                     print ("Displaying latitude and longitude (GPS DATA)")
                     
-//                    //Convert longitudes and latitudes to string.
-//
-//                    let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
-//                    let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
+                    //Get current latitude and save it as a string.
+                    let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
+                    //Get current longitude and save it as a string.
+                    let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
                     
-                   
-                    print(self.locationManager.location!.coordinate.latitude)
-                    print(self.locationManager.location!.coordinate.longitude)
+                    print(user_lat)
+                    print(user_long)
+                    
+                    
                     print("Displaying Speed")
                     //--Displaying speed of the motion of the phone in kilometer per hour.
                     print(self.locationManager.location!.speed*3.6)
                     
                     print ("Displaying accelerometer data")
                     
-//                    //Convert longitudes and latitudes to string.
-//
-//                    let user_accelerometerXValue = String(format: "%f", myData.acceleration.x)
-//                    let user_accelerometerYValue = String(format: "%f", myData.acceleration.y)
-//                    let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
+                    //Convert longitudes and latitudes to string.
+
+                    let user_accelerometerXValue = String(format: "%f", myData.acceleration.x)
+                    let user_accelerometerYValue = String(format: "%f", myData.acceleration.y)
+                    let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
                     
                     
-                    print( myData.acceleration.x)
-                    print( myData.acceleration.y)
-                    print( myData.acceleration.z)
+                    print( user_accelerometerXValue)
+                    print( user_accelerometerYValue)
+                    print( user_accelerometerZValue)
                     
                     
-            
-                    
-                    
+                        var dct = Dictionary<String, AnyObject>()
+                        dct.updateValue(dateTimeString as AnyObject, forKey: "Date")
+                        dct.updateValue(user_lat as AnyObject, forKey: "Latitude")
+                        dct.updateValue(user_long as AnyObject, forKey: "Longitude")
+                        dct.updateValue(user_accelerometerXValue as AnyObject, forKey: "AccelerometerX")
+                        dct.updateValue(user_accelerometerYValue as AnyObject, forKey: "AccelerometerY")
+                        dct.updateValue(user_accelerometerZValue as AnyObject, forKey: "AccelerometerZ")
+                        
+                        self.csvArray.append(dct)
+                          
                 }
+                
+                createCSV(from: self.csvArray)
                 
                 
             }
@@ -446,6 +468,24 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     }
     
 }
+
+func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
+        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerZ_User"),\("AccelerometerZ_User")\n\n"
+        for dct in recArray {
+            csvString = csvString.appending("\(String(describing: dct["Date"]!)) ,\(String(describing: dct["Latitude"]!)),\(String(describing: dct["Longitude"]!)),\(String(describing: dct["AccelerometerX"]!)),\(String(describing: dct["AccelerometerY"]!)),\(String(describing: dct["AccelerometerZ"]!))\n")
+        }
+
+        let fileManager = FileManager.default
+        do {
+            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+            let fileURL = path.appendingPathComponent("CSVData.csv")
+            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+        } catch {
+            print("error creating file")
+        }
+
+    }
+ 
 
 // MARK: - Utilities
 private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {

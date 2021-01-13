@@ -10,5 +10,6 @@ target 'PhotoPicker' do
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
+  pod 'CSV.swift'
 
 end

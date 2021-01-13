@@ -1,4 +1,5 @@
 PODS:
+  - CSV.swift (2.4.3)
   - Firebase/Analytics (7.3.0):
     - Firebase/Core
   - Firebase/Core (7.3.0):
@@ -78,6 +79,7 @@ PODS:
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
+  - CSV.swift
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Database
@@ -85,6 +87,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - CSV.swift
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -101,6 +104,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
+  CSV.swift: d38741b349c067b4a6db42237cb0e2974d21ccac
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   FirebaseAnalytics: 2580c2d62535ae7b644143d48941fcc239ea897a
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
@@ -116,6 +120,6 @@ SPEC CHECKSUMS:
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 4bd127125011a09916de22535802fbf7a0f7cee0
+PODFILE CHECKSUM: 28e5f2a565616743789aa788b15e7d0af23f86a0
 
 COCOAPODS: 1.10.0
