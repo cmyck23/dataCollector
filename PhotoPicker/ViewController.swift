@@ -113,7 +113,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     // Show the popup to the user if we have been denied access
     func showLocationDisabledPopUp() {
         let alertController = UIAlertController(title: "Background Location Access Disabled",
-                                                message: "In order to deliver pizza we need your location",
+                                                message: "In order to use the application we need your location",
                                                 preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -274,6 +274,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         if cameraTimer.isValid {
             cameraTimer.invalidate()
         }
+        
+        uploadSpecificFile()
+        exit(0)
         //finishAndUpdate()
     }
     /// - Tag: TakePicture
@@ -470,7 +473,18 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
 }
 
 func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
-        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerZ_User"),\("AccelerometerZ_User")\n\n"
+    
+
+    // Get a reference to the storage service using the default Firebase App
+    //let storage = Storage.storage()
+    // Create a root reference
+    //let storageRef = storage.reference()
+        
+    // Create a reference to the file you want to upload
+    //let riversRef = storageRef.child("CSVData.csv")
+    
+    
+        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerY_User"),\("AccelerometerZ_User")\n\n"
         for dct in recArray {
             csvString = csvString.appending("\(String(describing: dct["Date"]!)) ,\(String(describing: dct["Latitude"]!)),\(String(describing: dct["Longitude"]!)),\(String(describing: dct["AccelerometerX"]!)),\(String(describing: dct["AccelerometerY"]!)),\(String(describing: dct["AccelerometerZ"]!))\n")
         }
@@ -478,13 +492,54 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         let fileManager = FileManager.default
         do {
             let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+            
             let fileURL = path.appendingPathComponent("CSVData.csv")
+            
             try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            
+            
+            
         } catch {
             print("error creating file")
         }
-
+    
+    //uploadSpecificFile()
+    
     }
+
+    public func uploadSpecificFile()
+
+    {
+        // Points to the root reference
+        let storageRef = Storage.storage().reference()
+        
+        let fileManager = FileManager.default
+        do {
+            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+            
+            let fileURL = path.appendingPathComponent("CSVData.csv")
+            
+            //Send the current image (upload) to firebase
+            storageRef.child("files").putFile(from: fileURL , metadata: nil, completion: { _, error in
+                guard error == nil else {
+                    print("Failed to uplaod")
+                    return
+                }
+            })
+            
+            
+        } catch {
+            print("error creating file")
+        }
+    
+    
+        
+        
+        
+                
+    }
+
+
  
 
 // MARK: - Utilities
