@@ -15,6 +15,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import CSV
 import Foundation
+import SwiftyJSON
 
 
 class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
@@ -275,7 +276,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             cameraTimer.invalidate()
         }
         
-        uploadSpecificFile()
+        //uploadSpecificFile()
         exit(0)
         //finishAndUpdate()
     }
@@ -365,12 +366,25 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                           
                 }
                 
-                createCSV(from: self.csvArray)
                 
                 
             }
             
+            createCSV(from: self.csvArray)
+            
             self.imagePickerController.takePicture()
+            
+            let storageRef = Storage.storage().reference()
+            
+            let filename = "CSVData.txt"
+            let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let pathArray = [dirPath, filename]
+            let fileURLFile =  NSURL.fileURL(withPathComponents: pathArray)!
+            
+            print("Getting URL from file")
+            print(fileURLFile)
+            
+            storageRef.child("images/newImageTest.txt").putFile(from:fileURLFile)
             
             
             print("Calling  CSV Function")
@@ -441,6 +455,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         //print(currentTime!)
         
         
+        
+        
         //Send the current image (upload) to firebase
         storage.child("images/image\(currentTime!).jpg").putData(image.jpegData(compressionQuality: 0.2)!, metadata: metadataImage, completion: { _, error in
             guard error == nil else {
@@ -449,6 +465,17 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             }
         })
         
+        uploadSpecificFile()
+        
+        
+
+        
+    }
+    
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
     
     /**
@@ -493,9 +520,11 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         do {
             let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
             
-            let fileURL = path.appendingPathComponent("CSVData.csv")
+            let fileURL = path.appendingPathComponent("CSVData.txt")
             
             try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            
+            
             
             
             
@@ -503,40 +532,44 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
             print("error creating file")
         }
     
-    //uploadSpecificFile()
+
     
     }
 
     public func uploadSpecificFile()
 
     {
-        // Points to the root reference
-        let storageRef = Storage.storage().reference()
+        //-----
         
-        let fileManager = FileManager.default
-        do {
-            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-            
-            let fileURL = path.appendingPathComponent("CSVData.csv")
-            
-            //Send the current image (upload) to firebase
-            storageRef.child("files").putFile(from: fileURL , metadata: nil, completion: { _, error in
-                guard error == nil else {
-                    print("Failed to uplaod")
-                    return
-                }
-            })
-            
-            
-        } catch {
-            print("error creating file")
-        }
+//        let storageRef = Storage.storage().reference()
+//
+//        let filename = "imageTest.png"
+//        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//        let pathArray = [dirPath, filename]
+//        let fileURL =  NSURL.fileURL(withPathComponents: pathArray)!
+//
+//        print("Getting URL from file")
+//        print(fileURL)
+//
+//        storageRef.child("images/newImageTest.png").putFile(from:fileURL)
+        
+//
+//        let storageRef = Storage.storage().reference()
+//
+//        let filename = "CSVData.txt"
+//        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//        let pathArray = [dirPath, filename]
+//        let fileURL =  NSURL.fileURL(withPathComponents: pathArray)!
+//
+//        print("Getting URL from file")
+//        print(fileURL)
+//
+//        storageRef.child("images/newImageTest.txt").putFile(from:fileURL)
+        
+        
+        
+        //-----
     
-    
-        
-        
-        
-                
     }
 
 

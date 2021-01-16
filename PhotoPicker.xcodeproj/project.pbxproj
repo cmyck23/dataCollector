@@ -15,6 +15,7 @@
 		AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF822C6BEF600D3BF96 /* ViewController.swift */; };
 		AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */; };
 		C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C851DAFC25A2574D0030631A /* GoogleService-Info.plist */; };
+		C861B88525B1C4C0005F493B /* dataRoad.json in Resources */ = {isa = PBXBuildFile; fileRef = C861B88425B1C4C0005F493B /* dataRoad.json */; };
 		C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E9F36425AF703E000D35CC /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		AF572AF822C6BEF600D3BF96 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C851DAFC25A2574D0030631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C861B88425B1C4C0005F493B /* dataRoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRoad.json; sourceTree = "<group>"; };
 		C8E9F36225AF703D000D35CC /* PhotoPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoPicker-Bridging-Header.h"; sourceTree = "<group>"; };
 		C8E9F36325AF703E000D35CC /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		C8E9F36425AF703E000D35CC /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */,
 				C851DAFC25A2574D0030631A /* GoogleService-Info.plist */,
+				C861B88425B1C4C0005F493B /* dataRoad.json */,
 				AF572AF822C6BEF600D3BF96 /* ViewController.swift */,
 				5320B8541AFD59C0008854DF /* Supporting Files */,
 			);
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53A851371FE1D2B90003FE24 /* Images.xcassets in Resources */,
+				C861B88525B1C4C0005F493B /* dataRoad.json in Resources */,
 				53A8513A1FE1D3460003FE24 /* InfoPlist.strings in Resources */,
 				53A0CE4C1FBCC15700083090 /* Main.storyboard in Resources */,
 				53A0CE4B1FBCC15700083090 /* LaunchScreen.storyboard in Resources */,
