@@ -35,11 +35,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     public var diction = Dictionary<String, AnyObject>()
     
     
-//    let output = OutputStream.toMemory()
-//    let csvWriter = CHCSVWriter(outputStream:output, encoding:String.Encoding.utf8.rawValue,delimiter: ",".utf16.first!)
-    
-    
-    
+
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var cameraButton: UIBarButtonItem?
     @IBOutlet var overlayView: UIView?
@@ -221,10 +217,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         if (imageView?.isAnimating)! {
             imageView?.stopAnimating()
         }
-        //		if !capturedImages.isEmpty {
-        //			capturedImages.removeAll()
-        //		}
-        
+
         imagePickerController.sourceType = sourceType
         imagePickerController.modalPresentationStyle =
             (sourceType == UIImagePickerController.SourceType.camera) ?
@@ -276,9 +269,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             cameraTimer.invalidate()
         }
         
-        //uploadSpecificFile()
         exit(0)
-        //finishAndUpdate()
     }
     /// - Tag: TakePicture
     @IBAction func takePhoto(_ sender: UIBarButtonItem) {
@@ -289,7 +280,6 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     /// - Tag: PhotoAtInterval
     @IBAction func startTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {
         
-        var counter : Int = 0
         
         // Start the timer to take a photo every 5 seconds.
         
@@ -298,12 +288,9 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         
         // Enable these buttons while capturing photos.
         doneButton?.isEnabled = false
-        //		delayedPhotoButton?.isEnabled = false
-        //takePictureButton?.isEnabled = false
+
         
-        
-        
-        
+    
         // Start taking pictures.
         cameraTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
             self.viewDidAppear(true)
@@ -369,44 +356,18 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     
                     dct.updateValue(String(self.locationManager.location!.speed*3.6000) as AnyObject, forKey: "Speed")
                     
-                        
-                    counter += 1
-                    print("Counter :")
-                    print(counter)
-                    
+                
                         self.csvArray.append(dct)
                           
                 }
             
             }
             
-            
-            
-            
             createCSV(from: self.csvArray)
-            print("Taking Picture")
-            
-            
+                        
             self.imagePickerController.takePicture()
             
-//            let storageRef = Storage.storage().reference()
-//
-//            let filename = "CSVData.txt"
-//            let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-//            let pathArray = [dirPath, filename]
-//            let fileURLFile =  NSURL.fileURL(withPathComponents: pathArray)!
-//
-//            print("Getting URL from file")
-//            print(fileURLFile)
-//
-//            //let currentTime = Date().toMillis()
-//
-//            storageRef.child("CSVFolder/dataText.txt").putFile(from:fileURLFile)
-            
-            
-            print("Calling  CSV Function")
-           
-            
+
         }
     }
     
@@ -470,11 +431,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         
     
         let currentTime = Date().toMillis()
-        //print(currentTime!)
-        
-        
-        
-        
+
+    
         //Send the current image (upload) to firebase
         storage.child("images/image\(currentTime!).jpg").putData(image.jpegData(compressionQuality: 0.2)!, metadata: metadataImage, completion: { _, error in
             guard error == nil else {
@@ -561,8 +519,6 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         
         print("Getting URL from file")
         print(fileURLFile)
-        
-        //let currentTime = Date().toMillis()
         
         storageRef.child("CSVFolder/dataText\(currentTime!).txt").putFile(from:fileURLFile)
     
