@@ -289,6 +289,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     /// - Tag: PhotoAtInterval
     @IBAction func startTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {
         
+        var counter : Int = 0
+        
         // Start the timer to take a photo every 5 seconds.
         
         startStopButton?.title = NSLocalizedString("Stop", comment: "Title for overlay view controller start/stop button")
@@ -308,7 +310,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             
             
             
-            //self.motionManager.accelerometerUpdateInterval = 0.2
+            self.motionManager.accelerometerUpdateInterval = 0.5
             
             self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
                 if let myData = data
@@ -336,9 +338,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     print(user_long)
                     
                     
-                    print("Displaying Speed")
-                    //--Displaying speed of the motion of the phone in kilometer per hour.
-                    print(self.locationManager.location!.speed*3.6)
+                    
+                    
                     
                     print ("Displaying accelerometer data")
                     
@@ -353,7 +354,6 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                     print( user_accelerometerYValue)
                     print( user_accelerometerZValue)
                     
-                    
                         var dct = Dictionary<String, AnyObject>()
                         dct.updateValue(dateTimeString as AnyObject, forKey: "Date")
                         dct.updateValue(user_lat as AnyObject, forKey: "Latitude")
@@ -361,30 +361,47 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                         dct.updateValue(user_accelerometerXValue as AnyObject, forKey: "AccelerometerX")
                         dct.updateValue(user_accelerometerYValue as AnyObject, forKey: "AccelerometerY")
                         dct.updateValue(user_accelerometerZValue as AnyObject, forKey: "AccelerometerZ")
+                    
+                    
+                    print("Displaying Speed")
+                    //--Displaying speed of the motion of the phone in kilometer per hour.
+                    print(self.locationManager.location!.speed*3.6)
+                    
+                    dct.updateValue(String(self.locationManager.location!.speed*3.6000) as AnyObject, forKey: "Speed")
+                    
                         
+                    counter += 1
+                    print("Counter :")
+                    print(counter)
+                    
                         self.csvArray.append(dct)
                           
                 }
-                
-                
-                
+            
             }
             
+            
+            
+            
             createCSV(from: self.csvArray)
+            print("Taking Picture")
+            
             
             self.imagePickerController.takePicture()
             
-            let storageRef = Storage.storage().reference()
-            
-            let filename = "CSVData.txt"
-            let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-            let pathArray = [dirPath, filename]
-            let fileURLFile =  NSURL.fileURL(withPathComponents: pathArray)!
-            
-            print("Getting URL from file")
-            print(fileURLFile)
-            
-            storageRef.child("images/newImageTest.txt").putFile(from:fileURLFile)
+//            let storageRef = Storage.storage().reference()
+//
+//            let filename = "CSVData.txt"
+//            let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//            let pathArray = [dirPath, filename]
+//            let fileURLFile =  NSURL.fileURL(withPathComponents: pathArray)!
+//
+//            print("Getting URL from file")
+//            print(fileURLFile)
+//
+//            //let currentTime = Date().toMillis()
+//
+//            storageRef.child("CSVFolder/dataText.txt").putFile(from:fileURLFile)
             
             
             print("Calling  CSV Function")
@@ -407,6 +424,7 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         
         startStopButton?.title = NSLocalizedString("Start", comment: "Title for overlay view controller start/stop button")
         startStopButton?.action = #selector(startTakingPicturesAtIntervals)
+        uploadCSVFile()
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -465,10 +483,6 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             }
         })
         
-        uploadSpecificFile()
-        
-        
-
         
     }
     
@@ -511,9 +525,9 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
     //let riversRef = storageRef.child("CSVData.csv")
     
     
-        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerY_User"),\("AccelerometerZ_User")\n\n"
+        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerY_User"),\("AccelerometerZ_User"),\("Speed_User")\n\n"
         for dct in recArray {
-            csvString = csvString.appending("\(String(describing: dct["Date"]!)) ,\(String(describing: dct["Latitude"]!)),\(String(describing: dct["Longitude"]!)),\(String(describing: dct["AccelerometerX"]!)),\(String(describing: dct["AccelerometerY"]!)),\(String(describing: dct["AccelerometerZ"]!))\n")
+            csvString = csvString.appending("\(String(describing: dct["Date"]!)) ,\(String(describing: dct["Latitude"]!)),\(String(describing: dct["Longitude"]!)),\(String(describing: dct["AccelerometerX"]!)),\(String(describing: dct["AccelerometerY"]!)),\(String(describing: dct["AccelerometerZ"]!)),\(String(describing: dct["Speed"]!))\n")
         }
 
         let fileManager = FileManager.default
@@ -525,9 +539,6 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
             try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
             
             
-            
-            
-            
         } catch {
             print("error creating file")
         }
@@ -536,39 +547,24 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
     
     }
 
-    public func uploadSpecificFile()
+    public func uploadCSVFile()
 
     {
-        //-----
+        let currentTime = Date().toMillis()
         
-//        let storageRef = Storage.storage().reference()
-//
-//        let filename = "imageTest.png"
-//        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-//        let pathArray = [dirPath, filename]
-//        let fileURL =  NSURL.fileURL(withPathComponents: pathArray)!
-//
-//        print("Getting URL from file")
-//        print(fileURL)
-//
-//        storageRef.child("images/newImageTest.png").putFile(from:fileURL)
+        let storageRef = Storage.storage().reference()
         
-//
-//        let storageRef = Storage.storage().reference()
-//
-//        let filename = "CSVData.txt"
-//        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-//        let pathArray = [dirPath, filename]
-//        let fileURL =  NSURL.fileURL(withPathComponents: pathArray)!
-//
-//        print("Getting URL from file")
-//        print(fileURL)
-//
-//        storageRef.child("images/newImageTest.txt").putFile(from:fileURL)
+        let filename = "CSVData.txt"
+        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let pathArray = [dirPath, filename]
+        let fileURLFile =  NSURL.fileURL(withPathComponents: pathArray)!
         
+        print("Getting URL from file")
+        print(fileURLFile)
         
+        //let currentTime = Date().toMillis()
         
-        //-----
+        storageRef.child("CSVFolder/dataText\(currentTime!).txt").putFile(from:fileURLFile)
     
     }
 
