@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5320B8511AFD59C0008854DF /* PhotoPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5320B8511AFD59C0008854DF /* Road Analyzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Road Analyzer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5320B8551AFD59C0008854DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53A0CE481FBCC15600083090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53A0CE4A1FBCC15700083090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		5320B8521AFD59C0008854DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5320B8511AFD59C0008854DF /* PhotoPicker.app */,
+				5320B8511AFD59C0008854DF /* Road Analyzer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5320B8501AFD59C0008854DF /* PhotoPicker */ = {
+		5320B8501AFD59C0008854DF /* Road Analyzer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5320B8721AFD59C0008854DF /* Build configuration list for PBXNativeTarget "PhotoPicker" */;
+			buildConfigurationList = 5320B8721AFD59C0008854DF /* Build configuration list for PBXNativeTarget "Road Analyzer" */;
 			buildPhases = (
 				EF132E3DF4133D0CA8BBF87A /* [CP] Check Pods Manifest.lock */,
 				5320B84D1AFD59C0008854DF /* Sources */,
@@ -150,9 +150,9 @@
 			);
 			dependencies = (
 			);
-			name = PhotoPicker;
+			name = "Road Analyzer";
 			productName = SimpleApp;
-			productReference = 5320B8511AFD59C0008854DF /* PhotoPicker.app */;
+			productReference = 5320B8511AFD59C0008854DF /* Road Analyzer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -173,7 +173,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5320B84C1AFD59C0008854DF /* Build configuration list for PBXProject "PhotoPicker" */;
+			buildConfigurationList = 5320B84C1AFD59C0008854DF /* Build configuration list for PBXProject "Road Analyzer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -186,7 +186,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5320B8501AFD59C0008854DF /* PhotoPicker */,
+				5320B8501AFD59C0008854DF /* Road Analyzer */,
 			);
 		};
 /* End PBXProject section */
@@ -369,6 +369,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Road Analyzer";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -420,6 +421,8 @@
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = "Road Analyzer";
+				PRODUCT_NAME = "Road Analyzer";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -466,7 +469,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5320B84C1AFD59C0008854DF /* Build configuration list for PBXProject "PhotoPicker" */ = {
+		5320B84C1AFD59C0008854DF /* Build configuration list for PBXProject "Road Analyzer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5320B8701AFD59C0008854DF /* Debug */,
@@ -475,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5320B8721AFD59C0008854DF /* Build configuration list for PBXNativeTarget "PhotoPicker" */ = {
+		5320B8721AFD59C0008854DF /* Build configuration list for PBXNativeTarget "Road Analyzer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5320B8731AFD59C0008854DF /* Debug */,

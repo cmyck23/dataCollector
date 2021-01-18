@@ -32,7 +32,11 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     //We will create a dictionnary to store the rows values according to the columns names.
     //This will be used later to create the csv file.
     
-    public var diction = Dictionary<String, AnyObject>()
+    //public var diction = Dictionary<String, AnyObject>()
+    
+    
+    //public var dictionaryForImages = Dictionary<String, AnyObject>()
+    public var csvArrayForImages:[Dictionary<String, AnyObject>] =  Array()
     
     
 
@@ -385,7 +389,10 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         
         startStopButton?.title = NSLocalizedString("Start", comment: "Title for overlay view controller start/stop button")
         startStopButton?.action = #selector(startTakingPicturesAtIntervals)
+        
+        uploadCSVFileForImages()
         uploadCSVFile()
+        
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -411,6 +418,8 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             return
         }
         
+    
+        
         print("Trying to print image description")
         
         
@@ -429,8 +438,23 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
         metadataImage.customMetadata = ["Longitude" : user_long,
         "Latitude" : user_lat]
         
+        
+        
     
         let currentTime = Date().toMillis()
+        
+        //The section below is to add the coordinates and image title to a text file
+        //Right now, it is just adding this a dictionnary
+        
+        //-----
+        
+        var dictionaryForImages = Dictionary<String, AnyObject>()
+        
+        dictionaryForImages.updateValue("image\(currentTime!).jpg" as AnyObject, forKey: "ImageTitle")
+        dictionaryForImages.updateValue(user_lat as AnyObject, forKey: "Latitude")
+        dictionaryForImages.updateValue(user_long as AnyObject, forKey: "Longitude")
+        
+        //------
 
     
         //Send the current image (upload) to firebase
@@ -440,6 +464,11 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
                 return
             }
         })
+        
+        //Add Values to csvArrayForImages
+        csvArrayForImages.append(dictionaryForImages)
+        
+        createCSVForImagesInfo(from: self.csvArrayForImages)
         
         
     }
@@ -471,6 +500,49 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
     
 }
 
+
+public func createCSVForImagesInfo(from recArray:[Dictionary<String, AnyObject>])
+{
+    var csvString = "\("ImageTitle_User"),\("LatitudeImage_User"),\("LongitudeImage_User")\n\n"
+    for dictionary in recArray {
+        csvString = csvString.appending("\(String(describing: dictionary["ImageTitle"]!)) ,\(String(describing: dictionary["Latitude"]!)),\(String(describing: dictionary["Longitude"]!))\n")
+    }
+
+    let fileManager = FileManager.default
+    do {
+        let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+        
+        let fileURL = path.appendingPathComponent("CSVDataImages.txt")
+        
+        try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+        
+        
+    } catch {
+        print("error creating file")
+    }
+}
+
+public func uploadCSVFileForImages()
+
+{
+    let currentTime = Date().toMillis()
+    
+    let storageRef = Storage.storage().reference()
+    
+    let filename = "CSVDataImages.txt"
+    let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    let pathArray = [dirPath, filename]
+    let fileURLFile =  NSURL.fileURL(withPathComponents: pathArray)!
+    
+    print("Getting URL from file")
+    print(fileURLFile)
+    
+    storageRef.child("CSVFolder/dataForImages\(currentTime!).txt").putFile(from:fileURLFile)
+
+}
+
+
+
 func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
     
 
@@ -500,8 +572,6 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         } catch {
             print("error creating file")
         }
-    
-
     
     }
 
