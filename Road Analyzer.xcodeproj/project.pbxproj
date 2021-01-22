@@ -14,6 +14,7 @@
 		9A036BD1731CD8A73D0FC6D3 /* Pods_PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7C11C8E2E3323A3B9EE5EA /* Pods_PhotoPicker.framework */; };
 		AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF822C6BEF600D3BF96 /* ViewController.swift */; };
 		AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */; };
+		C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C818873725BB7CFB00530E06 /* DataCollectorPage.swift */; };
 		C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C851DAFC25A2574D0030631A /* GoogleService-Info.plist */; };
 		C861B88525B1C4C0005F493B /* dataRoad.json in Resources */ = {isa = PBXBuildFile; fileRef = C861B88425B1C4C0005F493B /* dataRoad.json */; };
 		C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E9F36425AF703E000D35CC /* CHCSVParser.m */; };
@@ -33,6 +34,7 @@
 		8D7C11C8E2E3323A3B9EE5EA /* Pods_PhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF572AF822C6BEF600D3BF96 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C818873725BB7CFB00530E06 /* DataCollectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectorPage.swift; sourceTree = "<group>"; };
 		C851DAFC25A2574D0030631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C861B88425B1C4C0005F493B /* dataRoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRoad.json; sourceTree = "<group>"; };
 		C8E9F36225AF703D000D35CC /* PhotoPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoPicker-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */,
 				C851DAFC25A2574D0030631A /* GoogleService-Info.plist */,
 				C861B88425B1C4C0005F493B /* dataRoad.json */,
+				C818873725BB7CFB00530E06 /* DataCollectorPage.swift */,
 				AF572AF822C6BEF600D3BF96 /* ViewController.swift */,
 				5320B8541AFD59C0008854DF /* Supporting Files */,
 			);
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */,
 				AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */,
 				AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */,
 				C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */,

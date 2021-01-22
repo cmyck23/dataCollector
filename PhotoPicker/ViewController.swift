@@ -18,7 +18,7 @@ import Foundation
 import SwiftyJSON
 
 
-class APLViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate  {
     
     var motionManager = CMMotionManager()
     
@@ -100,6 +100,15 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             toolbarItems = self.toolbarItems?.filter { $0 != cameraButton }
         }
     }
+    
+    
+    func finishAndUpdate() {
+        self.dismiss(animated: true, completion: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+            })
+        }
     
     
     
@@ -273,7 +282,15 @@ class APLViewController: UIViewController, UINavigationControllerDelegate, UIIma
             cameraTimer.invalidate()
         }
         
-        exit(0)
+        finishAndUpdate()
+        
+        print("Clicked on done Button")
+//        let vc = storyboard?.instantiateViewController(identifier: "dataCollectionPage") as! DataCollectorPage;
+//        present(vc, animated: true)
+        //self.navigationController?.popToRootViewController(animated: true)
+        //exit(0)
+        
+        
     }
     /// - Tag: TakePicture
     @IBAction func takePhoto(_ sender: UIBarButtonItem) {
@@ -543,6 +560,8 @@ public func uploadCSVFileForImages()
 
 
 
+
+
 func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
     
 
@@ -593,6 +612,9 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         storageRef.child("CSVFolder/dataText\(currentTime!).txt").putFile(from:fileURLFile)
     
     }
+
+
+
 
 
  
