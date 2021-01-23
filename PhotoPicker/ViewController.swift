@@ -104,7 +104,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func finishAndUpdate() {
         self.dismiss(animated: true, completion: { [weak self] in
-                guard let self = self else {
+            guard self != nil else {
                     return
                 }
             })

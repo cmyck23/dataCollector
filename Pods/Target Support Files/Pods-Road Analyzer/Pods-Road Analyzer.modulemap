@@ -1,0 +1,6 @@
+framework module Pods_Road_Analyzer {
+  umbrella header "Pods-Road Analyzer-umbrella.h"
+
+  export *
+  module * { export * }
+}

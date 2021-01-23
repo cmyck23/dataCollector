@@ -2,6 +2,9 @@ PODS:
   - CSV.swift (2.4.3)
   - Firebase/Analytics (7.3.0):
     - Firebase/Core
+  - Firebase/Auth (7.3.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 7.3.0)
   - Firebase/Core (7.3.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 7.3.0)
@@ -22,6 +25,11 @@ PODS:
     - GoogleUtilities/Network (~> 7.0)
     - "GoogleUtilities/NSData+zlib (~> 7.0)"
     - nanopb (~> 2.30906.0)
+  - FirebaseAuth (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
   - FirebaseCore (7.3.0):
     - FirebaseCoreDiagnostics (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -82,6 +90,7 @@ PODS:
 DEPENDENCIES:
   - CSV.swift
   - Firebase/Analytics
+  - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
@@ -92,6 +101,7 @@ SPEC REPOS:
     - CSV.swift
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseDatabase
@@ -110,6 +120,7 @@ SPEC CHECKSUMS:
   CSV.swift: d38741b349c067b4a6db42237cb0e2974d21ccac
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   FirebaseAnalytics: 2580c2d62535ae7b644143d48941fcc239ea897a
+  FirebaseAuth: c224a0cf1afa0949bd5c7bfcf154b4f5ce8ddef2
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
   FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
   FirebaseDatabase: 22199cb121a527ae59df646d61426fbb12f5627a
@@ -124,6 +135,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: ef05c87676e41b1a563a7a381b7897570dfccc2d
+PODFILE CHECKSUM: f039a06384f9bd47421b2a3e7292d13ce4c28d4b
 
 COCOAPODS: 1.10.0

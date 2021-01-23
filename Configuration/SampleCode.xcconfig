@@ -13,5 +13,5 @@
 SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
 //Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.debug.xcconfig
 //Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig
-#include "/Users/myckael/Documents/xcodeProjects/dataCollector/Pods/Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.debug.xcconfig"
-#include "/Users/myckael/Documents/xcodeProjects/dataCollector/Pods/Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig"
+#include "/Users/myckael/Documents/xcodeProjects/dataCollector/Pods/Target Support Files/Pods-Road Analyzer/Pods-Road Analyzer.debug.xcconfig"
+#include "/Users/myckael/Documents/xcodeProjects/dataCollector/Pods/Target Support Files/Pods-Road Analyzer/Pods-Road Analyzer.release.xcconfig"
