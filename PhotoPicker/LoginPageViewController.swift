@@ -60,6 +60,7 @@ class LoginPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.red
         view.addSubview(label)
         view.addSubview(emailField)
         view.addSubview(passwordField)
@@ -67,7 +68,17 @@ class LoginPageViewController: UIViewController {
         
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
+        
+        
         if FirebaseAuth.Auth.auth().currentUser != nil {
+            
+            var rootControler: UIViewController?
+            
+            rootControler = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "HomePage")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = rootControler
+            
             label.isHidden = true
             button.isHidden = true
             emailField.isHidden = true
@@ -76,6 +87,8 @@ class LoginPageViewController: UIViewController {
             view.addSubview(signOutButton)
             signOutButton.frame = CGRect(x: 20, y: 150, width: view.frame.size.width-40, height: 52)
             signOutButton.addTarget(self, action: #selector(logOutTapped), for: .touchUpInside)
+            
+            
         }
        
         
@@ -113,7 +126,10 @@ class LoginPageViewController: UIViewController {
         if FirebaseAuth.Auth.auth().currentUser == nil {
             emailField.becomeFirstResponder()
         }
-        
+       
+        else {
+            
+        }
     }
     
     @objc private func didTapButton()
@@ -139,7 +155,15 @@ class LoginPageViewController: UIViewController {
                 return
             }
             
-            print("You have signed in")
+            print("You have signed in didTapButton")
+            
+            var rootControler: UIViewController?
+            
+            rootControler = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "HomePage")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = rootControler
+        
             
             StrongSelf.label.isHidden = true
             StrongSelf.emailField.isHidden = true
@@ -174,10 +198,8 @@ class LoginPageViewController: UIViewController {
                                                 
                                                 print("You have signed in")
                                             
-                                            let vc = self?.storyboard?.instantiateViewController(identifier: "HomePage") as! UITabBarController;
-                                            self?.present(vc, animated: true)
-
-                                                
+                                            self!.performSegue(withIdentifier: "HomePage", sender: self)
+                                                                                            
                                                 StrongSelf.label.isHidden = true
                                                 StrongSelf.emailField.isHidden = true
                                                 StrongSelf.passwordField.isHidden = true

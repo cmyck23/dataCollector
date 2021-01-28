@@ -148,7 +148,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="PBi-CD-5e8">
             <objects>
-                <tabBarController storyboardIdentifier="HomePage" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AgE-OV-1pv" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomePage" automaticallyAdjustsScrollViewInsets="NO" id="AgE-OV-1pv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5R1-DO-kQ0">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -168,7 +168,7 @@
         <!--Login Page View Controller-->
         <scene sceneID="tpE-dg-z3e">
             <objects>
-                <viewController id="M5E-0s-gVd" customClass="LoginPageViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginPage" id="M5E-0s-gVd" customClass="LoginPageViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EQc-fm-29C">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,14 +233,23 @@
         <!--Profile-->
         <scene sceneID="9fv-zD-vbQ">
             <objects>
-                <viewController id="uRi-pg-GGZ" sceneMemberID="viewController">
+                <viewController id="uRi-pg-GGZ" customClass="ProfileViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xg6-tr-R6k">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="hhN-Vq-xiq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="bpk-fm-o4d"/>
+                    <navigationItem key="navigationItem" title="Profile" id="bpk-fm-o4d">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="ySA-Wo-fSY">
+                            <connections>
+                                <action selector="LogOut:" destination="uRi-pg-GGZ" id="heX-HF-awf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="LogOutButton" destination="ySA-Wo-fSY" id="hdK-C2-pTj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPt-ah-ISb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

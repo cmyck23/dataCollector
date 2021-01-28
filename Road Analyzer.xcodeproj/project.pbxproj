@@ -14,6 +14,7 @@
 		9C2B0DC1AE4CA46D7B08BB64 /* Pods_Road_Analyzer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA0E7EEB63E785AC238E5AA /* Pods_Road_Analyzer.framework */; };
 		AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF822C6BEF600D3BF96 /* ViewController.swift */; };
 		AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */; };
+		C805AAFF25C223E4000BE0D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805AAFE25C223E4000BE0D9 /* ProfileViewController.swift */; };
 		C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C818873725BB7CFB00530E06 /* DataCollectorPage.swift */; };
 		C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C851DAFC25A2574D0030631A /* GoogleService-Info.plist */; };
 		C861B88525B1C4C0005F493B /* dataRoad.json in Resources */ = {isa = PBXBuildFile; fileRef = C861B88425B1C4C0005F493B /* dataRoad.json */; };
@@ -36,6 +37,7 @@
 		7EA0E7EEB63E785AC238E5AA /* Pods_Road_Analyzer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Road_Analyzer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF572AF822C6BEF600D3BF96 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C805AAFE25C223E4000BE0D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C818873725BB7CFB00530E06 /* DataCollectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectorPage.swift; sourceTree = "<group>"; };
 		C851DAFC25A2574D0030631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C861B88425B1C4C0005F493B /* dataRoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRoad.json; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				C861B88425B1C4C0005F493B /* dataRoad.json */,
 				C818873725BB7CFB00530E06 /* DataCollectorPage.swift */,
 				AF572AF822C6BEF600D3BF96 /* ViewController.swift */,
+				C805AAFE25C223E4000BE0D9 /* ProfileViewController.swift */,
 				C873D5A725BCC07B0006BA33 /* LoginPageViewController.swift */,
 				5320B8541AFD59C0008854DF /* Supporting Files */,
 			);
@@ -291,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C805AAFF25C223E4000BE0D9 /* ProfileViewController.swift in Sources */,
 				C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */,
 				AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */,
 				AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */,
