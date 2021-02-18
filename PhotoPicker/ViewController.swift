@@ -344,9 +344,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     
                     print(user_lat)
                     print(user_long)
-                    
-                    
-                    
+                        
+                    let standardDeviationZ = 0.185737867
                     
                     
                     print ("Displaying accelerometer data")
@@ -370,12 +369,27 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                         dct.updateValue(user_accelerometerYValue as AnyObject, forKey: "AccelerometerY")
                         dct.updateValue(user_accelerometerZValue as AnyObject, forKey: "AccelerometerZ")
                     
+                    var speed = self.locationManager.location!.speed*3.6
+                    
+                    var roughnessIndex = 0.0
+                    
+                    if speed <= 0
+                    {
+                        speed = 0
+                        roughnessIndex = 0
+                    }
+                    else
+                    {
+                        roughnessIndex = (standardDeviationZ/speed)*100
+                    }
                     
                     print("Displaying Speed")
                     //--Displaying speed of the motion of the phone in kilometer per hour.
-                    print(self.locationManager.location!.speed*3.6)
+                    print(speed)
                     
-                    dct.updateValue(String(self.locationManager.location!.speed*3.6000) as AnyObject, forKey: "Speed")
+                    dct.updateValue(String(speed) as AnyObject, forKey: "Speed")
+                    dct.updateValue(String(roughnessIndex) as AnyObject, forKey: "RougnessIndex")
+                    
                     
                 
                         self.csvArray.append(dct)
@@ -477,7 +491,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         //Send the current image (upload) to firebase
         storage.child("images/image\(currentTime!).jpg").putData(image.jpegData(compressionQuality: 0.2)!, metadata: metadataImage, completion: { _, error in
             guard error == nil else {
-                print("Failed to uplaod")
+                print("Failed to upload")
                 return
             }
         })
@@ -574,9 +588,9 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
     //let riversRef = storageRef.child("CSVData.csv")
     
     
-        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerY_User"),\("AccelerometerZ_User"),\("Speed_User")\n\n"
+        var csvString = "\("Date_User"),\("Latitude_User"),\("Longitude_User"),\("AccelerometerX_User"),\("AccelerometerY_User"),\("AccelerometerZ_User"),\("Speed_User"),\("Rougness_Index")\n\n"
         for dct in recArray {
-            csvString = csvString.appending("\(String(describing: dct["Date"]!)) ,\(String(describing: dct["Latitude"]!)),\(String(describing: dct["Longitude"]!)),\(String(describing: dct["AccelerometerX"]!)),\(String(describing: dct["AccelerometerY"]!)),\(String(describing: dct["AccelerometerZ"]!)),\(String(describing: dct["Speed"]!))\n")
+            csvString = csvString.appending("\(String(describing: dct["Date"]!)) ,\(String(describing: dct["Latitude"]!)),\(String(describing: dct["Longitude"]!)),\(String(describing: dct["AccelerometerX"]!)),\(String(describing: dct["AccelerometerY"]!)),\(String(describing: dct["AccelerometerZ"]!)),\(String(describing: dct["Speed"]!)),\(String(describing: dct["RougnessIndex"]!))\n")
         }
 
         let fileManager = FileManager.default
