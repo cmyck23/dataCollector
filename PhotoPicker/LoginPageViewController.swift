@@ -14,7 +14,7 @@ class LoginPageViewController: UIViewController {
     private let label:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "log In"
+        label.text = "Log In or Register"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()
@@ -60,7 +60,7 @@ class LoginPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.red
+        self.view.backgroundColor = UIColor.systemBlue
         view.addSubview(label)
         view.addSubview(emailField)
         view.addSubview(passwordField)
@@ -116,7 +116,7 @@ class LoginPageViewController: UIViewController {
         
         emailField.frame = CGRect(x: 20, y: label.frame.origin.y+label.frame.size.height+10, width: view.frame.size.width-40, height: 50)
         
-        passwordField.frame = CGRect(x: 20, y: emailField.frame.origin.y+label.frame.size.height+10, width: view.frame.size.width, height: 50)
+        passwordField.frame = CGRect(x: 20, y: emailField.frame.origin.y+label.frame.size.height+10, width: view.frame.size.width-40, height: 50)
         
         button.frame = CGRect(x: 20, y: passwordField.frame.origin.y+label.frame.size.height+10, width: view.frame.size.width-40, height: 80)
     }
@@ -196,16 +196,20 @@ class LoginPageViewController: UIViewController {
                                                     return
                                                 }
                                                 
-                                                print("You have signed in")
+                                                print("You have sucessfully created your account")
                                             
-                                            self!.performSegue(withIdentifier: "HomePage", sender: self)
-                                                                                            
-                                                StrongSelf.label.isHidden = true
-                                                StrongSelf.emailField.isHidden = true
-                                                StrongSelf.passwordField.isHidden = true
-                                                StrongSelf.button.isHidden = true
-                                            StrongSelf.emailField.resignFirstResponder()
-                                            StrongSelf.passwordField.resignFirstResponder()
+                                                
+                    
+                                                StrongSelf.emailField.text = ""
+                                                StrongSelf.passwordField.text = ""
+                                            
+                                            let alert = UIAlertController(title: "You have sucessfully created your account", message: "You will be redirected to the login page", preferredStyle: .alert)
+                                            alert.addAction(UIAlertAction(title: "Ok",
+                                                                          style: .default,
+                                                                          handler: {_ in
+                                            }))
+                                            self?.present(alert, animated:true)
+
                                                 
                                             })
                                             

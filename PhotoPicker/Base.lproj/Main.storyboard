@@ -159,6 +159,7 @@
                         <segue destination="HSf-hh-Zw3" kind="relationship" relationship="viewControllers" id="S2K-JW-94O"/>
                         <segue destination="Nxm-bY-7Id" kind="relationship" relationship="viewControllers" id="gQh-aP-w0I"/>
                         <segue destination="2mq-Br-WLc" kind="relationship" relationship="viewControllers" id="KPM-KC-MQc"/>
+                        <segue destination="gnD-kZ-WC9" kind="relationship" relationship="viewControllers" id="co2-Xn-tEQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aw9-sx-Otn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -213,6 +214,49 @@
             </objects>
             <point key="canvasLocation" x="-668" y="1675"/>
         </scene>
+        <!--Analysis-->
+        <scene sceneID="oTZ-pS-TNj">
+            <objects>
+                <navigationController id="gnD-kZ-WC9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Analysis" id="GmQ-9E-fPU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RhR-RS-yHI">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y9e-uC-NHu" kind="relationship" relationship="rootViewController" id="SJQ-OQ-7q9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUw-fT-kdq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2010" y="897"/>
+        </scene>
+        <!--Vision Object Recognition View Controller-->
+        <scene sceneID="MSJ-W9-dMr">
+            <objects>
+                <viewController id="Y9e-uC-NHu" customClass="VisionObjectRecognitionViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mCu-zr-hjK">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-0t-xLs" userLabel="previewView">
+                                <rect key="frame" x="9" y="97" width="406" height="738"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2tk-xS-CuW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nTU-kc-DeW"/>
+                    <connections>
+                        <outlet property="previewView" destination="vjv-0t-xLs" id="ib9-gM-Pet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ror-VP-dNX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2010.2803738317755" y="1636.7170626349894"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="zRA-85-KYM">
             <objects>
@@ -262,6 +306,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

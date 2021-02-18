@@ -18,7 +18,10 @@
 		C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C818873725BB7CFB00530E06 /* DataCollectorPage.swift */; };
 		C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C851DAFC25A2574D0030631A /* GoogleService-Info.plist */; };
 		C861B88525B1C4C0005F493B /* dataRoad.json in Resources */ = {isa = PBXBuildFile; fileRef = C861B88425B1C4C0005F493B /* dataRoad.json */; };
+		C86AA2AB25DEE8B400793391 /* VisionObjectRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86AA2AA25DEE8B400793391 /* VisionObjectRecognitionViewController.swift */; };
+		C86AA2AE25DEE8EA00793391 /* ViewControllerML.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86AA2AD25DEE8EA00793391 /* ViewControllerML.swift */; };
 		C873D5A825BCC07B0006BA33 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873D5A725BCC07B0006BA33 /* LoginPageViewController.swift */; };
+		C8814F3C25DEFA8600ECDA0F /* ObjectDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C8814F3B25DEFA8600ECDA0F /* ObjectDetector.mlmodel */; };
 		C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E9F36425AF703E000D35CC /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +44,10 @@
 		C818873725BB7CFB00530E06 /* DataCollectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectorPage.swift; sourceTree = "<group>"; };
 		C851DAFC25A2574D0030631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C861B88425B1C4C0005F493B /* dataRoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRoad.json; sourceTree = "<group>"; };
+		C86AA2AA25DEE8B400793391 /* VisionObjectRecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionObjectRecognitionViewController.swift; sourceTree = "<group>"; };
+		C86AA2AD25DEE8EA00793391 /* ViewControllerML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerML.swift; sourceTree = "<group>"; };
 		C873D5A725BCC07B0006BA33 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		C8814F3B25DEFA8600ECDA0F /* ObjectDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectDetector.mlmodel; sourceTree = "<group>"; };
 		C8E9F36225AF703D000D35CC /* PhotoPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoPicker-Bridging-Header.h"; sourceTree = "<group>"; };
 		C8E9F36325AF703E000D35CC /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		C8E9F36425AF703E000D35CC /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
@@ -97,6 +103,9 @@
 			children = (
 				AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */,
 				C851DAFC25A2574D0030631A /* GoogleService-Info.plist */,
+				C86AA2AA25DEE8B400793391 /* VisionObjectRecognitionViewController.swift */,
+				C8814F3B25DEFA8600ECDA0F /* ObjectDetector.mlmodel */,
+				C86AA2AD25DEE8EA00793391 /* ViewControllerML.swift */,
 				C861B88425B1C4C0005F493B /* dataRoad.json */,
 				C818873725BB7CFB00530E06 /* DataCollectorPage.swift */,
 				AF572AF822C6BEF600D3BF96 /* ViewController.swift */,
@@ -294,12 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8814F3C25DEFA8600ECDA0F /* ObjectDetector.mlmodel in Sources */,
 				C805AAFF25C223E4000BE0D9 /* ProfileViewController.swift in Sources */,
+				C86AA2AE25DEE8EA00793391 /* ViewControllerML.swift in Sources */,
 				C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */,
 				AF572AFB22C6BEF600D3BF96 /* AppDelegate.swift in Sources */,
 				AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */,
 				C873D5A825BCC07B0006BA33 /* LoginPageViewController.swift in Sources */,
 				C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */,
+				C86AA2AB25DEE8B400793391 /* VisionObjectRecognitionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
