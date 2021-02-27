@@ -201,14 +201,39 @@
         <!--Planner-->
         <scene sceneID="lm9-nO-Dnf">
             <objects>
-                <viewController id="pcu-59-Gqg" sceneMemberID="viewController">
+                <viewController id="pcu-59-Gqg" customClass="ViewControllerPlanner" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pmd-5i-zhM">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yIj-Ve-U6g">
+                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="T6D-zZ-7QO">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T6D-zZ-7QO" id="dLc-gY-LlX">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="WKu-nb-GUs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yIj-Ve-U6g" firstAttribute="top" secondItem="WKu-nb-GUs" secondAttribute="top" id="8Wd-Py-xrL"/>
+                            <constraint firstItem="WKu-nb-GUs" firstAttribute="bottom" secondItem="yIj-Ve-U6g" secondAttribute="bottom" id="Dwj-nc-FDb"/>
+                            <constraint firstItem="WKu-nb-GUs" firstAttribute="trailing" secondItem="yIj-Ve-U6g" secondAttribute="trailing" id="ffq-Ww-21Q"/>
+                            <constraint firstItem="yIj-Ve-U6g" firstAttribute="leading" secondItem="WKu-nb-GUs" secondAttribute="leading" id="p5Y-d2-Z9Y"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Planner" id="HVk-0R-grY"/>
+                    <connections>
+                        <outlet property="tableView" destination="yIj-Ve-U6g" id="s9g-Sd-ZDa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ooj-Pd-nRm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
