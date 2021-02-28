@@ -12,76 +12,56 @@ import FirebaseDatabase
 class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var numberOfLocationsAnalyzed = 0
-    
+    var areaList = [String]()
+    @IBOutlet var tableView: UITableView!
+    var database = Database.database().reference()
+    var databaseRef: DatabaseReference?
+    var databaseHandle:DatabaseHandle?
+    var names = ""
 
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+//        Keep this functiom
+//        Not neededed at the current time
+//        displayButtonToGenerateValue()
+        
+        databaseHandle = database.child("AreasNames").observe(.childAdded, with: {(snapshot) in
+            let post = snapshot.value as? String
+            if let actualPost = post{
+                self.areaList.append(actualPost)
+                self.tableView.reloadData()
+            }
+        })
+        
+        print(self.areaList)
+        
+        // Do any additional setup after loading the view.
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("you tapped me in list view!")
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-      
-        return 3
+        return self.areaList.count
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "hello"
+        cell.textLabel?.text = areaList[indexPath.row]
         return cell
     }
     
-    @IBOutlet var tableView: UITableView!
-       
-    
-    private let database = Database.database().reference()
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Keep this functiom
-        //Not neededed at the current time
-        //displayButtonToGenerateValue()
-        //retrieveAllAreaNames()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-            
-
-       
-        // Do any additional setup after loading the view.
-    }
-    
-
-    private func retrieveAllAreaNames() -> Int
-    {
-        //var i = 0
-        var numOfRows: Int = 0
-        let ref = database.child("Areas")
-        ref.observeSingleEvent(of: .value, with: {
-            snapshot in guard let value = snapshot.value as? [String: Any]
-        else
-            {
-            return
-            }
-        //print("Value: \(value.count)")
-        print("Try to print children count")
-
-        print(value.keys)
-        numOfRows = numOfRows + 1
-        print("inside function_\(numOfRows)")
-        })
-
-        print("outside function_\(numOfRows)")
-        return numOfRows
-        
-    }
-    
-    
-    private func displayButtonToGenerateValue()
+     public func displayButtonToGenerateValue()
     {
         database.child("Area_38").observeSingleEvent(of: .value, with: {snapshot in guard let value = snapshot.value as? [String: Any]
         else{return
@@ -102,7 +82,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
-    @objc private func addNewEntry()
+    @objc public func addNewEntry()
     {
         let citiesNames = ["Montreal", "Quebec City", "Toronto", "Laval"]
         let roadTypes = ["Asphalt", "Concrete", "Earth", "Stones"]
@@ -136,30 +116,25 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
             "Poject's Suppliers": "Not yet chosen"
         ]
         
+        let nameRandLoc :String = "Location_\(Int.random(in: 0..<100))"
         
-        
-        database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard let value = snapshot.value as? [String: Any]
+
+        database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
         else{
-            database.child("Areas").child("Area_\(1)").setValue(object)
+            database.child("AreasNames").childByAutoId().setValue(nameRandLoc)
             return
-            
         }
-        numberOfLocationsAnalyzed = value.count
-        numberOfLocationsAnalyzed+=1
-        database.child("Areas").child("Area_\(numberOfLocationsAnalyzed)").setValue(object)
-        print("Value: \(value.count)")
+        database.child("AreasNames").childByAutoId().setValue(nameRandLoc)
+       
         })
         
+        database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
+        else{
+            database.child("Areas").child(nameRandLoc).setValue(object)
+            return
+        }
+        database.child("Areas").child(nameRandLoc).setValue(object)
+       
+        })
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
