@@ -29,7 +29,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         
 //        Keep this functiom
 //        Not neededed at the current time
-//        displayButtonToGenerateValue()
+    //displayButtonToGenerateValue()
         
         databaseHandle = database.child("AreasNames").observe(.childAdded, with: {(snapshot) in
             let post = snapshot.value as? String
@@ -45,8 +45,42 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("you tapped me in list view!")
+        let vc = storyboard?.instantiateViewController(identifier: "DetailedPlannerViewController")
+        as? DetailedPlannerViewController
+        
+//        print("Type of indexPath")
+//        print(type(of: indexPath.row))
+        var select = ""
+        var infoLocationString = ""
+        select = String(areaList[indexPath.row])
+        let ref = database.child("Areas").child(select)
+        ref.observe(.value, with: {
+            snapshot in guard (snapshot.value as? [String: Any]) != nil
+        else
+            {
+            return
+            }
+        for child in snapshot.children
+        {
+            let snap = child as! DataSnapshot
+            let key = snap.key
+            let value = snap.value
+            
+            print(key, ":", value!)
+            infoLocationString.append("\(key) : \(value!)\n\n")
+        }
+        
+        //print(snapshot.value)
+        
+        //vc?.name = self.areaList[indexPath.row]
+        vc?.name = infoLocationString
+        self.navigationController?.pushViewController(vc!, animated: true)
+    })
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("you tapped me in list view!\(indexPath.row)")
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -61,6 +95,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+
      public func displayButtonToGenerateValue()
     {
         database.child("Area_38").observeSingleEvent(of: .value, with: {snapshot in guard let value = snapshot.value as? [String: Any]
@@ -93,8 +128,11 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         
         //print(formatter1.string(from: today))
 
+        let nameRandLoc :String = "Location_\(Int.random(in: 0..<100))"
+        
+        
         let object: [String : Any] = [
-            "Name": "Location_\(Int.random(in: 0..<100))",
+            "Name": nameRandLoc,
             "City": citiesNames.randomElement()!,
             "Latitude" : Float.random(in: -180..<180),
             "Longitude" : Float.random(in: -90..<90),
@@ -116,7 +154,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
             "Poject's Suppliers": "Not yet chosen"
         ]
         
-        let nameRandLoc :String = "Location_\(Int.random(in: 0..<100))"
+        
         
 
         database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil

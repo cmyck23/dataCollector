@@ -282,6 +282,40 @@
             </objects>
             <point key="canvasLocation" x="-2010.2803738317755" y="1636.7170626349894"/>
         </scene>
+        <!--Detailed Planner View Controller-->
+        <scene sceneID="ZZJ-bN-d62">
+            <objects>
+                <viewController storyboardIdentifier="DetailedPlannerViewController" id="voo-QT-GWF" customClass="DetailedPlannerViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rmo-rN-rcP">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qQA-ud-Xpq">
+                                <rect key="frame" x="0.0" y="44" width="428" height="848"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WE4-YK-v9Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WE4-YK-v9Y" firstAttribute="bottom" secondItem="qQA-ud-Xpq" secondAttribute="bottom" id="ST1-tY-BwB"/>
+                            <constraint firstItem="WE4-YK-v9Y" firstAttribute="trailing" secondItem="qQA-ud-Xpq" secondAttribute="trailing" id="VSK-Dz-JS7"/>
+                            <constraint firstItem="qQA-ud-Xpq" firstAttribute="top" secondItem="WE4-YK-v9Y" secondAttribute="top" id="eSP-DX-6m6"/>
+                            <constraint firstItem="qQA-ud-Xpq" firstAttribute="leading" secondItem="WE4-YK-v9Y" secondAttribute="leading" id="iNd-lW-UbI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lbl" destination="qQA-ud-Xpq" id="r8y-yv-WOm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="54G-Q8-sVr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-712" y="2454"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="zRA-85-KYM">
             <objects>

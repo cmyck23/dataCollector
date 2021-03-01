@@ -18,6 +18,7 @@
 		C818873825BB7CFB00530E06 /* DataCollectorPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C818873725BB7CFB00530E06 /* DataCollectorPage.swift */; };
 		C82844D125EA73E90091BC5B /* ViewControllerPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82844D025EA73E90091BC5B /* ViewControllerPlanner.swift */; };
 		C82844D525EAFAC10091BC5B /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82844D425EAFAC10091BC5B /* Area.swift */; };
+		C82844D825ED775E0091BC5B /* DetailedPlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82844D725ED775E0091BC5B /* DetailedPlannerViewController.swift */; };
 		C851DAFD25A2574D0030631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C851DAFC25A2574D0030631A /* GoogleService-Info.plist */; };
 		C861B88525B1C4C0005F493B /* dataRoad.json in Resources */ = {isa = PBXBuildFile; fileRef = C861B88425B1C4C0005F493B /* dataRoad.json */; };
 		C86AA2AB25DEE8B400793391 /* VisionObjectRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86AA2AA25DEE8B400793391 /* VisionObjectRecognitionViewController.swift */; };
@@ -46,6 +47,7 @@
 		C818873725BB7CFB00530E06 /* DataCollectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectorPage.swift; sourceTree = "<group>"; };
 		C82844D025EA73E90091BC5B /* ViewControllerPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPlanner.swift; sourceTree = "<group>"; };
 		C82844D425EAFAC10091BC5B /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
+		C82844D725ED775E0091BC5B /* DetailedPlannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPlannerViewController.swift; sourceTree = "<group>"; };
 		C851DAFC25A2574D0030631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C861B88425B1C4C0005F493B /* dataRoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRoad.json; sourceTree = "<group>"; };
 		C86AA2AA25DEE8B400793391 /* VisionObjectRecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionObjectRecognitionViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				AF572AF822C6BEF600D3BF96 /* ViewController.swift */,
 				C805AAFE25C223E4000BE0D9 /* ProfileViewController.swift */,
 				C873D5A725BCC07B0006BA33 /* LoginPageViewController.swift */,
+				C82844D725ED775E0091BC5B /* DetailedPlannerViewController.swift */,
 				C82844D025EA73E90091BC5B /* ViewControllerPlanner.swift */,
 				C82844D425EAFAC10091BC5B /* Area.swift */,
 				5320B8541AFD59C0008854DF /* Supporting Files */,
@@ -318,6 +321,7 @@
 				AF572AFA22C6BEF600D3BF96 /* ViewController.swift in Sources */,
 				C873D5A825BCC07B0006BA33 /* LoginPageViewController.swift in Sources */,
 				C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */,
+				C82844D825ED775E0091BC5B /* DetailedPlannerViewController.swift in Sources */,
 				C82844D525EAFAC10091BC5B /* Area.swift in Sources */,
 				C86AA2AB25DEE8B400793391 /* VisionObjectRecognitionViewController.swift in Sources */,
 			);
