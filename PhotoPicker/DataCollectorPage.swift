@@ -9,9 +9,16 @@
 import UIKit
 
 class DataCollectorPage: UIViewController {
+    
+    @IBOutlet weak var button: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        overrideUserInterfaceStyle = .light
+        button.layer.cornerRadius = 10.0
+
 
         // Do any additional setup after loading the view.
     }

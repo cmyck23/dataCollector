@@ -16,6 +16,7 @@ class LoginPageViewController: UIViewController {
         label.textAlignment = .center
         label.text = "Log In or Register"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.textColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
         return label
     }()
     
@@ -27,6 +28,8 @@ class LoginPageViewController: UIViewController {
         emailField.leftViewMode = .always
         emailField.leftView = UIView(frame: CGRect(x:0, y: 0, width: 5, height: 0))
         emailField.layer.borderColor = UIColor.black.cgColor
+        emailField.textColor = .white
+        emailField.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
         return emailField
     }()
     
@@ -38,12 +41,14 @@ class LoginPageViewController: UIViewController {
         passwordField.leftViewMode = .always
         passwordField.leftView = UIView(frame: CGRect(x:0, y: 0, width: 5, height: 0))
         passwordField.layer.borderColor = UIColor.black.cgColor
+        passwordField.textColor = .white
+        passwordField.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
         return passwordField
     }()
     
     private let button:UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Continue", for: .normal)
         return button
@@ -51,7 +56,7 @@ class LoginPageViewController: UIViewController {
     
     private let signOutButton:UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Log out", for: .normal)
         return button
@@ -60,7 +65,7 @@ class LoginPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.systemBlue
+        //self.view.backgroundColor = UIColor.systemBlue
         view.addSubview(label)
         view.addSubview(emailField)
         view.addSubview(passwordField)

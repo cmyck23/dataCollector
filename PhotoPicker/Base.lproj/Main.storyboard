@@ -11,25 +11,27 @@
         <!--Data Collector-->
         <scene sceneID="UP7-yH-nWI">
             <objects>
-                <viewController id="S7J-pp-GXF" sceneMemberID="viewController">
+                <viewController id="S7J-pp-GXF" customClass="DataCollectorPage" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5x-G5-Pt9">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4FO-38-eaj">
-                                <rect key="frame" x="87" y="200" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4FO-38-eaj">
+                                <rect key="frame" x="0.0" y="88" width="428" height="358"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Welcome to the Data Collector Menu. You only need to use this option if you want to collect more data from the road. Road will be recorded and data will be sent to a remote database.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYN-s6-3yH">
-                                <rect key="frame" x="143" y="566" width="142.99999999999997" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Start Collecting Data">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYN-s6-3yH">
+                                <rect key="frame" x="142.66666666666666" y="446" width="142.99999999999997" height="34"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="  Start Collecting  ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="thin"/>
                                 </state>
                                 <connections>
                                     <segue destination="2" kind="show" id="fx2-ND-38G"/>
@@ -37,17 +39,28 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PT2-Dj-0SV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="centerY" secondItem="C5x-G5-Pt9" secondAttribute="centerY" id="423-RM-ARA"/>
+                            <constraint firstItem="PT2-Dj-0SV" firstAttribute="trailing" secondItem="4FO-38-eaj" secondAttribute="trailing" id="4nz-Mk-Mlh"/>
+                            <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" id="5AP-5l-Gfv"/>
+                            <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" constant="8" symbolic="YES" id="9Sg-sH-Z2B"/>
+                            <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" constant="100" id="EP4-HX-wCN"/>
+                            <constraint firstItem="4FO-38-eaj" firstAttribute="leading" secondItem="PT2-Dj-0SV" secondAttribute="leading" id="Ef5-tp-g0X"/>
+                            <constraint firstItem="4FO-38-eaj" firstAttribute="top" secondItem="PT2-Dj-0SV" secondAttribute="top" id="Fh7-HR-N2a"/>
+                            <constraint firstItem="4FO-38-eaj" firstAttribute="top" secondItem="PT2-Dj-0SV" secondAttribute="top" id="O9a-Qp-4gD"/>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="centerX" secondItem="C5x-G5-Pt9" secondAttribute="centerX" id="RaH-8Q-zZB"/>
+                            <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" id="wJe-lB-EBO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Data Collector" id="fQp-uk-Bje"/>
+                    <connections>
+                        <outlet property="button" destination="UYN-s6-3yH" id="Ada-hd-dPK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naq-Uk-PsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2551" y="1675"/>
+            <point key="canvasLocation" x="2550" y="1674.9460043196545"/>
         </scene>
         <!--Data Collector-->
         <scene sceneID="5">
@@ -63,7 +76,8 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f1z-uk-HKV"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="linkColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f1z-uk-HKV" firstAttribute="bottom" secondItem="fSE-YJ-a3V" secondAttribute="bottom" id="0hh-SA-fOd"/>
                             <constraint firstAttribute="trailing" secondItem="fSE-YJ-a3V" secondAttribute="trailing" id="NOX-kA-plb"/>
@@ -72,9 +86,11 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TSr-FM-Uf3"/>
-                        <barButtonItem systemItem="camera" id="KDv-lD-mEx">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TSr-FM-Uf3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="camera" id="KDv-lD-mEx">
+                            <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="showImagePickerForCamera:" destination="2" id="039-WZ-yVF"/>
                             </connections>
@@ -131,11 +147,18 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bEa-fJ-OKp">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7gr-F8-8xg">
                         <rect key="frame" x="0.0" y="794" width="428" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </toolbar>
                     <connections>
                         <segue destination="S7J-pp-GXF" kind="relationship" relationship="rootViewController" id="yya-dL-vfa"/>
@@ -154,6 +177,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="HSf-hh-Zw3" kind="relationship" relationship="viewControllers" id="S2K-JW-94O"/>
@@ -174,7 +199,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="glY-wJ-Qg7"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdp-uM-jee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -189,6 +214,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5ye-UP-wmh">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="pcu-59-Gqg" kind="relationship" relationship="rootViewController" id="k39-lc-zAv"/>
@@ -202,7 +231,7 @@
         <scene sceneID="lm9-nO-Dnf">
             <objects>
                 <viewController id="pcu-59-Gqg" customClass="ViewControllerPlanner" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pmd-5i-zhM">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="pmd-5i-zhM">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -222,7 +251,8 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WKu-nb-GUs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yIj-Ve-U6g" firstAttribute="top" secondItem="WKu-nb-GUs" secondAttribute="top" id="8Wd-Py-xrL"/>
                             <constraint firstItem="WKu-nb-GUs" firstAttribute="bottom" secondItem="yIj-Ve-U6g" secondAttribute="bottom" id="Dwj-nc-FDb"/>
@@ -247,6 +277,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RhR-RS-yHI">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Y9e-uC-NHu" kind="relationship" relationship="rootViewController" id="SJQ-OQ-7q9"/>
@@ -264,14 +298,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-0t-xLs" userLabel="previewView">
-                                <rect key="frame" x="9" y="97" width="406" height="738"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-0t-xLs" userLabel="previewView">
+                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2tk-xS-CuW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="2tk-xS-CuW" firstAttribute="bottom" secondItem="vjv-0t-xLs" secondAttribute="bottom" id="EqW-Tl-NFY"/>
+                            <constraint firstItem="2tk-xS-CuW" firstAttribute="trailing" secondItem="vjv-0t-xLs" secondAttribute="trailing" id="f4O-N6-7v2"/>
+                            <constraint firstItem="vjv-0t-xLs" firstAttribute="top" secondItem="2tk-xS-CuW" secondAttribute="top" id="fbE-pk-iAf"/>
+                            <constraint firstItem="vjv-0t-xLs" firstAttribute="leading" secondItem="2tk-xS-CuW" secondAttribute="leading" id="pCM-hK-MxL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nTU-kc-DeW"/>
                     <connections>
@@ -293,7 +332,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qQA-ud-Xpq">
                                 <rect key="frame" x="0.0" y="44" width="428" height="848"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -320,10 +359,16 @@
         <scene sceneID="zRA-85-KYM">
             <objects>
                 <navigationController id="2mq-Br-WLc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="c1i-4c-EKI"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="c1i-4c-EKI">
+                        <color key="badgeColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YuZ-wF-ZQK">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="uRi-pg-GGZ" kind="relationship" relationship="rootViewController" id="esq-Gk-7m4"/>
@@ -341,7 +386,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="hhN-Vq-xiq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="linkColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="bpk-fm-o4d">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="ySA-Wo-fSY">
@@ -363,11 +409,11 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
