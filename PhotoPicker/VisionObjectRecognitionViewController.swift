@@ -71,7 +71,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             }
             // Select only the label with the highest confidence.
             let topLabelObservation = objectObservation.labels[0]
-            print(topLabelObservation)
+            //print(topLabelObservation)
             
             // addNewEntry()
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
@@ -82,7 +82,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                                                             identifier: topLabelObservation.identifier,
                                                             confidence: topLabelObservation.confidence)
             shapeLayer.addSublayer(textLayer)
-            print(shapeLayer)
+            //print(shapeLayer)
             detectionOverlay.addSublayer(shapeLayer)
         }
         self.updateLayerGeometry()
@@ -203,25 +203,15 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
 
    @objc public func addNewEntry()
    {
-
-    self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-        if let myData = data
-    {
-    
-            
+        
+        var location_Name = "Unknown"
         //--This is to create a date object to display the time later.
         print("-------------------------")
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
-        let dateTimeString = formatter.string(from: currentDateTime)
-        
-
-        //-Print time
-        print (dateTimeString)
-        
-        print ("Displaying latitude and longitude (GPS DATA)")
+    _ = formatter.string(from: currentDateTime)
         
         //Get current latitude and save it as a string.
         let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
@@ -236,115 +226,86 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     {
                         return
                     }
-                    print(location)
                 }
                 
                 LocationManager.shared.resolveLocationName(with: location){
                     locationName in self?.title = locationName
-                    
                     print(locationName as Any)
+                    location_Name = String(locationName ?? "Unknown")
                 }
             }
-            
-            
-        print(user_lat)
-        print(user_long)
-            
-            
-        var cityName  = ""
         
-            if user_lat.contains("45.50884") && user_long.contains("-73.58781")  {
-                cityName = "Montreal"
-            }
-            if user_lat.contains("47.8097") && user_long.contains("7.17699") {
-                cityName = "Cernay"
-            }
-            if user_lat.contains("43.70011") && user_long.contains("-79.4163") {
-                cityName = "Toronto"
-            }
-            else {
-                cityName = "Unknown"
-            }
-    
-        print ("Displaying accelerometer data")
-        
-        //Convert longitudes and latitudes to string.
-
-        let user_accelerometerXValue = String(format: "%f", myData.acceleration.x)
-        let user_accelerometerYValue = String(format: "%f", myData.acceleration.y)
-        let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
-        
-        
-        print( user_accelerometerXValue)
-        print( user_accelerometerYValue)
-        print( user_accelerometerZValue)
-        
+                
         var speed = self.locationManager.location!.speed*3.6
         
         if speed <= 0
         {
             speed = 0
         }
-        
-        print("Displaying Speed")
-        //--Displaying speed of the motion of the phone in kilometer per hour.
-        print(speed)
-        
+    
        let roadTypes = ["Asphalt", "Concrete", "Earth", "Stones"]
        let detection = ["YES","NO"]
        let today = Date()
        let formatter1 = DateFormatter()
        formatter1.dateStyle = .short
-       
-       //print(formatter1.string(from: today))
-
-       let nameRandLoc :String = "Location_\(Int.random(in: 0..<100))"
-       
-       
-       let object: [String : Any] = [
-           "Name": nameRandLoc,
-           "City": cityName,
-           "Latitude" : user_lat ,
-           "Longitude" : user_long,
-           "Road Type" : roadTypes.randomElement()!,
-           "Day" : formatter1.string(from: today),
-           "Pothole Detected" : detection.randomElement()!,
-           "Potholes Number" : Int.random(in: 0..<10),
-           "Major Cracks Detected" : detection.randomElement()!,
-           "Major Cracks Number" : Int.random(in: 0..<10),
-           "Minor Cracks Detected" : detection.randomElement()!,
-           "Minor Cracks Number" : Int.random(in: 0..<10),
-           "Total Defects" : Int.random(in: 0..<10),
-           "Priority" : Float.random(in: 0..<5),
-           "Time Estimated To Fix": "",
-           "Cost Estimated To Fix": "",
-           "Equipment Required" :"Tools",
-           "Comments": "None",
-           "Project's Manager": "Not yet chosen",
-           "Poject's Suppliers": "Not yet chosen"
-       ]
-       
-       
-
-        self.database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
-       else{
-           database.child("AreasNames").childByAutoId().setValue(nameRandLoc)
-           return
-       }
-       database.child("AreasNames").childByAutoId().setValue(nameRandLoc)
-      
-       })
-       
-        self.database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
-       else{
-           database.child("Areas").child(nameRandLoc).setValue(object)
-           return
-       }
-       database.child("Areas").child(nameRandLoc).setValue(object)
-      
-       })
-   
     
+        
+    database.child("Areas").child(location_Name).child("Total Defects").observeSingleEvent(of: .value, with: { (snapshot) in
+      // Get user value
+        
+        let numberOfDefects = (snapshot.value as? Int)
+        print("Reading from firebase")
+        print(numberOfDefects as Any)
+        var totalNumberDefects = Int(numberOfDefects ?? 0)
+        totalNumberDefects += 1
+        //self.database.child("Areas").child(location_Name).child("Total Defects").setValue(totalNumberDefects)
+        print(totalNumberDefects)
+        
+        let object: [String : Any] = [
+            "Name": location_Name,
+            "City": "Unknown",
+            "Latitude" : user_lat ,
+            "Longitude" : user_long,
+            "Road Type" : roadTypes.randomElement()!,
+            "Day" : formatter1.string(from: today),
+            "Pothole Detected" : detection.randomElement()!,
+            "Potholes Number" : Int.random(in: 0..<10),
+            "Major Cracks Detected" : detection.randomElement()!,
+            "Major Cracks Number" : Int.random(in: 0..<10),
+            "Minor Cracks Detected" : detection.randomElement()!,
+            "Minor Cracks Number" : Int.random(in: 0..<10),
+            "Total Defects" : totalNumberDefects,
+            "Priority" : Float.random(in: 0..<5),
+            "Time Estimated To Fix": "",
+            "Cost Estimated To Fix": "",
+            "Equipment Required" :"Tools",
+            "Comments": "None",
+            "Project's Manager": "Not yet chosen",
+            "Poject's Suppliers": "Not yet chosen"
+        ]
+        
+         self.database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
+        else{
+            database.child("AreasNames").child(location_Name).setValue(location_Name)
+            return
+        }
+        database.child("AreasNames").child(location_Name).setValue(location_Name)
+       
+        })
+        
+         self.database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
+        else{
+            database.child("Areas").child(location_Name).setValue(object)
+            return
+        }
+        database.child("Areas").child(location_Name).setValue(object)
+       
+        })
+    
+      }) { (error) in
+        print(error.localizedDescription)
+    }
+       
     }}
-}
-}
+
+

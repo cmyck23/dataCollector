@@ -24,22 +24,46 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
                 completion(nil)
                 return
             }
-            print(place)
             
             var name = ""
+            
+            
+            if let streetDetails = place.subThoroughfare
+            {
+                name += streetDetails
+                name += " "
+            }
+            
+            if let street = place.thoroughfare
+            {
+                name += street
+                name += " "
+            }
             
             if let locality = place.locality
             {
                 name += locality
-                print(name)
+                name += " "
             }
             
             if let country = place.country
             {
                 name += country
-                print(name)
+                name += " "
             }
             
+            if let state_Province = place.administrativeArea
+            {
+                name += state_Province
+                name += " "
+            }
+            
+            
+            if let postal_Code = place.postalCode
+            {
+                name += postal_Code
+            }
+        
             completion(name)
         }
     }
