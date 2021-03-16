@@ -13,5 +13,6 @@ target 'Road Analyzer' do
   pod 'CSV.swift'
   pod 'SwiftyJSON'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
 end

@@ -7,6 +7,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
     let manager = CLLocationManager()
     var completion: ((CLLocation)-> Void)?
     
+    var streetDetails : String = ""
+    var name = ""
+    var street = ""
+    var locality = ""
+    var country = ""
+    var state_Province = ""
+    var postal_Code = ""
+    
     public func getUserLocation(completion: @escaping ((CLLocation) -> Void))
     {
         self.completion = completion
@@ -15,8 +23,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
         manager.startUpdatingLocation()
     }
     
-    public func resolveLocationName(with location: CLLocation, completion: @escaping((String?)-> Void)){
-    let geocoder = CLGeocoder()
+    public func resolveLocationName(with location: CLLocation, completion: @escaping((String?)-> Void)) -> String {
+    
+        let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location, preferredLocale: .current)
             {placemarks,
              error in
@@ -25,47 +34,48 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
                 return
             }
             
-            var name = ""
-            
-            
-            if let streetDetails = place.subThoroughfare
-            {
-                name += streetDetails
-                name += " "
-            }
-            
-            if let street = place.thoroughfare
-            {
-                name += street
-                name += " "
-            }
-            
-            if let locality = place.locality
-            {
-                name += locality
-                name += " "
-            }
-            
-            if let country = place.country
-            {
-                name += country
-                name += " "
-            }
-            
-            if let state_Province = place.administrativeArea
-            {
-                name += state_Province
-                name += " "
-            }
-            
-            
-            if let postal_Code = place.postalCode
-            {
-                name += postal_Code
-            }
+            self.name = ""
         
-            completion(name)
+            self.streetDetails = place.subThoroughfare ?? ""
+            
+            self.name += self.streetDetails
+            self.name += "_"
+            
+            
+            self.street = place.thoroughfare ?? ""
+            
+            self.name += self.street
+            self.name += "_"
+            
+            
+            self.locality = place.locality ?? ""
+            
+            self.name += self.locality
+            self.name += "_"
+            
+            
+            self.country = place.country ?? ""
+            
+            self.name += self.country
+            self.name += "_"
+            
+            
+            self.state_Province = place.administrativeArea ?? ""
+            
+            self.name += self.state_Province
+            self.name += "_"
+            
+            
+            
+            self.postal_Code = place.postalCode ?? ""
+            self.name += self.postal_Code
+            
+        
+            completion(self.name)
+            
         }
+        
+        return (self.name)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])

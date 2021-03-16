@@ -17,11 +17,14 @@ import CSV
 import Foundation
 import SwiftyJSON
 import MapKit
+import Firebase
 
 class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManagerDelegate {
     
     var database = Database.database().reference()
     var motionManager = CMMotionManager()
+    
+    let firestoreDatabase = Firestore.firestore()
     
     // Used to start getting the users location
     let locationManager = CLLocationManager()
@@ -81,6 +84,10 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             let textLayer = self.createTextSubLayerInBounds(objectBounds,
                                                             identifier: topLabelObservation.identifier,
                                                             confidence: topLabelObservation.confidence)
+            print(topLabelObservation.identifier)
+            print(topLabelObservation.confidence)
+            addNewEntry(typeOfDefect: String(topLabelObservation.identifier))
+            
             shapeLayer.addSublayer(textLayer)
             //print(shapeLayer)
             detectionOverlay.addSublayer(shapeLayer)
@@ -177,7 +184,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         shapeLayer.cornerRadius = 7
         
         // Update firebase when a new object is detected
-        addNewEntry()
+        //addNewEntry()
         return shapeLayer
     }
     
@@ -201,12 +208,14 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
    }
     
 
-   @objc public func addNewEntry()
+    @objc public func addNewEntry(typeOfDefect: String)
    {
+    
+    var location_Name = "Unknown"
         
-        var location_Name = "Unknown"
         //--This is to create a date object to display the time later.
         print("-------------------------")
+        print(typeOfDefect)
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
@@ -217,8 +226,20 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
         //Get current longitude and save it as a string.
         let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
-            
+    
+    var speed = self.locationManager.location!.speed*3.6
+    
+    if speed <= 0
+    {
+        speed = 0
+    }
 
+//   let roadTypes = ["Asphalt", "Concrete", "Earth", "Stones"]
+//   let detection = ["YES","NO"]
+   let today = Date()
+   let formatter1 = DateFormatter()
+   formatter1.dateStyle = .short
+            
             LocationManager.shared.getUserLocation{[weak self]location in
                 
                 DispatchQueue.main.async {
@@ -228,84 +249,152 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     }
                 }
                 
-                LocationManager.shared.resolveLocationName(with: location){
-                    locationName in self?.title = locationName
-                    print(locationName as Any)
-                    location_Name = String(locationName ?? "Unknown")
+                location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
+                    locationName in self!.title = locationName
+                    location_Name = locationName ?? "Unknown"
+                    
+                    print(locationName!)
+                
+                    self!.firestoreDatabase.collection("Areas").document(location_Name).getDocument{(document, error) in
+                        
+                        if error == nil{
+                            
+                            if document != nil && document!.exists{
+                                
+                            
+                                if locationName! != "Unknown" {
+                                    let incrementer: Double = 1
+
+                                    if typeOfDefect == "Minor_crack"{
+                                    self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
+                                            "Minor Cracks Number" : FieldValue.increment(incrementer)
+                                        ])
+                                    }
+                                    else if typeOfDefect == "Major_crack"
+                                    {
+                                        self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
+                                                "Major Cracks Number" : FieldValue.increment(incrementer)
+                                            ])
+                                    }
+                                    else if typeOfDefect == "Pothole" {
+                                            self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
+                                                    "Potholes Number" : FieldValue.increment(incrementer)
+                                                ])
+                                    }
+                                    self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
+                                            "Total Defects" : FieldValue.increment(incrementer)
+                                        ])
+                                }
+                                
+                            }
+                            
+                            else
+                            {
+                                
+                                if locationName! != "Unknown" {
+                                self!.firestoreDatabase.collection("Areas").document(location_Name).setData(["name":location_Name,
+                                "latitude":user_lat,
+                                "longitude":user_long,
+                                "Last Day":formatter1.string(from: today),
+                                "Priority":"Not yet calculated",
+                                "Road Type":"Asphalt/Concrete",
+                                "Project's Manager":"Not yet chosen",
+                                "Project's Supplier":"Not yet chosen"],merge: true)
+                                    
+                                    
+
+                                    if typeOfDefect == "Minor_crack"{
+                                        self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
+                                        "Major Cracks Number":1,"Minor Cracks Number":1,"Potholes Number":0,"Total Defects":1]
+                                        ,merge: true)
+                                    }
+                                    else if typeOfDefect == "Major_crack"
+                                    {
+                                        self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
+                                        "Major Cracks Number":1,"Minor Cracks Number":0,"Potholes Number":0,"Total Defects":1]
+                                        ,merge: true)
+                                    }
+                                    else if typeOfDefect == "Pothole" {
+                                        self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
+                                        "Major Cracks Number":0,"Minor Cracks Number":0,"Potholes Number":1,"Total Defects":1]
+                                        ,merge: true)
+                                    }
+                                }
+                            }
+                    }
+                   }
                 }
             }
-        
-                
-        var speed = self.locationManager.location!.speed*3.6
-        
-        if speed <= 0
-        {
-            speed = 0
-        }
     
-       let roadTypes = ["Asphalt", "Concrete", "Earth", "Stones"]
-       let detection = ["YES","NO"]
-       let today = Date()
-       let formatter1 = DateFormatter()
-       formatter1.dateStyle = .short
+
     
-        
-    database.child("Areas").child(location_Name).child("Total Defects").observeSingleEvent(of: .value, with: { (snapshot) in
-      // Get user value
-        
-        let numberOfDefects = (snapshot.value as? Int)
-        print("Reading from firebase")
-        print(numberOfDefects as Any)
-        var totalNumberDefects = Int(numberOfDefects ?? 0)
-        totalNumberDefects += 1
-        //self.database.child("Areas").child(location_Name).child("Total Defects").setValue(totalNumberDefects)
-        print(totalNumberDefects)
-        
-        let object: [String : Any] = [
-            "Name": location_Name,
-            "City": "Unknown",
-            "Latitude" : user_lat ,
-            "Longitude" : user_long,
-            "Road Type" : roadTypes.randomElement()!,
-            "Day" : formatter1.string(from: today),
-            "Pothole Detected" : detection.randomElement()!,
-            "Potholes Number" : Int.random(in: 0..<10),
-            "Major Cracks Detected" : detection.randomElement()!,
-            "Major Cracks Number" : Int.random(in: 0..<10),
-            "Minor Cracks Detected" : detection.randomElement()!,
-            "Minor Cracks Number" : Int.random(in: 0..<10),
-            "Total Defects" : totalNumberDefects,
-            "Priority" : Float.random(in: 0..<5),
-            "Time Estimated To Fix": "",
-            "Cost Estimated To Fix": "",
-            "Equipment Required" :"Tools",
-            "Comments": "None",
-            "Project's Manager": "Not yet chosen",
-            "Poject's Suppliers": "Not yet chosen"
-        ]
-        
-         self.database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
-        else{
-            database.child("AreasNames").child(location_Name).setValue(location_Name)
-            return
-        }
-        database.child("AreasNames").child(location_Name).setValue(location_Name)
-       
-        })
-        
-         self.database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
-        else{
-            database.child("Areas").child(location_Name).setValue(object)
-            return
-        }
-        database.child("Areas").child(location_Name).setValue(object)
-       
-        })
-    
-      }) { (error) in
-        print(error.localizedDescription)
-    }
-       
-    }}
 
 
+        
+//    database.child("Areas").child(location_Name).observeSingleEvent(of: .value, with: { (snapshot) in
+//      // Get user value
+//
+//
+//        let  totalNumberDefects = "8"
+//        let object: [String : Any] = [
+//            "Name": location_Name,
+//            "City": "Unknown",
+//            "Latitude" : user_lat ,
+//            "Longitude" : user_long,
+//            "Road Type" : roadTypes.randomElement()!,
+//            "Day" : formatter1.string(from: today),
+//            "Pothole Detected" : detection.randomElement()!,
+//            "Potholes Number" : Int.random(in: 0..<10),
+//            "Major Cracks Detected" : detection.randomElement()!,
+//            "Major Cracks Number" : Int.random(in: 0..<10),
+//            "Minor Cracks Detected" : detection.randomElement()!,
+//            "Minor Cracks Number" : Int.random(in: 0..<10),
+//            "Total Defects" : totalNumberDefects,
+//            "Priority" : Float.random(in: 0..<5),
+//            "Time Estimated To Fix": "",
+//            "Cost Estimated To Fix": "",
+//            "Equipment Required" :"Tools",
+//            "Comments": "None",
+//            "Project's Manager": "Not yet chosen",
+//            "Poject's Suppliers": "Not yet chosen"
+//        ]
+//
+//         self.database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
+//        else{
+//            database.child("AreasNames").child(location_Name).setValue(location_Name)
+//            return
+//        }
+//        database.child("AreasNames").child(location_Name).setValue(location_Name)
+//
+//        })
+//
+//         self.database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
+//        else{
+//            database.child("Areas").child(location_Name).setValue(object)
+//            return
+//        }
+//        database.child("Areas").child(location_Name).setValue(object)
+//
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["name":location_Name])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["latitude":user_lat])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["longitude":user_long])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Last Day":formatter1.string(from: today)])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Priority":"Not yet calculated"])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Major Cracks Number":0])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Minor Cracks Number":0])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Potholes Number":0])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Road Type":"Asphalt/Concrete"])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Project's Manager":"Not yet chosen"])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Project's Supplier":"Not yet chosen"])
+//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Total Defects":totalNumberDefects])
+//
+//        })
+//
+//      }) { (error) in
+//        print(error.localizedDescription)
+//    }
+    
+            
+   }
+
+   }
