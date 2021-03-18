@@ -210,7 +210,25 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
 
     @objc public func addNewEntry(typeOfDefect: String)
    {
-    
+        
+        
+    let fibonnaci1 = 1.0
+    let fibonnaci3 = 3.0
+    let fibonnaci8 = 8.0
+    let costMinorCrack = 2.5
+    let costMajorCrack = 10.0
+    let costPothole = 47.0
+    let timeMinorCrack = 5.0
+    let timeMajorCrack = 10.0
+    let timePothole = 30.0
+    let procedureMinorCrack = "Sealing"
+    let procedureMajorCrack = "Manual patching and manual shovels"
+    let procedurePothole = "Pothole repair"
+    let equipmentMinorCrack = "Routed or non-routed crack sealing truck"
+    let equipmentMajorCrack = "Pestles used for compaction"
+    let equipmentPothole = "specialized equipment specifically made for pothole repair interventions"
+        
+        
     var location_Name = "Unknown"
         
         //--This is to create a date object to display the time later.
@@ -239,6 +257,8 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
    let today = Date()
    let formatter1 = DateFormatter()
    formatter1.dateStyle = .short
+        
+        print(LocationManager.shared.getUserLocation)
             
             LocationManager.shared.getUserLocation{[weak self]location in
                 
@@ -253,33 +273,57 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     locationName in self!.title = locationName
                     location_Name = locationName ?? "Unknown"
                     
-                    print(locationName!)
+                    print(locationName as Any)
                 
                     self!.firestoreDatabase.collection("Areas").document(location_Name).getDocument{(document, error) in
                         
                         if error == nil{
                             
+                            // Add and update information for existing area
                             if document != nil && document!.exists{
                                 
                             
-                                if locationName! != "Unknown" {
+                                if locationName != "Unknown" {
+                                    
+                                    
+                                    self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
+                                    "Last Updated":formatter1.string(from: today)
+                                    ],merge: true)
+                                
                                     let incrementer: Double = 1
 
                                     if typeOfDefect == "Minor_crack"{
                                     self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
-                                            "Minor Cracks Number" : FieldValue.increment(incrementer)
+                                            "Minor Cracks Number" : FieldValue.increment(incrementer),
+                                            "Repair Cost" :FieldValue.increment(costMinorCrack),
+                                        "Priority":FieldValue.increment(fibonnaci1),
+                                        "Repair Time" : FieldValue.increment(timeMinorCrack),
+                                        "Procedure 1" :procedureMinorCrack,
+                                        "Equipment 1" :equipmentMinorCrack
+                                        
                                         ])
                                     }
                                     else if typeOfDefect == "Major_crack"
                                     {
                                         self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
-                                                "Major Cracks Number" : FieldValue.increment(incrementer)
+                                            "Major Cracks Number" : FieldValue.increment(incrementer),
+                                            "Repair Cost" :FieldValue.increment(costMajorCrack),
+                                            "Priority":FieldValue.increment(fibonnaci3),
+                                            "Repair Time" : FieldValue.increment(timeMajorCrack),
+                                            "Procedure 2" :procedureMajorCrack,
+                                            "Equipment 2" :equipmentMajorCrack
+                                            
                                             ])
                                     }
                                     else if typeOfDefect == "Pothole" {
                                             self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
-                                                    "Potholes Number" : FieldValue.increment(incrementer)
-                                                ])
+                                                "Potholes Number" : FieldValue.increment(incrementer),
+                                                "Repair Cost" : FieldValue.increment(costPothole),
+                                                "Priority":FieldValue.increment(fibonnaci8),
+                                                "Repair Time" : FieldValue.increment(timePothole),
+                                                "Procedure 3" :procedurePothole,
+                                                "Equipment 3" :equipmentPothole
+                                            ])
                                     }
                                     self!.firestoreDatabase.collection("Areas").document(location_Name).updateData([
                                             "Total Defects" : FieldValue.increment(incrementer)
@@ -288,35 +332,52 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                                 
                             }
                             
+                            
+                            // Add and create information for new area
                             else
                             {
                                 
-                                if locationName! != "Unknown" {
+                                if locationName != "Unknown" {
                                 self!.firestoreDatabase.collection("Areas").document(location_Name).setData(["name":location_Name,
                                 "latitude":user_lat,
                                 "longitude":user_long,
-                                "Last Day":formatter1.string(from: today),
-                                "Priority":"Not yet calculated",
+                                "Last Updated":formatter1.string(from: today),
                                 "Road Type":"Asphalt/Concrete",
                                 "Project's Manager":"Not yet chosen",
-                                "Project's Supplier":"Not yet chosen"],merge: true)
+                                "Project's Supplier":"Not yet chosen"
+                                ],merge: true)
                                     
+                                
                                     
-
                                     if typeOfDefect == "Minor_crack"{
                                         self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
-                                        "Major Cracks Number":1,"Minor Cracks Number":1,"Potholes Number":0,"Total Defects":1]
+                                        "Major Cracks Number":1,"Minor Cracks Number":1,"Potholes Number":0,"Total Defects":1,
+                                            "Repair Time":timeMinorCrack,
+                                            "Repair Cost":costMinorCrack,
+                                            "Procedure 1" :procedureMinorCrack,
+                                            "Equipment 1" :equipmentMinorCrack,
+                                            "Priority": fibonnaci1]
                                         ,merge: true)
                                     }
                                     else if typeOfDefect == "Major_crack"
                                     {
                                         self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
-                                        "Major Cracks Number":1,"Minor Cracks Number":0,"Potholes Number":0,"Total Defects":1]
+                                        "Major Cracks Number":1,"Minor Cracks Number":0,"Potholes Number":0,"Total Defects":1,
+                                                "Repair Time":timeMajorCrack,
+                                                "Repair Cost":costMajorCrack,
+                                                "Procedure 2" :procedureMajorCrack,
+                                                "Equipment 2" :equipmentMajorCrack,
+                                                "Priority": fibonnaci3]
                                         ,merge: true)
                                     }
                                     else if typeOfDefect == "Pothole" {
                                         self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
-                                        "Major Cracks Number":0,"Minor Cracks Number":0,"Potholes Number":1,"Total Defects":1]
+                                        "Major Cracks Number":0,"Minor Cracks Number":0,"Potholes Number":1,"Total Defects":1,
+                                                "Repair Time":timePothole,
+                                                "Repair Cost":costPothole,
+                                                "Procedure 3" :procedurePothole,
+                                                "Equipment 3" :equipmentPothole,
+                                                "Priority": fibonnaci8]
                                         ,merge: true)
                                     }
                                 }

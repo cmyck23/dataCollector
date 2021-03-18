@@ -7,13 +7,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
     let manager = CLLocationManager()
     var completion: ((CLLocation)-> Void)?
     
-    var streetDetails : String = ""
+    
     var name = ""
-    var street = ""
-    var locality = ""
-    var country = ""
-    var state_Province = ""
-    var postal_Code = ""
+    var streetDetails = "None"
+    var street = "None"
+    var locality = "None"
+    var country = "None"
+    var state_Province = "None"
+    var postal_Code = "None"
     
     public func getUserLocation(completion: @escaping ((CLLocation) -> Void))
     {
@@ -35,41 +36,51 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
             }
             
             self.name = ""
-        
-            self.streetDetails = place.subThoroughfare ?? ""
             
-            self.name += self.streetDetails
-            self.name += "_"
+            self.streetDetails = place.subThoroughfare ?? "None"
             
-            
-            self.street = place.thoroughfare ?? ""
-            
-            self.name += self.street
-            self.name += "_"
+            if self.streetDetails != "None"
+            {
+                self.name += self.streetDetails
+                self.name += " "
+            }
             
             
-            self.locality = place.locality ?? ""
+            self.street = place.thoroughfare ?? "None"
             
+            if self.street != "None" {
+                
+                self.name += self.street
+                self.name += " "
+            }
+            
+            self.locality = place.locality ?? "None"
+            
+            if self.locality != "None"{
             self.name += self.locality
-            self.name += "_"
+            self.name += " "
+            }
             
+            self.country = place.country ?? "None"
             
-            self.country = place.country ?? ""
-            
+            if self.country != ""{
             self.name += self.country
-            self.name += "_"
+            self.name += " "
             
+            }
             
-            self.state_Province = place.administrativeArea ?? ""
+            self.state_Province = place.administrativeArea ?? "None"
             
+            if self.state_Province != "None"{
             self.name += self.state_Province
-            self.name += "_"
-            
+            self.name += " "
+            }
             
             
             self.postal_Code = place.postalCode ?? ""
+            if self.postal_Code != "None"{
             self.name += self.postal_Code
-            
+            }
         
             completion(self.name)
             
@@ -86,7 +97,5 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
          completion?(location)
         manager.stopUpdatingLocation()
     }
-    
-    
-    
+
 }

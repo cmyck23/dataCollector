@@ -138,6 +138,43 @@
             </objects>
             <point key="canvasLocation" x="2550.7246376811595" y="2426.7857142857142"/>
         </scene>
+        <!--Accelerometer Detector View Controller-->
+        <scene sceneID="8QD-6I-gHW">
+            <objects>
+                <viewController id="Gpq-J2-PRW" customClass="AccelerometerDetectorViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZYd-7t-Lb6">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6tj-hz-xvP">
+                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7vc-ev-yfJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6tj-hz-xvP" firstAttribute="leading" secondItem="7vc-ev-yfJ" secondAttribute="leading" id="AT9-Us-gc7"/>
+                            <constraint firstItem="6tj-hz-xvP" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="Dzx-Kr-Jde"/>
+                            <constraint firstItem="6tj-hz-xvP" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="E0N-Hr-REb"/>
+                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="trailing" secondItem="6tj-hz-xvP" secondAttribute="trailing" id="Sbn-cM-T0X"/>
+                            <constraint firstItem="6tj-hz-xvP" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="m0l-t5-tCt"/>
+                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="bottom" secondItem="6tj-hz-xvP" secondAttribute="bottom" id="pTA-DQ-6ZP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="G2R-G3-8gy"/>
+                    <connections>
+                        <outlet property="text" destination="6tj-hz-xvP" id="N7t-OF-v8B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iea-M5-fbI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3994" y="1762"/>
+        </scene>
         <!--Data Collector-->
         <scene sceneID="QoZ-Rx-jGd">
             <objects>
@@ -166,7 +203,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kW-oo-Umh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2551" y="897"/>
+            <point key="canvasLocation" x="2657" y="922"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PBi-CD-5e8">
@@ -185,6 +222,7 @@
                         <segue destination="Nxm-bY-7Id" kind="relationship" relationship="viewControllers" id="gQh-aP-w0I"/>
                         <segue destination="2mq-Br-WLc" kind="relationship" relationship="viewControllers" id="KPM-KC-MQc"/>
                         <segue destination="gnD-kZ-WC9" kind="relationship" relationship="viewControllers" id="co2-Xn-tEQ"/>
+                        <segue destination="nrq-NZ-eCe" kind="relationship" relationship="viewControllers" id="Rzi-CT-ez2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aw9-sx-Otn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -403,6 +441,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPt-ah-ISb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056" y="1675"/>
+        </scene>
+        <!--Data Collector-->
+        <scene sceneID="0D2-pA-VGa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="bvN-LC-RQ0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Data Collector" id="0b9-Fn-orl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0aI-YD-WcS">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ixz-qB-cVS">
+                        <rect key="frame" x="0.0" y="843" width="428" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </toolbar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CXh-Ww-4h5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2657" y="922"/>
+        </scene>
+        <!--Acceleromer Analysis-->
+        <scene sceneID="fqY-yf-1Yp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nrq-NZ-eCe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Acceleromer Analysis" id="oOX-qO-bhy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QVq-Ei-ljY">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gpq-J2-PRW" kind="relationship" relationship="rootViewController" id="i0Y-le-NNz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Txd-dz-u9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3994" y="897"/>
         </scene>
     </scenes>
     <resources>

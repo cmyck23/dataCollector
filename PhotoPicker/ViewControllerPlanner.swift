@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseFirestore
 
 class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,10 +19,12 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     var databaseRef: DatabaseReference?
     var databaseHandle:DatabaseHandle?
     var names = ""
+    let firestoreDatabase = Firestore.firestore()
 
 
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         tableView.delegate = self
@@ -39,6 +42,24 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
             }
         })
         
+        
+        // Getting the records from firebase firestore
+        firestoreDatabase.collection("Areas").whereField("Road Type", isEqualTo: "Asphalt/Concrete")
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                let places = documents.map {$0["name"]!}
+                
+                for row in places{
+                    self.areaList.append(row as! String)
+                    print(row)
+                }
+                
+                print("Locations Found: \(places)")
+            }
+        
         print(self.areaList)
         
         // Do any additional setup after loading the view.
@@ -51,31 +72,38 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
 //        print("Type of indexPath")
 //        print(type(of: indexPath.row))
         var select = ""
-        var infoLocationString = ""
         select = String(areaList[indexPath.row])
-        let ref = database.child("Areas").child(select)
-        ref.observe(.value, with: {
-            snapshot in guard (snapshot.value as? [String: Any]) != nil
-        else
-            {
-            return
+        
+        let docRef = self.firestoreDatabase.collection("Areas").document(select)
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                
+
+                let dataDescription = document.data().map(String.init(describing:)) ?? "No Data Found"
+                
+                
+                let Address = document.get("name") as? String
+
+
+                print(type(of: dataDescription))
+                
+                var sentence = dataDescription.replacingOccurrences(of: ",", with: "\n")
+                sentence = sentence.replacingOccurrences(of: "[", with: " ")
+                sentence = sentence.replacingOccurrences(of: "]", with: "")
+                sentence = sentence.replacingOccurrences(of: "\"", with: "")
+                sentence = sentence.replacingOccurrences(of: "\\", with: "")
+                
+                vc?.name = " Address : "+Address!+"\n"+sentence
+                self.navigationController?.pushViewController(vc!, animated: true)
+
+            } else {
+                vc?.name = String("No Data Found")
+                self.navigationController?.pushViewController(vc!, animated: true)
+                print("Document does not exist")
             }
-        for child in snapshot.children
-        {
-            let snap = child as! DataSnapshot
-            let key = snap.key
-            let value = snap.value
-            
-            print(key, ":", value!)
-            infoLocationString.append("\(key) : \(value!)\n\n")
         }
-        
-        //print(snapshot.value)
-        
-        //vc?.name = self.areaList[indexPath.row]
-        vc?.name = infoLocationString
-        self.navigationController?.pushViewController(vc!, animated: true)
-    })
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
