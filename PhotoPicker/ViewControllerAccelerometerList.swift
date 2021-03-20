@@ -1,8 +1,8 @@
 //
-//  ViewControllerPlanner.swift
+//  ViewControllerAccelerometerList.swift
 //  Road Analyzer
 //
-//  Created by Myckael on 2021-02-27.
+//  Created by Myckael on 2021-03-20.
 //  Copyright © 2021 Apple. All rights reserved.
 //
 
@@ -10,11 +10,14 @@ import UIKit
 import FirebaseDatabase
 import FirebaseFirestore
 
-class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var numberOfLocationsAnalyzed = 0
     var areaList = [String]()
     @IBOutlet var tableView: UITableView!
+    
+    
+    
     var database = Database.database().reference()
     var databaseRef: DatabaseReference?
     var databaseHandle:DatabaseHandle?
@@ -31,8 +34,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         
         // Getting the records from firebase firestore
-        firestoreDatabase.collection("Areas")
-            .addSnapshotListener { querySnapshot, error in
+        firestoreDatabase.collection("AreasAccelerometer").addSnapshotListener { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
                     print("Error fetching documents: \(error!)")
                     return
@@ -42,27 +44,30 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                 for row in places{
                     self.areaList.append(row as! String)
                     self.tableView.reloadData()
-                    print(row)
                 }
                 
                 print("Locations Found: \(places)")
             }
         
-        print(self.areaList)
+        print("Trying to print areaList")
+        print(areaList)
         
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "DetailedPlannerViewController")
-        as? DetailedPlannerViewController
+        let vc = storyboard?.instantiateViewController(identifier: "DetailedPlannerAccelerometerViewController")
+        as? DetailedPlannerAccelerometerViewController
         
 //        print("Type of indexPath")
 //        print(type(of: indexPath.row))
         var select = ""
+        print("Inside the table view fucntion")
         select = String(areaList[indexPath.row])
         
-        let docRef = self.firestoreDatabase.collection("Areas").document(select)
+        print(select)
+        
+        let docRef = self.firestoreDatabase.collection("AreasAccelerometer").document(select)
 
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -106,9 +111,12 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = areaList[indexPath.row]
-        return cell
+        let cellAccelerometer = tableView.dequeueReusableCell(withIdentifier: "cellAccelerometer", for: indexPath)
+        cellAccelerometer.textLabel?.text = areaList[indexPath.row]
+        return cellAccelerometer
     }
 
 }
+
+
+   

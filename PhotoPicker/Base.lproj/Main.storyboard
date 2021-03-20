@@ -138,37 +138,41 @@
             </objects>
             <point key="canvasLocation" x="2550.7246376811595" y="2426.7857142857142"/>
         </scene>
-        <!--Accelerometer Detector View Controller-->
+        <!--View Controller Accelerometer List-->
         <scene sceneID="8QD-6I-gHW">
             <objects>
-                <viewController id="Gpq-J2-PRW" customClass="AccelerometerDetectorViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gpq-J2-PRW" customClass="ViewControllerAccelerometerList" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZYd-7t-Lb6">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6tj-hz-xvP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lmA-pe-xfR">
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellAccelerometer" id="Ndu-7v-ANh">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ndu-7v-ANh" id="peX-6G-RCK">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7vc-ev-yfJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6tj-hz-xvP" firstAttribute="leading" secondItem="7vc-ev-yfJ" secondAttribute="leading" id="AT9-Us-gc7"/>
-                            <constraint firstItem="6tj-hz-xvP" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="Dzx-Kr-Jde"/>
-                            <constraint firstItem="6tj-hz-xvP" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="E0N-Hr-REb"/>
-                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="trailing" secondItem="6tj-hz-xvP" secondAttribute="trailing" id="Sbn-cM-T0X"/>
-                            <constraint firstItem="6tj-hz-xvP" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="m0l-t5-tCt"/>
-                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="bottom" secondItem="6tj-hz-xvP" secondAttribute="bottom" id="pTA-DQ-6ZP"/>
+                            <constraint firstItem="lmA-pe-xfR" firstAttribute="leading" secondItem="7vc-ev-yfJ" secondAttribute="leading" id="8A8-VH-qkw"/>
+                            <constraint firstItem="lmA-pe-xfR" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="Pea-d0-lEy"/>
+                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="trailing" secondItem="lmA-pe-xfR" secondAttribute="trailing" id="lDw-IM-dCL"/>
+                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="bottom" secondItem="lmA-pe-xfR" secondAttribute="bottom" id="vpb-Qr-js0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="G2R-G3-8gy"/>
                     <connections>
-                        <outlet property="text" destination="6tj-hz-xvP" id="N7t-OF-v8B"/>
+                        <outlet property="tableView" destination="lmA-pe-xfR" id="dP4-ZB-14Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iea-M5-fbI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -336,23 +340,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-0t-xLs" userLabel="previewView">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-0t-xLs" userLabel="previewView">
+                                <rect key="frame" x="0.0" y="88" width="428" height="641"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TA3-f3-YEd">
+                                <rect key="frame" x="4" y="737" width="420" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2tk-xS-CuW"/>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="2tk-xS-CuW" firstAttribute="bottom" secondItem="vjv-0t-xLs" secondAttribute="bottom" id="EqW-Tl-NFY"/>
-                            <constraint firstItem="2tk-xS-CuW" firstAttribute="trailing" secondItem="vjv-0t-xLs" secondAttribute="trailing" id="f4O-N6-7v2"/>
-                            <constraint firstItem="vjv-0t-xLs" firstAttribute="top" secondItem="2tk-xS-CuW" secondAttribute="top" id="fbE-pk-iAf"/>
-                            <constraint firstItem="vjv-0t-xLs" firstAttribute="leading" secondItem="2tk-xS-CuW" secondAttribute="leading" id="pCM-hK-MxL"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nTU-kc-DeW"/>
                     <connections>
                         <outlet property="previewView" destination="vjv-0t-xLs" id="ib9-gM-Pet"/>
+                        <outlet property="text" destination="TA3-f3-YEd" id="mfC-WD-rxD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ror-VP-dNX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -392,6 +401,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54G-Q8-sVr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-712" y="2454"/>
+        </scene>
+        <!--Detailed Planner Accelerometer View Controller-->
+        <scene sceneID="al6-Dx-8cR">
+            <objects>
+                <viewController storyboardIdentifier="DetailedPlannerAccelerometerViewController" id="b0F-ne-ZL2" customClass="DetailedPlannerAccelerometerViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xDv-pb-12r">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LV2-sf-JUV">
+                                <rect key="frame" x="0.0" y="44" width="428" height="848"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iIo-O8-7tj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LV2-sf-JUV" firstAttribute="top" secondItem="iIo-O8-7tj" secondAttribute="top" id="6N5-Ip-ciL"/>
+                            <constraint firstItem="iIo-O8-7tj" firstAttribute="trailing" secondItem="LV2-sf-JUV" secondAttribute="trailing" id="6cX-CP-e9h"/>
+                            <constraint firstItem="iIo-O8-7tj" firstAttribute="bottom" secondItem="LV2-sf-JUV" secondAttribute="bottom" id="YUv-in-2WB"/>
+                            <constraint firstItem="LV2-sf-JUV" firstAttribute="leading" secondItem="iIo-O8-7tj" secondAttribute="leading" id="kuT-4s-bG2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lbl" destination="LV2-sf-JUV" id="QRe-p6-Yim"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHF-km-lha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3908" y="2487"/>
         </scene>
         <!--Profile-->
         <scene sceneID="zRA-85-KYM">
