@@ -32,6 +32,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     // This is used to get the cities names from locations.
     let manager = CLLocation()
     var completion: ((CLLocation)-> Void)?
+
     
     private var detectionOverlay: CALayer! = nil
     
@@ -46,14 +47,28 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         
         // Do any additional setup after loading the view.
         
-        showIRI()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           viewLoadSetup()
+
+        }
     
+    
+    func viewLoadSetup(){
+          // setup view did load here
+            showIRI()
+         }
+    
+
     @discardableResult
     func setupVision() -> NSError? {
         // Setup Vision parts
         let error: NSError! = nil
+        
+        
         
         guard let modelURL = Bundle.main.url(forResource: "ObjectDetector", withExtension: "mlmodelc") else {
             return NSError(domain: "VisionObjectRecognitionViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "Model file is missing"])
@@ -126,13 +141,14 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     override func setupAVCapture() {
         super.setupAVCapture()
         
+        
         // setup Vision parts
         setupLayers()
         updateLayerGeometry()
         setupVision()
-        
         // start the capture
         startCaptureSession()
+        showIRI()
     }
     
     func setupLayers() {
@@ -197,6 +213,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         
         // Update firebase when a new object is detected
         //addNewEntry()
+        
         return shapeLayer
     }
     
@@ -219,13 +236,25 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
        button.addTarget(self, action: #selector(addNewEntry), for: .touchUpInside)
    }
     
+    override func viewWillDisappear(_ animated: Bool){
+        
+        print("You left the planner")
+        
+        self.motionManager.stopAccelerometerUpdates()
+        
+    }
+    
     
     func showIRI(){
+        
+        
+        
         
         self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data
             {
                 //--This is to create a date object to display the time later.
+                
                 print("Inside Accelerometer Detector")
                 print("-------------------------")
                 let currentDateTime = Date()
@@ -305,9 +334,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             }
             
             
-            
-    }
-    
+        }
 
     /*
     // MARK: - Navigation
@@ -362,7 +389,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 
                 location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
-                    locationName in self!.title = locationName
+                    locationName in self!.title = ""
                     location_Name = locationName ?? "Unknown"
                     
                     print(locationName ?? "Unknown")
@@ -469,7 +496,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 
                 location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
-                    locationName in self!.title = locationName
+                    locationName in self!.title = ""
                     location_Name = locationName ?? "Unknown"
                     
                     print(locationName as Any)
@@ -585,76 +612,6 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                    }
                 }
             }
-    
-
-    
-
-
-        
-//    database.child("Areas").child(location_Name).observeSingleEvent(of: .value, with: { (snapshot) in
-//      // Get user value
-//
-//
-//        let  totalNumberDefects = "8"
-//        let object: [String : Any] = [
-//            "Name": location_Name,
-//            "City": "Unknown",
-//            "Latitude" : user_lat ,
-//            "Longitude" : user_long,
-//            "Road Type" : roadTypes.randomElement()!,
-//            "Day" : formatter1.string(from: today),
-//            "Pothole Detected" : detection.randomElement()!,
-//            "Potholes Number" : Int.random(in: 0..<10),
-//            "Major Cracks Detected" : detection.randomElement()!,
-//            "Major Cracks Number" : Int.random(in: 0..<10),
-//            "Minor Cracks Detected" : detection.randomElement()!,
-//            "Minor Cracks Number" : Int.random(in: 0..<10),
-//            "Total Defects" : totalNumberDefects,
-//            "Priority" : Float.random(in: 0..<5),
-//            "Time Estimated To Fix": "",
-//            "Cost Estimated To Fix": "",
-//            "Equipment Required" :"Tools",
-//            "Comments": "None",
-//            "Project's Manager": "Not yet chosen",
-//            "Poject's Suppliers": "Not yet chosen"
-//        ]
-//
-//         self.database.child("AreasNames").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
-//        else{
-//            database.child("AreasNames").child(location_Name).setValue(location_Name)
-//            return
-//        }
-//        database.child("AreasNames").child(location_Name).setValue(location_Name)
-//
-//        })
-//
-//         self.database.child("Areas").observeSingleEvent(of: .value, with: { [self]snapshot in guard (snapshot.value as? [String: Any]) != nil
-//        else{
-//            database.child("Areas").child(location_Name).setValue(object)
-//            return
-//        }
-//        database.child("Areas").child(location_Name).setValue(object)
-//
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["name":location_Name])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["latitude":user_lat])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["longitude":user_long])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Last Day":formatter1.string(from: today)])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Priority":"Not yet calculated"])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Major Cracks Number":0])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Minor Cracks Number":0])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Potholes Number":0])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Road Type":"Asphalt/Concrete"])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Project's Manager":"Not yet chosen"])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Project's Supplier":"Not yet chosen"])
-//         firestoreDatabase.collection("Areas").document(location_Name).setData(["Total Defects":totalNumberDefects])
-//
-//        })
-//
-//      }) { (error) in
-//        print(error.localizedDescription)
-//    }
-    
-            
    }
 
    }

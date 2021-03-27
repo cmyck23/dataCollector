@@ -17,16 +17,19 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     @IBOutlet var tableView: UITableView!
     
     
-    
     var database = Database.database().reference()
     var databaseRef: DatabaseReference?
     var databaseHandle:DatabaseHandle?
     var names = ""
     let firestoreDatabase = Firestore.firestore()
+    
+    //var MainTabBarController: UITabBarController
 
 
     
     override func viewDidLoad() {
+        
+        
         
         super.viewDidLoad()
         
@@ -43,6 +46,8 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
                 
                 for row in places{
                     self.areaList.append(row as! String)
+                    print("Observe appending : ")
+                    print(row as! String)
                     self.tableView.reloadData()
                 }
                 
@@ -62,7 +67,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
 //        print("Type of indexPath")
 //        print(type(of: indexPath.row))
         var select = ""
-        print("Inside the table view fucntion")
+        print("Inside the table view function")
         select = String(areaList[indexPath.row])
         
         print(select)
@@ -72,13 +77,9 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 
-                
-
                 let dataDescription = document.data().map(String.init(describing:)) ?? "No Data Found"
                 
-                
                 let Address = document.get("name") as? String
-
 
                 print(type(of: dataDescription))
                 
@@ -97,6 +98,8 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
                 print("Document does not exist")
             }
         }
+        
+        //areaList.removeAll()
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -105,6 +108,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        print(self.areaList.count)
         return self.areaList.count
     
     }

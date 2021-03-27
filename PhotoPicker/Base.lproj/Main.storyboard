@@ -179,11 +179,11 @@
             </objects>
             <point key="canvasLocation" x="3994" y="1762"/>
         </scene>
-        <!--Data Collector-->
+        <!--Navigation Controller-->
         <scene sceneID="QoZ-Rx-jGd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="HSf-hh-Zw3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Data Collector" id="5VA-7W-JmP"/>
+                    <tabBarItem key="tabBarItem" title="" image="camera.viewfinder" catalog="system" id="5VA-7W-JmP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bEa-fJ-OKp">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -248,11 +248,11 @@
             </objects>
             <point key="canvasLocation" x="-712" y="95"/>
         </scene>
-        <!--Planner-->
+        <!--Navigation Controller-->
         <scene sceneID="jAK-RD-Din">
             <objects>
                 <navigationController id="Nxm-bY-7Id" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Planner" id="xhn-Q5-3rg"/>
+                    <tabBarItem key="tabBarItem" title="" image="calendar.circle" catalog="system" id="xhn-Q5-3rg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5ye-UP-wmh">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -311,11 +311,11 @@
             </objects>
             <point key="canvasLocation" x="-668" y="1675"/>
         </scene>
-        <!--Analysis-->
+        <!--Navigation Controller-->
         <scene sceneID="oTZ-pS-TNj">
             <objects>
                 <navigationController id="gnD-kZ-WC9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Analysis" id="GmQ-9E-fPU"/>
+                    <tabBarItem key="tabBarItem" title="" image="car" catalog="system" id="GmQ-9E-fPU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RhR-RS-yHI">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -349,7 +349,7 @@
                                 <rect key="frame" x="4" y="737" width="420" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -436,11 +436,11 @@
             </objects>
             <point key="canvasLocation" x="3908" y="2487"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="zRA-85-KYM">
             <objects>
                 <navigationController id="2mq-Br-WLc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="c1i-4c-EKI">
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="c1i-4c-EKI">
                         <color key="badgeColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YuZ-wF-ZQK">
@@ -505,18 +505,18 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </toolbar>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXh-Ww-4h5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2657" y="922"/>
         </scene>
-        <!--Acceleromer Analysis-->
+        <!--Navigation Controller-->
         <scene sceneID="fqY-yf-1Yp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nrq-NZ-eCe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Acceleromer Analysis" id="oOX-qO-bhy"/>
+                    <tabBarItem key="tabBarItem" title="" image="speedometer" catalog="system" id="oOX-qO-bhy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QVq-Ei-ljY">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -533,6 +533,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar.circle" catalog="system" width="128" height="121"/>
+        <image name="camera.viewfinder" catalog="system" width="128" height="115"/>
+        <image name="car" catalog="system" width="128" height="93"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="speedometer" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

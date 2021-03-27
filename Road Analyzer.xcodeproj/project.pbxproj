@@ -27,7 +27,6 @@
 		C8814F3C25DEFA8600ECDA0F /* ObjectDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C8814F3B25DEFA8600ECDA0F /* ObjectDetector.mlmodel */; };
 		C8905A4D25FE848100BDBA78 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8905A4C25FE848100BDBA78 /* LocationManager.swift */; };
 		C8E9F36525AF703E000D35CC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E9F36425AF703E000D35CC /* CHCSVParser.m */; };
-		C8EDB52C260286A000288369 /* AccelerometerDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EDB52B260286A000288369 /* AccelerometerDetectorViewController.swift */; };
 		C8F69FBF260672BC00641C90 /* ViewControllerAccelerometerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F69FBE260672BC00641C90 /* ViewControllerAccelerometerList.swift */; };
 		C8F69FC22606769900641C90 /* DetailedPlannerAccelerometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F69FC12606769900641C90 /* DetailedPlannerAccelerometerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -62,7 +61,6 @@
 		C8E9F36225AF703D000D35CC /* PhotoPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoPicker-Bridging-Header.h"; sourceTree = "<group>"; };
 		C8E9F36325AF703E000D35CC /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		C8E9F36425AF703E000D35CC /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
-		C8EDB52B260286A000288369 /* AccelerometerDetectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerDetectorViewController.swift; sourceTree = "<group>"; };
 		C8F69FBE260672BC00641C90 /* ViewControllerAccelerometerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAccelerometerList.swift; sourceTree = "<group>"; };
 		C8F69FC12606769900641C90 /* DetailedPlannerAccelerometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPlannerAccelerometerViewController.swift; sourceTree = "<group>"; };
 		D75026ECE32A0DDA22F0E16B /* Pods-Road Analyzer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Road Analyzer.release.xcconfig"; path = "Target Support Files/Pods-Road Analyzer/Pods-Road Analyzer.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				AF572AF922C6BEF600D3BF96 /* AppDelegate.swift */,
-				C8EDB52B260286A000288369 /* AccelerometerDetectorViewController.swift */,
 				C851DAFC25A2574D0030631A /* GoogleService-Info.plist */,
 				C86AA2AA25DEE8B400793391 /* VisionObjectRecognitionViewController.swift */,
 				C8905A4C25FE848100BDBA78 /* LocationManager.swift */,
@@ -334,7 +331,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8EDB52C260286A000288369 /* AccelerometerDetectorViewController.swift in Sources */,
 				C8F69FC22606769900641C90 /* DetailedPlannerAccelerometerViewController.swift in Sources */,
 				C8814F3C25DEFA8600ECDA0F /* ObjectDetector.mlmodel in Sources */,
 				C8F69FBF260672BC00641C90 /* ViewControllerAccelerometerList.swift in Sources */,
