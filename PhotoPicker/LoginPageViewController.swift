@@ -11,12 +11,14 @@ import FirebaseAuth
 
 class LoginPageViewController: UIViewController {
     
+
+    
     private let label:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Log In or Register"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
+        label.textColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         return label
     }()
     
@@ -29,7 +31,7 @@ class LoginPageViewController: UIViewController {
         emailField.leftView = UIView(frame: CGRect(x:0, y: 0, width: 5, height: 0))
         emailField.layer.borderColor = UIColor.black.cgColor
         emailField.textColor = .white
-        emailField.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
+        emailField.backgroundColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         return emailField
     }()
     
@@ -42,13 +44,13 @@ class LoginPageViewController: UIViewController {
         passwordField.leftView = UIView(frame: CGRect(x:0, y: 0, width: 5, height: 0))
         passwordField.layer.borderColor = UIColor.black.cgColor
         passwordField.textColor = .white
-        passwordField.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
+        passwordField.backgroundColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         return passwordField
     }()
     
     private let button:UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
+        button.backgroundColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Continue", for: .normal)
         return button
@@ -56,12 +58,12 @@ class LoginPageViewController: UIViewController {
     
     private let signOutButton:UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.23, green: 0.35, blue: 0.62, alpha: 1.0)
+        button.backgroundColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Log out", for: .normal)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,7 +74,6 @@ class LoginPageViewController: UIViewController {
         view.addSubview(button)
         
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        
         
         
         if FirebaseAuth.Auth.auth().currentUser != nil {
@@ -89,6 +90,7 @@ class LoginPageViewController: UIViewController {
             emailField.isHidden = true
             passwordField.isHidden = true
             
+            
             view.addSubview(signOutButton)
             signOutButton.frame = CGRect(x: 20, y: 150, width: view.frame.size.width-40, height: 52)
             signOutButton.addTarget(self, action: #selector(logOutTapped), for: .touchUpInside)
@@ -96,6 +98,8 @@ class LoginPageViewController: UIViewController {
             
         }
        
+        
+        
         
     }
     
@@ -136,6 +140,9 @@ class LoginPageViewController: UIViewController {
             
         }
     }
+    
+    
+    
     
     @objc private func didTapButton()
     {
@@ -229,7 +236,6 @@ class LoginPageViewController: UIViewController {
             
         }
 
-    
 
 }
 

@@ -14,6 +14,7 @@ This file defines the AppDelegate subclass of UIApplicationDelegate.
 
  var window: UIWindow?
 
+
  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
     var rootControler: UIViewController?
@@ -37,4 +38,5 @@ This file defines the AppDelegate subclass of UIApplicationDelegate.
     override init() {
         FirebaseApp.configure()
     }
+    
  }

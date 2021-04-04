@@ -30,6 +30,8 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         
+        
+    
         // Getting the records from firebase firestore
         firestoreDatabase.collection("Areas")
             .addSnapshotListener { querySnapshot, error in
@@ -37,12 +39,15 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                     print("Error fetching documents: \(error!)")
                     return
                 }
-                let places = documents.map {$0["name"]!}
+                let places = documents.map {$0["name"]}
                 
                 for row in places{
+                    
+                    if row != nil{
                     self.areaList.append(row as! String)
-                    self.tableView.reloadData()
-                    print(row)
+                        print(row as Any)
+                        self.tableView.reloadData()
+                    }
                 }
                 
                 print("Locations Found: \(places)")
@@ -63,27 +68,18 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         select = String(areaList[indexPath.row])
         
         let docRef = self.firestoreDatabase.collection("Areas").document(select)
+        
 
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                
-                
-
+            
                 let dataDescription = document.data().map(String.init(describing:)) ?? "No Data Found"
                 
+                let name = document.get("name") as? String
                 
-                let Address = document.get("name") as? String
-
-
                 print(type(of: dataDescription))
                 
-                var sentence = dataDescription.replacingOccurrences(of: ",", with: "\n")
-                sentence = sentence.replacingOccurrences(of: "[", with: " ")
-                sentence = sentence.replacingOccurrences(of: "]", with: "")
-                sentence = sentence.replacingOccurrences(of: "\"", with: "")
-                sentence = sentence.replacingOccurrences(of: "\\", with: "")
-                
-                vc?.name = " Address : "+Address!+"\n"+sentence
+                vc?.name = name!
                 self.navigationController?.pushViewController(vc!, animated: true)
 
             } else {
@@ -108,6 +104,8 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = areaList[indexPath.row]
+        cell.textLabel?.textColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         return cell
     }
 

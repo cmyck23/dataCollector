@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M5E-0s-gVd">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,24 +8,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Data Collector-->
+        <!--Collecting New Data-->
         <scene sceneID="UP7-yH-nWI">
             <objects>
                 <viewController id="S7J-pp-GXF" customClass="DataCollectorPage" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="C5x-G5-Pt9">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="C5x-G5-Pt9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4FO-38-eaj">
-                                <rect key="frame" x="0.0" y="88" width="428" height="358"/>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FO-38-eaj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="321"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Welcome to the Data Collector Menu. You only need to use this option if you want to collect more data from the road. Road will be recorded and data will be sent to a remote database.</string>
                                 <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYN-s6-3yH">
-                                <rect key="frame" x="142.66666666666666" y="446" width="142.99999999999997" height="34"/>
+                                <rect key="frame" x="135.66666666666666" y="321" width="142.99999999999997" height="34"/>
                                 <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="  Start Collecting  ">
@@ -38,22 +38,22 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="PT2-Dj-0SV"/>
+                        <viewLayoutGuide key="safeArea" id="49d-E3-Eoc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="centerY" secondItem="C5x-G5-Pt9" secondAttribute="centerY" id="423-RM-ARA"/>
-                            <constraint firstItem="PT2-Dj-0SV" firstAttribute="trailing" secondItem="4FO-38-eaj" secondAttribute="trailing" id="4nz-Mk-Mlh"/>
+                            <constraint firstItem="49d-E3-Eoc" firstAttribute="trailing" secondItem="4FO-38-eaj" secondAttribute="trailing" id="4nz-Mk-Mlh"/>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" id="5AP-5l-Gfv"/>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" constant="8" symbolic="YES" id="9Sg-sH-Z2B"/>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" constant="100" id="EP4-HX-wCN"/>
-                            <constraint firstItem="4FO-38-eaj" firstAttribute="leading" secondItem="PT2-Dj-0SV" secondAttribute="leading" id="Ef5-tp-g0X"/>
-                            <constraint firstItem="4FO-38-eaj" firstAttribute="top" secondItem="PT2-Dj-0SV" secondAttribute="top" id="Fh7-HR-N2a"/>
-                            <constraint firstItem="4FO-38-eaj" firstAttribute="top" secondItem="PT2-Dj-0SV" secondAttribute="top" id="O9a-Qp-4gD"/>
-                            <constraint firstItem="UYN-s6-3yH" firstAttribute="centerX" secondItem="C5x-G5-Pt9" secondAttribute="centerX" id="RaH-8Q-zZB"/>
+                            <constraint firstItem="4FO-38-eaj" firstAttribute="leading" secondItem="49d-E3-Eoc" secondAttribute="leading" id="Ef5-tp-g0X"/>
+                            <constraint firstItem="4FO-38-eaj" firstAttribute="top" secondItem="49d-E3-Eoc" secondAttribute="top" id="Fh7-HR-N2a"/>
+                            <constraint firstItem="4FO-38-eaj" firstAttribute="top" secondItem="49d-E3-Eoc" secondAttribute="top" id="O9a-Qp-4gD"/>
+                            <constraint firstItem="UYN-s6-3yH" firstAttribute="centerX" secondItem="49d-E3-Eoc" secondAttribute="centerX" id="RaH-8Q-zZB"/>
                             <constraint firstItem="UYN-s6-3yH" firstAttribute="top" secondItem="4FO-38-eaj" secondAttribute="bottom" id="wJe-lB-EBO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Data Collector" id="fQp-uk-Bje"/>
+                    <navigationItem key="navigationItem" title="Collecting New Data" id="fQp-uk-Bje"/>
                     <connections>
                         <outlet property="button" destination="UYN-s6-3yH" id="Ada-hd-dPK"/>
                     </connections>
@@ -67,30 +67,30 @@
             <objects>
                 <viewController id="2" customClass="ViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="fSE-YJ-a3V">
-                                <rect key="frame" x="0.0" y="88" width="428" height="706"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="f1z-uk-HKV"/>
-                        <color key="backgroundColor" systemColor="linkColor"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="F48-9z-HXN"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="f1z-uk-HKV" firstAttribute="bottom" secondItem="fSE-YJ-a3V" secondAttribute="bottom" id="0hh-SA-fOd"/>
-                            <constraint firstAttribute="trailing" secondItem="fSE-YJ-a3V" secondAttribute="trailing" id="NOX-kA-plb"/>
-                            <constraint firstItem="fSE-YJ-a3V" firstAttribute="top" secondItem="f1z-uk-HKV" secondAttribute="top" id="cos-at-hby"/>
-                            <constraint firstItem="fSE-YJ-a3V" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="jyl-W0-3OA"/>
+                            <constraint firstItem="F48-9z-HXN" firstAttribute="bottom" secondItem="fSE-YJ-a3V" secondAttribute="bottom" id="0hh-SA-fOd"/>
+                            <constraint firstItem="F48-9z-HXN" firstAttribute="trailing" secondItem="fSE-YJ-a3V" secondAttribute="trailing" id="NOX-kA-plb"/>
+                            <constraint firstItem="fSE-YJ-a3V" firstAttribute="top" secondItem="F48-9z-HXN" secondAttribute="top" id="cos-at-hby"/>
+                            <constraint firstItem="fSE-YJ-a3V" firstAttribute="leading" secondItem="F48-9z-HXN" secondAttribute="leading" id="jyl-W0-3OA"/>
                         </constraints>
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="TSr-FM-Uf3">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="camera" id="KDv-lD-mEx">
-                            <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="showImagePickerForCamera:" destination="2" id="039-WZ-yVF"/>
                             </connections>
@@ -110,24 +110,28 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Ych-aG-wVA" userLabel="Overlay View (Toolbar)">
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ych-aG-wVA" userLabel="Overlay View (Toolbar)">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <items>
                                 <barButtonItem systemItem="done" id="xYL-bQ-iYe">
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
                                         <action selector="done:" destination="2" id="tw1-au-Yya"/>
                                     </connections>
                                 </barButtonItem>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="aKu-O9-LnC"/>
                                 <barButtonItem title="Start" id="DwJ-Yp-Tcc">
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
                                         <action selector="startTakingPicturesAtIntervals:" destination="2" id="a3o-Nn-7iv"/>
                                     </connections>
                                 </barButtonItem>
                             </items>
+                            <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </toolbar>
                     </subviews>
-                    <viewLayoutGuide key="safeArea" id="uox-1p-DFN"/>
+                    <viewLayoutGuide key="safeArea" id="Oge-HL-MXs"/>
                     <constraints>
                         <constraint firstItem="Ych-aG-wVA" firstAttribute="trailing" secondItem="Hbw-ws-lZF" secondAttribute="trailing" id="AbL-sl-196"/>
                         <constraint firstItem="Ych-aG-wVA" firstAttribute="leading" secondItem="Hbw-ws-lZF" secondAttribute="leading" id="Jm8-1M-9HO"/>
@@ -138,39 +142,54 @@
             </objects>
             <point key="canvasLocation" x="2550.7246376811595" y="2426.7857142857142"/>
         </scene>
-        <!--View Controller Accelerometer List-->
+        <!--Planner From IRI Analysis-->
         <scene sceneID="8QD-6I-gHW">
             <objects>
                 <viewController id="Gpq-J2-PRW" customClass="ViewControllerAccelerometerList" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZYd-7t-Lb6">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lmA-pe-xfR">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lmA-pe-xfR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="separatorColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellAccelerometer" id="Ndu-7v-ANh">
-                                        <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellAccelerometer" focusStyle="custom" textLabel="W8z-te-yDE" style="IBUITableViewCellStyleDefault" id="Ndu-7v-ANh">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ndu-7v-ANh" id="peX-6G-RCK">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W8z-te-yDE">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="7vc-ev-yfJ"/>
+                        <viewLayoutGuide key="safeArea" id="0QZ-MD-cDS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lmA-pe-xfR" firstAttribute="leading" secondItem="7vc-ev-yfJ" secondAttribute="leading" id="8A8-VH-qkw"/>
-                            <constraint firstItem="lmA-pe-xfR" firstAttribute="top" secondItem="7vc-ev-yfJ" secondAttribute="top" id="Pea-d0-lEy"/>
-                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="trailing" secondItem="lmA-pe-xfR" secondAttribute="trailing" id="lDw-IM-dCL"/>
-                            <constraint firstItem="7vc-ev-yfJ" firstAttribute="bottom" secondItem="lmA-pe-xfR" secondAttribute="bottom" id="vpb-Qr-js0"/>
+                            <constraint firstItem="lmA-pe-xfR" firstAttribute="leading" secondItem="0QZ-MD-cDS" secondAttribute="leading" id="8A8-VH-qkw"/>
+                            <constraint firstItem="lmA-pe-xfR" firstAttribute="top" secondItem="0QZ-MD-cDS" secondAttribute="top" id="Pea-d0-lEy"/>
+                            <constraint firstItem="0QZ-MD-cDS" firstAttribute="trailing" secondItem="lmA-pe-xfR" secondAttribute="trailing" id="lDw-IM-dCL"/>
+                            <constraint firstItem="0QZ-MD-cDS" firstAttribute="bottom" secondItem="lmA-pe-xfR" secondAttribute="bottom" id="vpb-Qr-js0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="G2R-G3-8gy"/>
+                    <navigationItem key="navigationItem" title="Planner From IRI Analysis" largeTitleDisplayMode="always" id="G2R-G3-8gy"/>
                     <connections>
                         <outlet property="tableView" destination="lmA-pe-xfR" id="dP4-ZB-14Q"/>
                     </connections>
@@ -179,14 +198,14 @@
             </objects>
             <point key="canvasLocation" x="3994" y="1762"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Collect-->
         <scene sceneID="QoZ-Rx-jGd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="HSf-hh-Zw3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="camera.viewfinder" catalog="system" id="5VA-7W-JmP"/>
+                    <tabBarItem key="tabBarItem" title="Collect" image="camera.viewfinder" catalog="system" id="5VA-7W-JmP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bEa-fJ-OKp">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="bEa-fJ-OKp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
@@ -194,12 +213,12 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7gr-F8-8xg">
-                        <rect key="frame" x="0.0" y="794" width="428" height="49"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7gr-F8-8xg">
+                        <rect key="frame" x="0.0" y="769" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </toolbar>
                     <connections>
                         <segue destination="S7J-pp-GXF" kind="relationship" relationship="rootViewController" id="yya-dL-vfa"/>
@@ -214,7 +233,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="HomePage" automaticallyAdjustsScrollViewInsets="NO" id="AgE-OV-1pv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5R1-DO-kQ0">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="5R1-DO-kQ0">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -222,11 +241,11 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="HSf-hh-Zw3" kind="relationship" relationship="viewControllers" id="S2K-JW-94O"/>
                         <segue destination="Nxm-bY-7Id" kind="relationship" relationship="viewControllers" id="gQh-aP-w0I"/>
-                        <segue destination="2mq-Br-WLc" kind="relationship" relationship="viewControllers" id="KPM-KC-MQc"/>
                         <segue destination="gnD-kZ-WC9" kind="relationship" relationship="viewControllers" id="co2-Xn-tEQ"/>
                         <segue destination="nrq-NZ-eCe" kind="relationship" relationship="viewControllers" id="Rzi-CT-ez2"/>
+                        <segue destination="HSf-hh-Zw3" kind="relationship" relationship="viewControllers" id="S2K-JW-94O"/>
+                        <segue destination="2mq-Br-WLc" kind="relationship" relationship="viewControllers" id="KPM-KC-MQc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aw9-sx-Otn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -238,23 +257,24 @@
             <objects>
                 <viewController storyboardIdentifier="LoginPage" id="M5E-0s-gVd" customClass="LoginPageViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EQc-fm-29C">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="glY-wJ-Qg7"/>
+                        <viewLayoutGuide key="safeArea" id="aXW-AL-G96"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdp-uM-jee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-712" y="95"/>
+            <point key="canvasLocation" x="-712.14953271028037" y="94.600431965442766"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Planner-->
         <scene sceneID="jAK-RD-Din">
             <objects>
                 <navigationController id="Nxm-bY-7Id" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="calendar.circle" catalog="system" id="xhn-Q5-3rg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5ye-UP-wmh">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <tabBarItem key="tabBarItem" title="Planner" image="calendar.circle" catalog="system" id="xhn-Q5-3rg"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5ye-UP-wmh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
@@ -269,40 +289,44 @@
             </objects>
             <point key="canvasLocation" x="-667" y="859"/>
         </scene>
-        <!--Planner-->
+        <!--Road Maintenance Planner-->
         <scene sceneID="lm9-nO-Dnf">
             <objects>
                 <viewController id="pcu-59-Gqg" customClass="ViewControllerPlanner" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="pmd-5i-zhM">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yIj-Ve-U6g">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yIj-Ve-U6g">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="T6D-zZ-7QO">
-                                        <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T6D-zZ-7QO" id="dLc-gY-LlX">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="WKu-nb-GUs"/>
+                        <viewLayoutGuide key="safeArea" id="3dz-jc-vAw"/>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yIj-Ve-U6g" firstAttribute="top" secondItem="WKu-nb-GUs" secondAttribute="top" id="8Wd-Py-xrL"/>
-                            <constraint firstItem="WKu-nb-GUs" firstAttribute="bottom" secondItem="yIj-Ve-U6g" secondAttribute="bottom" id="Dwj-nc-FDb"/>
-                            <constraint firstItem="WKu-nb-GUs" firstAttribute="trailing" secondItem="yIj-Ve-U6g" secondAttribute="trailing" id="ffq-Ww-21Q"/>
-                            <constraint firstItem="yIj-Ve-U6g" firstAttribute="leading" secondItem="WKu-nb-GUs" secondAttribute="leading" id="p5Y-d2-Z9Y"/>
+                            <constraint firstItem="yIj-Ve-U6g" firstAttribute="top" secondItem="3dz-jc-vAw" secondAttribute="top" id="8Wd-Py-xrL"/>
+                            <constraint firstItem="3dz-jc-vAw" firstAttribute="bottom" secondItem="yIj-Ve-U6g" secondAttribute="bottom" id="Dwj-nc-FDb"/>
+                            <constraint firstItem="3dz-jc-vAw" firstAttribute="trailing" secondItem="yIj-Ve-U6g" secondAttribute="trailing" id="ffq-Ww-21Q"/>
+                            <constraint firstItem="yIj-Ve-U6g" firstAttribute="leading" secondItem="3dz-jc-vAw" secondAttribute="leading" id="p5Y-d2-Z9Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Planner" id="HVk-0R-grY"/>
+                    <navigationItem key="navigationItem" title="Road Maintenance Planner" largeTitleDisplayMode="always" id="HVk-0R-grY"/>
                     <connections>
                         <outlet property="tableView" destination="yIj-Ve-U6g" id="s9g-Sd-ZDa"/>
                     </connections>
@@ -311,13 +335,13 @@
             </objects>
             <point key="canvasLocation" x="-668" y="1675"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Analyze-->
         <scene sceneID="oTZ-pS-TNj">
             <objects>
                 <navigationController id="gnD-kZ-WC9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="car" catalog="system" id="GmQ-9E-fPU"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RhR-RS-yHI">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <tabBarItem key="tabBarItem" title="Analyze" image="car" catalog="system" id="GmQ-9E-fPU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="RhR-RS-yHI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
@@ -337,25 +361,27 @@
             <objects>
                 <viewController id="Y9e-uC-NHu" customClass="VisionObjectRecognitionViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mCu-zr-hjK">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-0t-xLs" userLabel="previewView">
-                                <rect key="frame" x="0.0" y="88" width="428" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="643"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TA3-f3-YEd">
-                                <rect key="frame" x="4" y="737" width="420" height="81"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TA3-f3-YEd">
+                                <rect key="frame" x="0.0" y="640" width="414" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="2tk-xS-CuW"/>
+                        <viewLayoutGuide key="safeArea" id="tbB-Yf-CNy"/>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="nTU-kc-DeW"/>
@@ -366,32 +392,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ror-VP-dNX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2010.2803738317755" y="1636.7170626349894"/>
+            <point key="canvasLocation" x="-2011.594202898551" y="1636.6071428571429"/>
         </scene>
         <!--Detailed Planner View Controller-->
         <scene sceneID="ZZJ-bN-d62">
             <objects>
                 <viewController storyboardIdentifier="DetailedPlannerViewController" id="voo-QT-GWF" customClass="DetailedPlannerViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rmo-rN-rcP">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qQA-ud-Xpq">
-                                <rect key="frame" x="0.0" y="44" width="428" height="848"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQA-ud-Xpq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="WE4-YK-v9Y"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="aCP-mV-bHt"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="WE4-YK-v9Y" firstAttribute="bottom" secondItem="qQA-ud-Xpq" secondAttribute="bottom" id="ST1-tY-BwB"/>
-                            <constraint firstItem="WE4-YK-v9Y" firstAttribute="trailing" secondItem="qQA-ud-Xpq" secondAttribute="trailing" id="VSK-Dz-JS7"/>
-                            <constraint firstItem="qQA-ud-Xpq" firstAttribute="top" secondItem="WE4-YK-v9Y" secondAttribute="top" id="eSP-DX-6m6"/>
-                            <constraint firstItem="qQA-ud-Xpq" firstAttribute="leading" secondItem="WE4-YK-v9Y" secondAttribute="leading" id="iNd-lW-UbI"/>
+                            <constraint firstItem="aCP-mV-bHt" firstAttribute="bottom" secondItem="qQA-ud-Xpq" secondAttribute="bottom" id="ST1-tY-BwB"/>
+                            <constraint firstItem="aCP-mV-bHt" firstAttribute="trailing" secondItem="qQA-ud-Xpq" secondAttribute="trailing" id="VSK-Dz-JS7"/>
+                            <constraint firstItem="qQA-ud-Xpq" firstAttribute="top" secondItem="aCP-mV-bHt" secondAttribute="top" id="eSP-DX-6m6"/>
+                            <constraint firstItem="qQA-ud-Xpq" firstAttribute="leading" secondItem="aCP-mV-bHt" secondAttribute="leading" id="iNd-lW-UbI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -407,25 +433,25 @@
             <objects>
                 <viewController storyboardIdentifier="DetailedPlannerAccelerometerViewController" id="b0F-ne-ZL2" customClass="DetailedPlannerAccelerometerViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xDv-pb-12r">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LV2-sf-JUV">
-                                <rect key="frame" x="0.0" y="44" width="428" height="848"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LV2-sf-JUV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="iIo-O8-7tj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="Sf9-fL-VPQ"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="LV2-sf-JUV" firstAttribute="top" secondItem="iIo-O8-7tj" secondAttribute="top" id="6N5-Ip-ciL"/>
-                            <constraint firstItem="iIo-O8-7tj" firstAttribute="trailing" secondItem="LV2-sf-JUV" secondAttribute="trailing" id="6cX-CP-e9h"/>
-                            <constraint firstItem="iIo-O8-7tj" firstAttribute="bottom" secondItem="LV2-sf-JUV" secondAttribute="bottom" id="YUv-in-2WB"/>
-                            <constraint firstItem="LV2-sf-JUV" firstAttribute="leading" secondItem="iIo-O8-7tj" secondAttribute="leading" id="kuT-4s-bG2"/>
+                            <constraint firstItem="LV2-sf-JUV" firstAttribute="top" secondItem="Sf9-fL-VPQ" secondAttribute="top" id="6N5-Ip-ciL"/>
+                            <constraint firstItem="Sf9-fL-VPQ" firstAttribute="trailing" secondItem="LV2-sf-JUV" secondAttribute="trailing" id="6cX-CP-e9h"/>
+                            <constraint firstItem="Sf9-fL-VPQ" firstAttribute="bottom" secondItem="LV2-sf-JUV" secondAttribute="bottom" id="YUv-in-2WB"/>
+                            <constraint firstItem="LV2-sf-JUV" firstAttribute="leading" secondItem="Sf9-fL-VPQ" secondAttribute="leading" id="kuT-4s-bG2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -436,15 +462,15 @@
             </objects>
             <point key="canvasLocation" x="3908" y="2487"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Details-->
         <scene sceneID="zRA-85-KYM">
             <objects>
                 <navigationController id="2mq-Br-WLc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="c1i-4c-EKI">
+                    <tabBarItem key="tabBarItem" title="Details" image="info.circle" catalog="system" id="c1i-4c-EKI">
                         <color key="badgeColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YuZ-wF-ZQK">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="YuZ-wF-ZQK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
@@ -457,21 +483,71 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23c-Zc-MCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="897"/>
+            <point key="canvasLocation" x="5582" y="665"/>
         </scene>
-        <!--Profile-->
+        <!--Details-->
         <scene sceneID="9fv-zD-vbQ">
             <objects>
                 <viewController id="uRi-pg-GGZ" customClass="ProfileViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xg6-tr-R6k">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="hhN-Vq-xiq"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6c-tO-4iR">
+                                <rect key="frame" x="0.0" y="20" width="414" height="66"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="Y9v-67-0IV"/>
+                                </constraints>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upy-KX-cld">
+                                <rect key="frame" x="0.0" y="659" width="414" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="Aup-or-EQP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Change Password ?">
+                                    <color key="titleColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetPasswordDidTapped:" destination="uRi-pg-GGZ" eventType="touchUpInside" id="XzJ-oM-0GX"/>
+                                </connections>
+                            </button>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBD-Xg-OqT">
+                                <rect key="frame" x="0.0" y="94" width="414" height="225"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="t0q-xf-h4b"/>
+                                </constraints>
+                                <string key="text">This application has for objective to help professionals  analyzing and collecting data. It is important to keep in mind that during the development privacy issue has always been taken into account. No personal data is collected. Please ensure that when collecting data that your camera is only facing the road.</string>
+                                <color key="textColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uZy-9W-rex"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="linkColor"/>
+                        <constraints>
+                            <constraint firstItem="jBD-Xg-OqT" firstAttribute="top" secondItem="L6c-tO-4iR" secondAttribute="bottom" constant="8" id="1Lv-lk-ceJ"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="centerX" secondItem="xg6-tr-R6k" secondAttribute="centerX" id="6Xk-w4-tff"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="leading" secondItem="uZy-9W-rex" secondAttribute="leading" id="AFd-i5-HV5"/>
+                            <constraint firstItem="Upy-KX-cld" firstAttribute="bottom" secondItem="uZy-9W-rex" secondAttribute="bottom" id="IbL-fX-ECn"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="trailing" secondItem="jBD-Xg-OqT" secondAttribute="trailing" id="YhZ-e2-ux1"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="trailing" secondItem="Upy-KX-cld" secondAttribute="trailing" id="jea-8p-cvS"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="leading" secondItem="jBD-Xg-OqT" secondAttribute="leading" id="lV9-sN-JQC"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="top" secondItem="uZy-9W-rex" secondAttribute="top" constant="20" id="lbf-8s-dIe"/>
+                            <constraint firstItem="L6c-tO-4iR" firstAttribute="leading" secondItem="Upy-KX-cld" secondAttribute="leading" id="qH4-aB-4YK"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="bpk-fm-o4d">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="ySA-Wo-fSY">
+                    <navigationItem key="navigationItem" title="Details" id="bpk-fm-o4d">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" style="plain" id="ySA-Wo-fSY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="LogOut:" destination="uRi-pg-GGZ" id="heX-HF-awf"/>
                             </connections>
@@ -479,11 +555,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="LogOutButton" destination="ySA-Wo-fSY" id="hdK-C2-pTj"/>
+                        <outlet property="forgotButton" destination="Upy-KX-cld" id="Ztk-qZ-zzM"/>
+                        <outlet property="textViewInfo" destination="L6c-tO-4iR" id="iaW-AH-Zto"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPt-ah-ISb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056" y="1675"/>
+            <point key="canvasLocation" x="5579.7101449275369" y="1422.9910714285713"/>
         </scene>
         <!--Data Collector-->
         <scene sceneID="0D2-pA-VGa">
@@ -491,8 +569,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="bvN-LC-RQ0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Data Collector" id="0b9-Fn-orl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0aI-YD-WcS">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0aI-YD-WcS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
@@ -500,8 +578,8 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ixz-qB-cVS">
-                        <rect key="frame" x="0.0" y="843" width="428" height="49"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Ixz-qB-cVS">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -512,15 +590,20 @@
             </objects>
             <point key="canvasLocation" x="2657" y="922"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--IRI Planner-->
         <scene sceneID="fqY-yf-1Yp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nrq-NZ-eCe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="speedometer" catalog="system" id="oOX-qO-bhy"/>
+                    <tabBarItem key="tabBarItem" title="IRI Planner" image="speedometer" catalog="system" id="oOX-qO-bhy"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QVq-Ei-ljY">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QVq-Ei-ljY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -532,15 +615,13 @@
             <point key="canvasLocation" x="3994" y="897"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
     <resources>
         <image name="calendar.circle" catalog="system" width="128" height="121"/>
         <image name="camera.viewfinder" catalog="system" width="128" height="115"/>
         <image name="car" catalog="system" width="128" height="93"/>
-        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="speedometer" catalog="system" width="128" height="121"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

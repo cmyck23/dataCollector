@@ -314,12 +314,12 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     if (roughnessIndex > 1.5)
                     {
                         self.text.textColor = UIColor.red
-                        self.text.text = ("Potential Defect Detected : "+String(roughnessIndex))
+                        self.text.text = ("Potential Defect Detected : \n"+String(roughnessIndex))
                         self.addNewEntryAccelAnalysis()
                     }
                     else{
                         self.text.textColor = UIColor.green
-                        self.text.text = ("No Defect Detected : "+String(roughnessIndex))
+                        self.text.text = ("No Defect Detected : \n"+String(roughnessIndex))
                     }
                     
                     
@@ -389,11 +389,13 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 
                 location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
-                    locationName in self!.title = ""
+                    locationName in self!.title = "Analyze"
                     location_Name = locationName ?? "Unknown"
                     
                     print(locationName ?? "Unknown")
                 
+                    if locationName != "Unknown" {
+                    
                     self!.firestoreDatabase.collection("AreasAccelerometer").document(location_Name).getDocument{(document, error) in
                         
                         if error == nil{
@@ -427,6 +429,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                                     }
                                 }
                             }
+                    }
                     }
                    }
                 }
@@ -496,7 +499,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 
                 location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
-                    locationName in self!.title = ""
+                    locationName in self!.title = "Analyze"
                     location_Name = locationName ?? "Unknown"
                     
                     print(locationName as Any)
@@ -508,9 +511,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                             // Add and update information for existing area
                             if document != nil && document!.exists{
                                 
-                            
                                 if locationName != "Unknown" {
-                                    
                                     
                                     self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
                                     "Last Updated":formatter1.string(from: today)
@@ -563,6 +564,10 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                             else
                             {
                                 
+                                self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
+                                "Last Updated":formatter1.string(from: today)
+                                ],merge: true)
+                                
                                 if locationName != "Unknown" {
                                 self!.firestoreDatabase.collection("Areas").document(location_Name).setData(["name":location_Name,
                                 "latitude":user_lat,
@@ -577,7 +582,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                                     
                                     if typeOfDefect == "Minor_crack"{
                                         self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
-                                        "Major Cracks Number":1,"Minor Cracks Number":1,"Potholes Number":0,"Total Defects":1,
+                                        "Major Cracks Number":0,"Minor Cracks Number":1,"Potholes Number":0,"Total Defects":1,
                                             "Repair Time":timeMinorCrack,
                                             "Repair Cost":costMinorCrack,
                                             "Procedure 1" :procedureMinorCrack,
