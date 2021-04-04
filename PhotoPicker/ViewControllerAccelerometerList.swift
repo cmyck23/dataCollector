@@ -10,11 +10,13 @@ import UIKit
 import FirebaseDatabase
 import FirebaseFirestore
 
-class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var numberOfLocationsAnalyzed = 0
     var areaList = [String]()
     @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     
     var database = Database.database().reference()
@@ -22,6 +24,13 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     var databaseHandle:DatabaseHandle?
     var names = ""
     let firestoreDatabase = Firestore.firestore()
+    
+    
+    var filteredData: [String]!
+    
+    var numberOfRows = 0
+    
+    var initialLoadding = true
     
     //var MainTabBarController: UITabBarController
 
@@ -32,6 +41,8 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         
         
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -52,6 +63,10 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
                 }
                 
                 print("Locations Found: \(places)")
+            
+            self.filteredData = self.areaList
+            self.numberOfRows = self.filteredData.count
+            
             }
         
         print("Trying to print areaList")
@@ -68,7 +83,14 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
 //        print(type(of: indexPath.row))
         var select = ""
         print("Inside the table view function")
-        select = String(areaList[indexPath.row])
+        
+        if initialLoadding == true {
+            select = String(areaList[indexPath.row])
+        }
+        else
+        {
+            select = String(filteredData[indexPath.row])
+        }
         
         print(select)
         
@@ -108,18 +130,56 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        print(self.areaList.count)
-        return self.areaList.count
+        print(self.numberOfRows)
+        
+        if initialLoadding == true {
+            return self.areaList.count
+        }
+        else
+        {
+            return self.filteredData.count
+        }
     
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cellAccelerometer = tableView.dequeueReusableCell(withIdentifier: "cellAccelerometer", for: indexPath)
-        cellAccelerometer.textLabel?.text = areaList[indexPath.row]
+        if initialLoadding == true {
+            cellAccelerometer.textLabel?.text = areaList[indexPath.row]
+        }
+        else {
+            cellAccelerometer.textLabel?.text = filteredData[indexPath.row]
+        }
         return cellAccelerometer
     }
 
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = []
+        
+        if searchText == ""
+        {
+            initialLoadding = true
+           filteredData = areaList
+            print("Inside searchBarFunction")
+            
+            // Dismiss keyboard when field is emptied
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            
+        }
+        else{
+        for locations in areaList {
+            initialLoadding = false
+            if locations.lowercased().contains(searchText.lowercased()){
+                filteredData.append(locations)
+            }
+            self.numberOfRows = self.filteredData.count
+        }
+        }
+        
+        self.tableView.reloadData()
+    }
 }
 
 
