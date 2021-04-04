@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseFirestore
 
-class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var numberOfLocationsAnalyzed = 0
     var areaList = [String]()
@@ -20,18 +20,29 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     var databaseHandle:DatabaseHandle?
     var names = ""
     let firestoreDatabase = Firestore.firestore()
+    
+    var filteredData: [String]!
+    
+    var numberOfRows = 0
+    
+    var initialLoadding = true
 
 
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         
+        searchBar.delegate = self
         
-    
+
+        
         // Getting the records from firebase firestore
         firestoreDatabase.collection("Areas")
             .addSnapshotListener { querySnapshot, error in
@@ -51,13 +62,20 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 
                 print("Locations Found: \(places)")
+                
+                
+                self.filteredData = self.areaList
+                self.numberOfRows = self.filteredData.count
+                
             }
-        
-        print(self.areaList)
+    
+                print(self.areaList)
         
         // Do any additional setup after loading the view.
     }
     
+    
+    //This function is executed when a row is being clicked. !
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "DetailedPlannerViewController")
         as? DetailedPlannerViewController
@@ -65,7 +83,14 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
 //        print("Type of indexPath")
 //        print(type(of: indexPath.row))
         var select = ""
-        select = String(areaList[indexPath.row])
+        
+        if initialLoadding == true {
+            select = String(areaList[indexPath.row])
+        }
+        else
+        {
+            select = String(filteredData[indexPath.row])
+        }
         
         let docRef = self.firestoreDatabase.collection("Areas").document(select)
         
@@ -96,17 +121,67 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.areaList.count
+        // Here we return the number of rows equal to the number of elements in the array
+        print("Number of rows")
+        print(self.numberOfRows)
+        
+        if initialLoadding == true {
+            return self.areaList.count
+        }
+        else
+        {
+            return self.filteredData.count
+        }
     
     }
     
+    // This function will create each cell from the list fetched from firebase.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
+        
+        //Connect each cell to the table view to the cell with identifier "cell".
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = areaList[indexPath.row]
+        
+        
+        if initialLoadding == true {
+            cell.textLabel?.text = areaList[indexPath.row]
+        }
+        else {
+            cell.textLabel?.text = filteredData[indexPath.row]
+        }
+        
         cell.textLabel?.textColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        // We want to return the cell to fill the table view.
         return cell
     }
-
+    
+    // Set the search bar
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = []
+        
+        if searchText == ""
+        {
+            initialLoadding = true
+           filteredData = areaList
+            print("Inside searchBarFunction")
+            
+            // Dismiss keyboard when field is emptied
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            
+        }
+        else{
+        for locations in areaList {
+            initialLoadding = false
+            if locations.lowercased().contains(searchText.lowercased()){
+                filteredData.append(locations)
+            }
+            self.numberOfRows = self.filteredData.count
+        }
+        }
+        
+        self.tableView.reloadData()
+    }
 }

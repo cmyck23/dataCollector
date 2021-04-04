@@ -11,6 +11,7 @@ import UIKit
 class DataCollectorPage: UIViewController {
     
     @IBOutlet weak var button: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
