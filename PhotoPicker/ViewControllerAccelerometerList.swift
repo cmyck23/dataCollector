@@ -32,7 +32,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     
     
     var infoLocation = ""
-    var filteredData: [String]!
+    var filteredData: [String] = []
     
     var numberOfRows = 0
     
@@ -71,6 +71,15 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
                     print("Error fetching documents: \(error!)")
                     return
                 }
+            
+                if self.areaList.isEmpty{
+            
+                }
+                else{
+                self.areaList.removeAll()
+                }
+                
+            
                 let places = documents.map {$0["name"]!}
                 
                 for row in places{
@@ -82,9 +91,11 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
                 
                 //print("Locations Found: \(places)")
             
-            self.filteredData = self.areaList
-            self.numberOfRows = self.filteredData.count
-            
+//            if self.filteredData.isEmpty{
+//            self.filteredData = self.areaList
+//            }
+//            self.numberOfRows = self.filteredData.count
+//
             }
         
         //print("Trying to print areaList")
@@ -137,11 +148,11 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
        
         
         if initialLoadding == true {
-            select = String(areaList[indexPath.row])
+            select = String(self.areaList[indexPath.row])
         }
         else
         {
-            select = String(filteredData[indexPath.row])
+            select = String(self.filteredData[indexPath.row])
         }
         
         //print(select)
@@ -196,10 +207,10 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
        
         let cellAccelerometer = tableView.dequeueReusableCell(withIdentifier: "cellAccelerometer", for: indexPath)
         if initialLoadding == true {
-            cellAccelerometer.textLabel?.text = areaList[indexPath.row]
+            cellAccelerometer.textLabel?.text = self.areaList[indexPath.row]
         }
         else {
-            cellAccelerometer.textLabel?.text = filteredData[indexPath.row]
+            cellAccelerometer.textLabel?.text = self.filteredData[indexPath.row]
         }
         
         cellAccelerometer.textLabel?.textColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
@@ -209,12 +220,13 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
 
     ///Function to allow filtering results when user search for specific results.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = []
+        
+        self.filteredData = []
         
         if searchText == ""
         {
             initialLoadding = true
-           filteredData = areaList
+            self.filteredData = self.areaList
             //print("Inside searchBarFunction")
             
             // Dismiss keyboard when field is emptied
@@ -222,10 +234,10 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
             
         }
         else{
-        for locations in areaList {
+            for locations in self.areaList {
             initialLoadding = false
             if locations.lowercased().contains(searchText.lowercased()){
-                filteredData.append(locations)
+                self.filteredData.append(locations)
             }
             self.numberOfRows = self.filteredData.count
         }
@@ -240,7 +252,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         self.infoLocation = ""
         var dct = Dictionary<String, AnyObject>()
         
-        for locations in areaList {
+        for locations in self.areaList {
         
         let docRef = self.firestoreDatabase.collection("AreasAccelerometer").document(locations)
 
@@ -326,6 +338,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         
         }
 }
+
 
 
    

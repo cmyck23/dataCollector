@@ -58,7 +58,6 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         
         searchBar.delegate = self
         
-
         
         // Getting the records from firebase firestore
         firestoreDatabase.collection("Areas").order(by: "Priority",descending: true)
@@ -67,6 +66,14 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                     print("Error fetching documents: \(error!)")
                     return
                 }
+                
+                if self.areaList.isEmpty{
+                
+                }
+                else{
+                    self.areaList.removeAll()
+                }
+                                
                 let places = documents.map {$0["name"]}
                 
                 for row in places{
@@ -77,16 +84,13 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                         self.tableView.reloadData()
                     }
                 }
-                
-                //print("Locations Found: \(places)")
-                
-                
-                self.filteredData = self.areaList
-                self.numberOfRows = self.filteredData.count
+                                
+                //self.filteredData = self.areaList
+                //self.numberOfRows = self.filteredData.count
                 
             }
     
-                //print(self.areaList)
+        
         
         // Do any additional setup after loading the view.
         
@@ -133,16 +137,18 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         let vc = storyboard?.instantiateViewController(identifier: "DetailedPlannerViewController")
         as? DetailedPlannerViewController
         
+        
+        
 //        print("Type of indexPath")
 //        print(type(of: indexPath.row))
         var select = ""
         
         if initialLoadding == true {
-            select = String(areaList[indexPath.row])
+            select = String(self.areaList[indexPath.row])
         }
         else
         {
-            select = String(filteredData[indexPath.row])
+            select = String(self.filteredData[indexPath.row])
         }
         
         let docRef = self.firestoreDatabase.collection("Areas").document(select)
@@ -193,16 +199,16 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     // This function will create each cell from the list fetched from firebase.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        
+                
         //Connect each cell to the table view to the cell with identifier "cell".
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         
         if initialLoadding == true {
-            cell.textLabel?.text = areaList[indexPath.row]
+            cell.textLabel?.text = self.areaList[indexPath.row]
         }
         else {
-            cell.textLabel?.text = filteredData[indexPath.row]
+            cell.textLabel?.text = self.filteredData[indexPath.row]
         }
         
         cell.textLabel?.textColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
@@ -215,22 +221,22 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     // Set the search bar
     ///Function to allow filtering results when user search for specific results.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = []
+        self.filteredData = []
         
         if searchText == ""
         {
             initialLoadding = true
-           filteredData = areaList
+            self.filteredData = self.areaList
             
             // Dismiss keyboard when field is emptied
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             
         }
         else{
-        for locations in areaList {
+            for locations in self.areaList {
             initialLoadding = false
             if locations.lowercased().contains(searchText.lowercased()){
-                filteredData.append(locations)
+                self.filteredData.append(locations)
             }
             self.numberOfRows = self.filteredData.count
         }
