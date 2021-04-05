@@ -373,7 +373,7 @@
             </objects>
             <point key="canvasLocation" x="-2010" y="897"/>
         </scene>
-        <!--Vision Object Recognition View Controller-->
+        <!--Analyzing Road-->
         <scene sceneID="MSJ-W9-dMr">
             <objects>
                 <viewController id="Y9e-uC-NHu" customClass="VisionObjectRecognitionViewController" customModule="Road Analyzer" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,7 +401,7 @@
                         <viewLayoutGuide key="safeArea" id="tbB-Yf-CNy"/>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nTU-kc-DeW"/>
+                    <navigationItem key="navigationItem" title="Analyzing Road" largeTitleDisplayMode="always" id="nTU-kc-DeW"/>
                     <connections>
                         <outlet property="previewView" destination="vjv-0t-xLs" id="ib9-gM-Pet"/>
                         <outlet property="text" destination="TA3-f3-YEd" id="mfC-WD-rxD"/>

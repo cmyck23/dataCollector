@@ -414,7 +414,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 
                 location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
-                    locationName in self!.title = "Analyze"
+                    locationName in self!.title = "Analyzing Road"
                     location_Name = locationName ?? "Unknown"
                     
                     //print(locationName ?? "Unknown")
@@ -524,7 +524,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 
                 location_Name=LocationManager.shared.resolveLocationName(with: location){ [self]
-                    locationName in self!.title = "Analyze"
+                    locationName in self!.title = "Analyzing Road"
                     location_Name = locationName ?? "Unknown"
                     
                     print(locationName as Any)
