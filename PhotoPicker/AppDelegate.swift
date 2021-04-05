@@ -5,6 +5,8 @@ Abstract:
 This file defines the AppDelegate subclass of UIApplicationDelegate.
 */
 
+
+//Import Firebase to connect to firebase services
  import UIKit
  import Firebase
 
@@ -19,6 +21,7 @@ This file defines the AppDelegate subclass of UIApplicationDelegate.
     
     var rootControler: UIViewController?
     
+    //Authenticate to firebase with bundle firebase
     if(FirebaseAuth.Auth.auth().currentUser != nil){
         rootControler = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "HomePage")
     }
@@ -35,6 +38,7 @@ This file defines the AppDelegate subclass of UIApplicationDelegate.
      return true
      }
     
+    //Configure Firebase
     override init() {
         FirebaseApp.configure()
     }

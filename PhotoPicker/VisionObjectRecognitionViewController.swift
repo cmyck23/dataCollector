@@ -4,6 +4,8 @@ Abstract:
 Contains the object recognition view controller for the Breakfast Finder.
 */
 
+
+//Import the required libraries
 import UIKit
 import AVFoundation
 import Vision
@@ -21,17 +23,21 @@ import Firebase
 
 class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManagerDelegate {
     
+    
+    //Create a reference object to firebase.
     var database = Database.database().reference()
     var motionManager = CMMotionManager()
     
     let firestoreDatabase = Firestore.firestore()
     
-    // Used to start getting the users location
+    // Used to start getting the users location.
     let locationManager = CLLocationManager()
     
     // This is used to get the cities names from locations.
     let manager = CLLocation()
     var completion: ((CLLocation)-> Void)?
+    
+    var acceleromterAllowed = false
 
     
     private var detectionOverlay: CALayer! = nil
@@ -41,17 +47,26 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     
     @IBOutlet var text: UITextView!
     
+    
+    /// Function that is run when opening the page of the application for the first time.
     override func viewDidLoad() {
-        super.viewDidLoad()
-
         
+        super.viewDidLoad()
+        
+        
+        
+    
         // Do any additional setup after loading the view.
         
         
     }
     
+    ///Function that set what will appear
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
+        
+            ///Call the function viewLoadSetup, used for loading the machine learning model.
+                
            viewLoadSetup()
 
         }
@@ -59,10 +74,14 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     
     func viewLoadSetup(){
           // setup view did load here
+            ///Call the function that will display the IRI Analysis
+        
+        if acceleromterAllowed == true {
             showIRI()
+        }
          }
     
-
+    ///Function to load the machine learning.
     @discardableResult
     func setupVision() -> NSError? {
         // Setup Vision parts
@@ -78,7 +97,9 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             let objectRecognition = VNCoreMLRequest(model: visionModel, completionHandler: { (request, error) in
                 DispatchQueue.main.async(execute: {
                     // perform all the UI updates on the main queue
+                    // This is the results from the Machine Learning
                     if let results = request.results {
+                        // Display results onto the screen of the device.
                         self.drawVisionRequestResults(results)
                     }
                 })
@@ -91,6 +112,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         return error
     }
     
+    ///This functions creates and displays results on the screen in the "Analysis" section.
     func drawVisionRequestResults(_ results: [Any]) {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
@@ -101,9 +123,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             }
             // Select only the label with the highest confidence.
             let topLabelObservation = objectObservation.labels[0]
-            //print(topLabelObservation)
-            
-            // addNewEntry()
+        
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
             
             let shapeLayer = self.createRoundedRectLayerWithBounds(objectBounds)
@@ -111,18 +131,18 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             let textLayer = self.createTextSubLayerInBounds(objectBounds,
                                                             identifier: topLabelObservation.identifier,
                                                             confidence: topLabelObservation.confidence)
-            print(topLabelObservation.identifier)
-            print(topLabelObservation.confidence)
+            
+            // Every time a result is found by the AI, send the results for saving
             addNewEntry(typeOfDefect: String(topLabelObservation.identifier))
             
             shapeLayer.addSublayer(textLayer)
-            //print(shapeLayer)
             detectionOverlay.addSublayer(shapeLayer)
         }
         self.updateLayerGeometry()
         CATransaction.commit()
     }
     
+    /// This function sets the camera settings
     override func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
@@ -138,6 +158,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         }
     }
     
+    ///Function to initialize all settings
     override func setupAVCapture() {
         super.setupAVCapture()
         
@@ -148,9 +169,11 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         setupVision()
         // start the capture
         startCaptureSession()
+        acceleromterAllowed = true
         showIRI()
     }
     
+    /// Function for detection results and rendering.
     func setupLayers() {
         detectionOverlay = CALayer() // container layer that has all the renderings of the observations
         detectionOverlay.name = "DetectionOverlay"
@@ -162,6 +185,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         rootLayer.addSublayer(detectionOverlay)
     }
     
+    ///Function that updates the graphics on the "Analysis" Page
     func updateLayerGeometry() {
         let bounds = rootLayer.bounds
         var scale: CGFloat
@@ -185,7 +209,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         
     }
     
-    //Create the text inside the rectangle
+    ///Create the text inside the rectangle and choose parameters such as font, colors and size
     func createTextSubLayerInBounds(_ bounds: CGRect, identifier: String, confidence: VNConfidence) -> CATextLayer {
         let textLayer = CATextLayer()
         textLayer.name = "Object Label"
@@ -196,6 +220,8 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         let formattedString = NSMutableAttributedString(string: String(format: "\(tempIdentifierString)\n %.2f", confidence))
         
         
+        
+        ///Display each type of defect with a different color. Bright colors were used to ease visualization.
         let largeFont = UIFont(name: "Helvetica", size: 24.0)!
         
         if (tempIdentifierString == "Ma")
@@ -217,10 +243,6 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             
         }
         
-        
-
-        
-        
         textLayer.string = formattedString
         textLayer.bounds = CGRect(x: 0, y: 0, width: bounds.size.height - 10, height: bounds.size.width - 10)
         textLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -233,6 +255,8 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         return textLayer
     }
     
+    
+    ///Function to create the frame where the text will be place. Also, the size depends on the size of the defect detected.
     func createRoundedRectLayerWithBounds(_ bounds: CGRect) -> CALayer {
         let shapeLayer = CALayer()
         shapeLayer.bounds = bounds
@@ -247,13 +271,14 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         return shapeLayer
     }
     
+    /// This function had for objective to create dummy data, not of use anymore.
     public func displayButtonToGenerateValue()
    {
         database.child("Area_38").observeSingleEvent(of: .value, with: {snapshot in guard (snapshot.value as? [String: Any]) != nil
        else{return
            
        }
-       //print("Value: \(value)")
+       
        })
        
        //Create a button to generate a random area with entries
@@ -266,15 +291,14 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
        button.addTarget(self, action: #selector(addNewEntry), for: .touchUpInside)
    }
     
+    ///Stop acceleromter and analyzis when
     override func viewWillDisappear(_ animated: Bool){
-        
-        //print("You left the planner")
-        
+    
         self.motionManager.stopAccelerometerUpdates()
         
     }
     
-    
+    ///Function to display the current IRI on the analysis page
     func showIRI(){
         
         self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
@@ -282,44 +306,33 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
             {
                 //--This is to create a date object to display the time later.
                 
-                print("Inside Accelerometer Detector")
-                print("-------------------------")
+                
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
                 formatter.dateStyle = .long
-                let dateTimeString = formatter.string(from: currentDateTime)
+                
+                _ = formatter.string(from: currentDateTime)
                 
             
-                //-Print time
-                print (dateTimeString)
-                
-                print ("Displaying latitude and longitude (GPS DATA)")
                 
                 //Get current latitude and save it as a string.
-                let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
+                _ = String(format: "%f", self.locationManager.location!.coordinate.latitude)
                 //Get current longitude and save it as a string.
-                let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
+                _ = String(format: "%f", self.locationManager.location!.coordinate.longitude)
                 
-                print(user_lat)
-                print(user_long)
-                    
-                print ("Displaying accelerometer data")
+                
                 
                 //Convert longitudes and latitudes to string.
-                let user_accelerometerXValue = String(format: "%f", myData.acceleration.x)
-                let user_accelerometerYValue = String(format: "%f", myData.acceleration.y)
-                let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
+                _ = String(format: "%f", myData.acceleration.x)
+                _ = String(format: "%f", myData.acceleration.y)
+                _ = String(format: "%f", myData.acceleration.z)
                 
-                print(type(of: myData.acceleration.z))
-                
-                
-                print( user_accelerometerXValue)
-                print( user_accelerometerYValue)
-                print( user_accelerometerZValue)
+               
                 
                 var speed = self.locationManager.location!.speed*3.6
                 
+                //This is the value that we obtained for the average Z-Value
                 let averageZValue = -0.02960339
                 
                 var roughnessIndex = 0.0
@@ -330,33 +343,26 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 {
                     speed = 0
                     roughnessIndex = 0
-                    print(roughnessIndex)
-                    self.text.text = ("No Defect Detected : "+String(roughnessIndex))
+                    
+                    self.text.text = ("IRI: No Defect Detected : "+String(roughnessIndex))
                 }
                 else
                 {
                     roughnessIndex = (sqrt(pow(myData.acceleration.z-averageZValue,2))/speed)*100
-                    print(roughnessIndex)
+                    
                     if (roughnessIndex > 1.5)
                     {
                         self.text.textColor = UIColor.red
-                        self.text.text = ("Potential Defect Detected : \n"+String(roughnessIndex))
+                        self.text.text = ("IRI: Potential Defect Detected : \n"+String(roughnessIndex))
                         self.addNewEntryAccelAnalysis()
                     }
                     else{
                         self.text.textColor = UIColor.green
-                        self.text.text = ("No Defect Detected : \n"+String(roughnessIndex))
+                        self.text.text = ("IRI: No Defect Detected : \n"+String(roughnessIndex))
                     }
                     
-                    
                 }
-                
-                print("Displaying Speed")
-                //--Displaying speed of the motion of the phone in kilometer per hour.
-                print(speed)
-            
-                print("RougnessIndex"+String(roughnessIndex))
-                
+    
             }
     
         }
@@ -372,14 +378,13 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     */
 
 }
-    
+    ///This function adds  new defect to an existing or current location on  firebase for the acceleromter analysis
     @objc public func addNewEntryAccelAnalysis()
    {
     
     var location_Name = "Unknown"
         
         //--This is to create a date object to display the time later.
-        //print("-------------------------")
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
@@ -398,8 +403,6 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         speed = 0
     }
 
-//   let roadTypes = ["Asphalt", "Concrete", "Earth", "Stones"]
-//   let detection = ["YES","NO"]
    let today = Date()
    let formatter1 = DateFormatter()
    formatter1.dateStyle = .short
@@ -417,8 +420,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     locationName in self!.title = "Analyzing Road"
                     location_Name = locationName ?? "Unknown"
                     
-                    //print(locationName ?? "Unknown")
-                
+                    
                     if locationName != "Unknown" {
                     
                     self!.firestoreDatabase.collection("AreasAccelerometer").document(location_Name).getDocument{(document, error) in
@@ -461,7 +463,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
 
 }
     
-
+    ///This function adds  new defect to an existing or current location on  firebase for the image AI Analysis
     @objc public func addNewEntry(typeOfDefect: String)
    {
         
@@ -486,8 +488,6 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     var location_Name = "Unknown"
         
         //--This is to create a date object to display the time later.
-        print("-------------------------")
-        print(typeOfDefect)
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
@@ -506,13 +506,12 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         speed = 0
     }
 
-//   let roadTypes = ["Asphalt", "Concrete", "Earth", "Stones"]
-//   let detection = ["YES","NO"]
+
    let today = Date()
    let formatter1 = DateFormatter()
    formatter1.dateStyle = .short
         
-        print(LocationManager.shared.getUserLocation)
+        
             
             LocationManager.shared.getUserLocation{[weak self]location in
                 
@@ -527,7 +526,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     locationName in self!.title = "Analyzing Road"
                     location_Name = locationName ?? "Unknown"
                     
-                    print(locationName as Any)
+                    
                 
                     self!.firestoreDatabase.collection("Areas").document(location_Name).getDocument{(document, error) in
                         

@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 import Vision
 
+
+/// Class to set the view controller for the Analysis page. Directly related to the Vision Object Recognition class
 class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     var bufferSize: CGSize = .zero
@@ -27,9 +29,22 @@ class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Entering ViewDidLoad MACHINE ML")
-        setupAVCapture()
-    }
+        
+        let alert = UIAlertController(title:"Welcome to the Analysis Section",
+                                      message: "Please position your phone close to the wind shield facing the road as much as possible and click on 'Ok' when you are ready",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: .default,
+                                      handler: {_ in
+                                        print("Entering ViewDidLoad MACHINE ML")
+                                        self.setupAVCapture()
+
+                                        
+        }))
+        
+        self.present(alert, animated: true)
+        
+            }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

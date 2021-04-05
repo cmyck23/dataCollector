@@ -41,6 +41,17 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         
+        let alert = UIAlertController(title:"Welcome to the Maintenance Planner",
+                                      message: "You can search for any location ",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: .default,
+                                      handler: {_ in
+                                        
+                                        
+        }))
+        
+        self.present(alert, animated: true)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -62,12 +73,12 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                     
                     if row != nil{
                     self.areaList.append(row as! String)
-                        print(row as Any)
+                        //print(row as Any)
                         self.tableView.reloadData()
                     }
                 }
                 
-                print("Locations Found: \(places)")
+                //print("Locations Found: \(places)")
                 
                 
                 self.filteredData = self.areaList
@@ -75,7 +86,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
                 
             }
     
-                print(self.areaList)
+                //print(self.areaList)
         
         // Do any additional setup after loading the view.
         
@@ -139,11 +150,11 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
             
-                let dataDescription = document.data().map(String.init(describing:)) ?? "No Data Found"
+                _ = document.data().map(String.init(describing:)) ?? "No Data Found"
                 
                 let name = document.get("name") as? String
                 
-                print(type(of: dataDescription))
+                //print(type(of: dataDescription))
                 
                 vc?.name = name!
                 self.navigationController?.pushViewController(vc!, animated: true)
@@ -165,8 +176,8 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // Here we return the number of rows equal to the number of elements in the array
-        print("Number of rows")
-        print(self.numberOfRows)
+        //print("Number of rows")
+        //print(self.numberOfRows)
         
         if initialLoadding == true {
             return self.areaList.count
@@ -209,7 +220,6 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         {
             initialLoadding = true
            filteredData = areaList
-            print("Inside searchBarFunction")
             
             // Dismiss keyboard when field is emptied
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

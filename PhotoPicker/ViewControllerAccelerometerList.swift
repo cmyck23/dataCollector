@@ -48,6 +48,18 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         
         super.viewDidLoad()
         
+        let alert = UIAlertController(title:"Welcome to the Planner from IRI Analysis",
+                                      message: "You can search for any location ",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: .default,
+                                      handler: {_ in
+                                        
+                                        
+        }))
+        
+        self.present(alert, animated: true)
+        
         searchBar.delegate = self
         
         tableView.delegate = self
@@ -63,20 +75,20 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
                 
                 for row in places{
                     self.areaList.append(row as! String)
-                    print("Observe appending : ")
-                    print(row as! String)
+                    //print("Observe appending : ")
+                    //print(row as! String)
                     self.tableView.reloadData()
                 }
                 
-                print("Locations Found: \(places)")
+                //print("Locations Found: \(places)")
             
             self.filteredData = self.areaList
             self.numberOfRows = self.filteredData.count
             
             }
         
-        print("Trying to print areaList")
-        print(areaList)
+        //print("Trying to print areaList")
+        //print(areaList)
         
         // Do any additional setup after loading the view.
     }
@@ -122,7 +134,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
 //        print("Type of indexPath")
 //        print(type(of: indexPath.row))
         var select = ""
-        print("Inside the table view function")
+       
         
         if initialLoadding == true {
             select = String(areaList[indexPath.row])
@@ -132,18 +144,18 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
             select = String(filteredData[indexPath.row])
         }
         
-        print(select)
+        //print(select)
         
         let docRef = self.firestoreDatabase.collection("AreasAccelerometer").document(select)
 
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 
-                let dataDescription = document.data().map(String.init(describing:)) ?? "No Data Found"
+                _ = document.data().map(String.init(describing:)) ?? "No Data Found"
                 
                 let Address = document.get("name") as? String
 
-                print(type(of: dataDescription))
+                //print(type(of: dataDescription))
                 
             
                 
@@ -168,7 +180,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        print(self.numberOfRows)
+        //print(self.numberOfRows)
         
         if initialLoadding == true {
             return self.areaList.count
@@ -203,7 +215,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         {
             initialLoadding = true
            filteredData = areaList
-            print("Inside searchBarFunction")
+            //print("Inside searchBarFunction")
             
             // Dismiss keyboard when field is emptied
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

@@ -286,7 +286,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         finishAndUpdate()
         
-        print("Clicked on done Button")
+        
 //        let vc = storyboard?.instantiateViewController(identifier: "dataCollectionPage") as! DataCollectorPage;
 //        present(vc, animated: true)
         //self.navigationController?.popToRootViewController(animated: true)
@@ -326,7 +326,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                 if let myData = data
                 {
                     //--This is to create a date object to display the time later.
-                    print("-------------------------")
+                    
                     let currentDateTime = Date()
                     let formatter = DateFormatter()
                     formatter.timeStyle = .medium
@@ -335,22 +335,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     
                 
                     //-Print time
-                    print (dateTimeString)
+                    //print (dateTimeString)
                     
-                    print ("Displaying latitude and longitude (GPS DATA)")
+                    //print ("Displaying latitude and longitude (GPS DATA)")
                     
                     //Get current latitude and save it as a string.
                     let user_lat = String(format: "%f", self.locationManager.location!.coordinate.latitude)
                     //Get current longitude and save it as a string.
                     let user_long = String(format: "%f", self.locationManager.location!.coordinate.longitude)
                     
-                    print(user_lat)
-                    print(user_long)
+                    //print(user_lat)
+                    //print(user_long)
                         
                     let standardDeviationZ = 0.185737867
                     
                     
-                    print ("Displaying accelerometer data")
+                    //print ("Displaying accelerometer data")
                     
                     //Convert longitudes and latitudes to string.
 
@@ -359,9 +359,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
                     
                     
-                    print( user_accelerometerXValue)
-                    print( user_accelerometerYValue)
-                    print( user_accelerometerZValue)
+                    //print( user_accelerometerXValue)
+                    //print( user_accelerometerYValue)
+                    //print( user_accelerometerZValue)
                     
                         var dct = Dictionary<String, AnyObject>()
                         dct.updateValue(dateTimeString as AnyObject, forKey: "Date")
@@ -385,9 +385,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                         roughnessIndex = (standardDeviationZ/speed)*100
                     }
                     
-                    print("Displaying Speed")
+                    //print("Displaying Speed")
                     //--Displaying speed of the motion of the phone in kilometer per hour.
-                    print(speed)
+                    //print(speed)
                     
                     dct.updateValue(String(speed) as AnyObject, forKey: "Speed")
                     dct.updateValue(String(roughnessIndex) as AnyObject, forKey: "RougnessIndex")
@@ -450,11 +450,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
             return
         }
-        
-    
-        
-        print("Trying to print image description")
-        
         
         //Create a storage object reference for firebase
         let storage = Storage.storage().reference()

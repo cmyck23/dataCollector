@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
           // if you have one. Use getTokenWithCompletion:completion: instead.
           let email = user.email
           
-            print(email as Any)
+            //print(email as Any)
           // ...
             
             self.textViewInfo.text = "My username: "+email!
@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController {
     @IBAction func LogOut(_ sender: Any) {
         do{
             try FirebaseAuth.Auth.auth().signOut()
-            print("Cliked on Sign Out!")
+            //print("Cliked on Sign Out!")
             var rootControler: UIViewController?
             
             if(FirebaseAuth.Auth.auth().currentUser != nil){
@@ -82,7 +82,7 @@ class ProfileViewController: UIViewController {
             Auth.auth().sendPasswordReset(withEmail: myEmail) { error in
               // ...
                 
-                print("Clicked on forgot password!")
+                //print("Clicked on forgot password!")
                 
                 
                 let alert = UIAlertController(title:"Email Sent!",

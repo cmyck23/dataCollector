@@ -1,13 +1,15 @@
 import Foundation
 import CoreLocation
 
+
+///This class is used for creating a location type of object.
 class LocationManager: NSObject, CLLocationManagerDelegate{
     static let shared = LocationManager()
     
     let manager = CLLocationManager()
     var completion: ((CLLocation)-> Void)?
     
-    
+    // Create required attributes for a location
     var name = ""
     var streetDetails = "None"
     var street = "None"
@@ -16,6 +18,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
     var state_Province = "None"
     var postal_Code = "None"
     
+    ///Get user longitude and latitude
     public func getUserLocation(completion: @escaping ((CLLocation) -> Void))
     {
         self.completion = completion
@@ -24,6 +27,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
         manager.startUpdatingLocation()
     }
     
+    ///This function use the apple API to get address from current Latitude and Longitude
     public func resolveLocationName(with location: CLLocation, completion: @escaping((String?)-> Void)) -> String {
     
         let geocoder = CLGeocoder()

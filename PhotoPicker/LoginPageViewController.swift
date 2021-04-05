@@ -29,6 +29,7 @@ class LoginPageViewController: UIViewController {
         emailField.autocapitalizationType = .none
         emailField.leftViewMode = .always
         emailField.leftView = UIView(frame: CGRect(x:0, y: 0, width: 5, height: 0))
+        emailField.attributedPlaceholder = NSAttributedString(string: "Enter your Email Address", attributes: [NSAttributedString.Key.foregroundColor:UIColor.gray])
         emailField.layer.borderColor = UIColor.black.cgColor
         emailField.textColor = .white
         emailField.backgroundColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
@@ -37,11 +38,13 @@ class LoginPageViewController: UIViewController {
     
     private let passwordField:UITextField = {
         let passwordField = UITextField()
+        passwordField.endFloatingCursor()
         passwordField.placeholder = "Password"
         passwordField.layer.borderWidth = 1
         passwordField.isSecureTextEntry = true
         passwordField.leftViewMode = .always
         passwordField.leftView = UIView(frame: CGRect(x:0, y: 0, width: 5, height: 0))
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor:UIColor.gray])
         passwordField.layer.borderColor = UIColor.black.cgColor
         passwordField.textColor = .white
         passwordField.backgroundColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
@@ -146,7 +149,7 @@ class LoginPageViewController: UIViewController {
     
     @objc private func didTapButton()
     {
-        print("Continue button taped")
+        //print("Continue button taped")
         guard let email  = emailField.text, !email.isEmpty,
         let password = passwordField.text, !password.isEmpty else{
             print ("Missing field data")
@@ -167,7 +170,7 @@ class LoginPageViewController: UIViewController {
                 return
             }
             
-            print("You have signed in didTapButton")
+            //print("You have signed in didTapButton")
             
             var rootControler: UIViewController?
             
