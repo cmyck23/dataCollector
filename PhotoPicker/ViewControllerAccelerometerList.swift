@@ -92,7 +92,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         
         // Do any additional setup after loading the view.
     }
-    
+    ///Create a function when user click on save  button
     @IBAction func saveButton(_ sender: Any)
     {
     generateTextFile()
@@ -207,7 +207,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         return cellAccelerometer
     }
 
-    
+    ///Function to allow filtering results when user search for specific results.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = []
         
@@ -234,6 +234,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         self.tableView.reloadData()
     }
     
+    ///Generate data to be saved later into a csv/text file
     func generateTextFile()
     {
         self.infoLocation = ""
@@ -293,6 +294,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
         createCSV(from: self.allLocationsWithInfo)
     }
     
+    ///Create a function that will save a CSV file for ArcMap
     func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         
 

@@ -10,7 +10,7 @@ import AVFoundation
 import Vision
 
 
-/// Class to set the view controller for the Analysis page. Directly related to the Vision Object Recognition class
+/// Class to set the view controller for the Analysis page. Directly related to the Vision Object Recognition class.
 class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     var bufferSize: CGSize = .zero
@@ -30,6 +30,7 @@ class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ///Display alert to user to inform that phone should be placed before running AI Analysis
         let alert = UIAlertController(title:"Welcome to the Analysis Section",
                                       message: "Please position your phone close to the wind shield facing the road as much as possible and click on 'Ok' when you are ready",
                                       preferredStyle: .alert)
@@ -46,11 +47,13 @@ class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
         
             }
     
+    ///Create function to ensure that memory is not overused.
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    ///Function to set up the camera.
     func setupAVCapture() {
         var deviceInput: AVCaptureDeviceInput!
         
@@ -107,13 +110,14 @@ class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
         print("Trying to update view")
     }
     
+    ///Function to start capture of AI.
     func startCaptureSession() {
         session.startRunning()
         //Debug
         print("Start Capturing")
     }
     
-    // Clean up capture setup
+    ///Function to clean up capture setup
     func teardownAVCapture() {
         previewLayer.removeFromSuperlayer()
         previewLayer = nil
@@ -123,6 +127,7 @@ class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
         // print("frame dropped")
     }
     
+    ///Function that changes app appearance depending of portrait or landscape mode.
     public func exifOrientationFromDeviceOrientation() -> CGImagePropertyOrientation {
         let curDeviceOrientation = UIDevice.current.orientation
         let exifOrientation: CGImagePropertyOrientation

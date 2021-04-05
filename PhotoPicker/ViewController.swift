@@ -103,7 +103,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
-    
+    ///Save data after data has been collected
     func finishAndUpdate() {
         self.dismiss(animated: true, completion: { [weak self] in
             guard self != nil else {
@@ -115,14 +115,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     
-    // If we have been deined access give the user the option to change it
+    /// If we have been deined access give the user the option to change it
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == CLAuthorizationStatus.denied) {
             showLocationDisabledPopUp()
         }
     }
     
-    // Show the popup to the user if we have been denied access
+    /// Show the popup to the user if we have been denied access
     func showLocationDisabledPopUp() {
         let alertController = UIAlertController(title: "Background Location Access Disabled",
                                                 message: "In order to use the application we need your location",
@@ -528,7 +528,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 }
 
-
+///Function to create CSV  file for image collection
 public func createCSVForImagesInfo(from recArray:[Dictionary<String, AnyObject>])
 {
     var csvString = "\("ImageTitle_User"),\("LatitudeImage_User"),\("LongitudeImage_User")\n\n"
@@ -550,6 +550,7 @@ public func createCSVForImagesInfo(from recArray:[Dictionary<String, AnyObject>]
     }
 }
 
+///Function to upload CSV file for images collection to firebase
 public func uploadCSVFileForImages()
 
 {
@@ -572,7 +573,7 @@ public func uploadCSVFileForImages()
 
 
 
-
+///Function to create CSV file
 func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
     
 
@@ -604,7 +605,7 @@ func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         }
     
     }
-
+    ///Function to upload CSV file to firebase
     public func uploadCSVFile()
 
     {

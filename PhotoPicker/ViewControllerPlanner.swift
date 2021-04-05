@@ -93,6 +93,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    ///Create a function when user click on save  button 
     @IBAction func saveButton(_ sender: Any)
     {
     generateTextFile()
@@ -127,7 +128,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    //This function is executed when a row is being clicked. !
+    ///Function executed when a row is being clicked. !
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "DetailedPlannerViewController")
         as? DetailedPlannerViewController
@@ -212,7 +213,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // Set the search bar
-    
+    ///Function to allow filtering results when user search for specific results.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = []
         
@@ -238,7 +239,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     
-
+    ///Generate data to be saved later into a csv/text file
     func generateTextFile()
     {
         self.infoLocation = ""
@@ -388,6 +389,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         createCSV(from: self.allLocationsWithInfo)
     }
     
+    ///Create a function that will save a CSV file for ArcMap
     func createCSV(from recArray:[Dictionary<String, AnyObject>]) {
         
 

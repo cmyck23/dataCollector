@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Class used to collect data
 class DataCollectorPage: UIViewController {
     
     @IBOutlet weak var button: UIButton!
