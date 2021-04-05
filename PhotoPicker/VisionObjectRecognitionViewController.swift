@@ -185,18 +185,48 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         
     }
     
+    //Create the text inside the rectangle
     func createTextSubLayerInBounds(_ bounds: CGRect, identifier: String, confidence: VNConfidence) -> CATextLayer {
         let textLayer = CATextLayer()
         textLayer.name = "Object Label"
-        let formattedString = NSMutableAttributedString(string: String(format: "\(identifier)\nConfidence:  %.2f", confidence))
+        
+        let tempIdentifierString = String(identifier.prefix(2))
+    
+        
+        let formattedString = NSMutableAttributedString(string: String(format: "\(tempIdentifierString)\n %.2f", confidence))
+        
+        
         let largeFont = UIFont(name: "Helvetica", size: 24.0)!
-        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: identifier.count))
+        
+        if (tempIdentifierString == "Ma")
+        {
+        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: tempIdentifierString.count+6))
+            formattedString.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.cyan], range: NSRange(location: 0, length: tempIdentifierString.count+6))
+            
+        }
+        else if (tempIdentifierString == "Mi")
+        {
+        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: tempIdentifierString.count+6))
+            formattedString.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.magenta], range: NSRange(location: 0, length: tempIdentifierString.count+6))
+            
+        }
+        else
+        {
+        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: tempIdentifierString.count+6))
+            formattedString.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.orange], range: NSRange(location: 0, length: tempIdentifierString.count+6))
+            
+        }
+        
+        
+
+        
+        
         textLayer.string = formattedString
         textLayer.bounds = CGRect(x: 0, y: 0, width: bounds.size.height - 10, height: bounds.size.width - 10)
         textLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
         textLayer.shadowOpacity = 0.7
         textLayer.shadowOffset = CGSize(width: 2, height: 2)
-        textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
+        //textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.5, 0.5, 0.5, 1.0])
         textLayer.contentsScale = 2.0 // retina rendering
         // rotate the layer into screen orientation and scale and mirror
         textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: 1.0, y: -1.0))
@@ -208,7 +238,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
         shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
         shapeLayer.name = "Found Object"
-        shapeLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 0.2, 0.4])
+        shapeLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.11, 0.26, 0.56, 0.5])
         shapeLayer.cornerRadius = 7
         
         // Update firebase when a new object is detected
@@ -219,11 +249,11 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     
     public func displayButtonToGenerateValue()
    {
-       database.child("Area_38").observeSingleEvent(of: .value, with: {snapshot in guard let value = snapshot.value as? [String: Any]
+        database.child("Area_38").observeSingleEvent(of: .value, with: {snapshot in guard (snapshot.value as? [String: Any]) != nil
        else{return
            
        }
-       print("Value: \(value)")
+       //print("Value: \(value)")
        })
        
        //Create a button to generate a random area with entries
@@ -238,7 +268,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     
     override func viewWillDisappear(_ animated: Bool){
         
-        print("You left the planner")
+        //print("You left the planner")
         
         self.motionManager.stopAccelerometerUpdates()
         
@@ -246,9 +276,6 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     
     
     func showIRI(){
-        
-        
-        
         
         self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data
@@ -280,7 +307,6 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 print ("Displaying accelerometer data")
                 
                 //Convert longitudes and latitudes to string.
-
                 let user_accelerometerXValue = String(format: "%f", myData.acceleration.x)
                 let user_accelerometerYValue = String(format: "%f", myData.acceleration.y)
                 let user_accelerometerZValue = String(format: "%f", myData.acceleration.z)
@@ -332,8 +358,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 print("RougnessIndex"+String(roughnessIndex))
                 
             }
-            
-            
+    
         }
 
     /*
@@ -354,7 +379,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     var location_Name = "Unknown"
         
         //--This is to create a date object to display the time later.
-        print("-------------------------")
+        //print("-------------------------")
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
@@ -392,7 +417,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     locationName in self!.title = "Analyze"
                     location_Name = locationName ?? "Unknown"
                     
-                    print(locationName ?? "Unknown")
+                    //print(locationName ?? "Unknown")
                 
                     if locationName != "Unknown" {
                     

@@ -164,7 +164,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellAccelerometer" focusStyle="custom" textLabel="W8z-te-yDE" style="IBUITableViewCellStyleDefault" id="Ndu-7v-ANh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellAccelerometer" focusStyle="custom" textLabel="W8z-te-yDE" style="IBUITableViewCellStyleDefault" id="Ndu-7v-ANh">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ndu-7v-ANh" id="peX-6G-RCK">
@@ -189,8 +189,16 @@
                         <viewLayoutGuide key="safeArea" id="0QZ-MD-cDS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Planner From IRI Analysis" largeTitleDisplayMode="always" id="G2R-G3-8gy"/>
+                    <navigationItem key="navigationItem" title="Planner From IRI Analysis" largeTitleDisplayMode="always" id="G2R-G3-8gy">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="S9O-Dd-gSu">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveButton:" destination="Gpq-J2-PRW" id="h92-Be-ChP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="S9O-Dd-gSu" id="FLb-wN-Iw2"/>
                         <outlet property="searchBar" destination="0Hh-td-LAS" id="xFe-BO-HeV"/>
                         <outlet property="tableView" destination="lmA-pe-xfR" id="dP4-ZB-14Q"/>
                     </connections>
@@ -327,8 +335,15 @@
                         <color key="backgroundColor" red="0.14901960780000001" green="0.25882352939999997" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Road Maintenance Planner" largeTitleDisplayMode="always" id="HVk-0R-grY"/>
+                    <navigationItem key="navigationItem" title="Road Maintenance Planner" largeTitleDisplayMode="always" id="HVk-0R-grY">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="MJt-y9-WQz">
+                            <connections>
+                                <action selector="saveButton:" destination="pcu-59-Gqg" id="3pO-Jo-ewz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="MJt-y9-WQz" id="JFM-8e-hob"/>
                         <outlet property="searchBar" destination="4At-ZZ-Fy6" id="Ieb-X5-Qdh"/>
                         <outlet property="tableView" destination="yIj-Ve-U6g" id="s9g-Sd-ZDa"/>
                     </connections>
