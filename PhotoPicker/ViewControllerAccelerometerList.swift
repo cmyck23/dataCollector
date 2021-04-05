@@ -16,6 +16,7 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
     
     var numberOfLocationsAnalyzed = 0
     var areaList = [String]()
+    var allLocationsCSV = [String]()
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!

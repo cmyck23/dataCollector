@@ -24,6 +24,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
     let firestoreDatabase = Firestore.firestore()
     
     var filteredData: [String]!
+    var allLocationsCSV = [String]()
     
     var numberOfRows = 0
     
