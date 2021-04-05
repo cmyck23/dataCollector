@@ -98,6 +98,20 @@ class ViewControllerAccelerometerList: UIViewController, UITableViewDelegate, UI
             
             self.present(alert, animated: true)
         }
+        else
+        {
+            let alert = UIAlertController(title:"File Empty !",
+                                          message: "Please try again !",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok",
+                                          style: .default,
+                                          handler: {_ in
+                                            
+                                            
+            }))
+            
+            self.present(alert, animated: true)
+        }
         
     }
     
