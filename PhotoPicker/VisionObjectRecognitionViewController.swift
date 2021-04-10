@@ -337,16 +337,45 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 
                 var roughnessIndex = 0.0
                 
-                speed = 70
-                
                 if speed <= 0
                 {
                     speed = 0
                     roughnessIndex = 0
-                    
+                    self.text.textColor = UIColor.green
                     self.text.text = ("IRI: No Defect Detected : "+String(roughnessIndex))
+                    
                 }
-                else
+                else if speed >= 45 && speed < 70
+                {
+                    roughnessIndex = (sqrt(pow(myData.acceleration.x-averageZValue,2))/speed)*100
+                    
+                    if (roughnessIndex > 2.5)
+                    {
+                        self.text.textColor = UIColor.red
+                        self.text.text = ("IRI: Potential Defect Detected : \n"+String(roughnessIndex))
+                        self.addNewEntryAccelAnalysis()
+                    }
+                    else{
+                        self.text.textColor = UIColor.green
+                        self.text.text = ("IRI: No Defect Detected : \n"+String(roughnessIndex))
+                    }
+                    
+                }
+                else if speed >= 70 && speed < 100 {
+                    roughnessIndex = (sqrt(pow(myData.acceleration.x-averageZValue,2))/speed)*100
+                    
+                    if (roughnessIndex > 2.0)
+                    {
+                        self.text.textColor = UIColor.red
+                        self.text.text = ("IRI: Potential Defect Detected : \n"+String(roughnessIndex))
+                        self.addNewEntryAccelAnalysis()
+                    }
+                    else{
+                        self.text.textColor = UIColor.green
+                        self.text.text = ("IRI: No Defect Detected : \n"+String(roughnessIndex))
+                    }
+                }
+                else if speed >= 100
                 {
                     roughnessIndex = (sqrt(pow(myData.acceleration.x-averageZValue,2))/speed)*100
                     
@@ -360,16 +389,18 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                         self.text.textColor = UIColor.green
                         self.text.text = ("IRI: No Defect Detected : \n"+String(roughnessIndex))
                     }
-                    
+                }
+                else {
+                    self.text.textColor = UIColor.green
+                    self.text.text = ("IRI: No Defect Detected : "+String(roughnessIndex))
                 }
     
             }
-    
+
         }
 
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -402,6 +433,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
     {
         speed = 0
     }
+    else if speed >= 45 {
 
    let today = Date()
    let formatter1 = DateFormatter()
@@ -420,8 +452,11 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     locationName in self!.title = "Analyzing Road"
                     location_Name = locationName ?? "Unknown"
                     
+                    //print(location_Name as Any)
                     
-                    if locationName != "Unknown" {
+                    if location_Name != "Unknown" {
+                        
+                        print(location_Name as Any)
                     
                     self!.firestoreDatabase.collection("AreasAccelerometer").document(location_Name).getDocument{(document, error) in
                         
@@ -430,12 +465,11 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                             if document != nil && document!.exists{
                                 
                             
-                                if locationName != "Unknown" {
+                                if location_Name != "Unknown" {
                                     let incrementer: Double = 1
 
                                     self!.firestoreDatabase.collection("AreasAccelerometer").document(location_Name).updateData([
-                                            "Total Defects" : FieldValue.increment(incrementer)
-                                        ])
+                                            "Total Defects" : FieldValue.increment(incrementer),"Last Update":formatter1.string(from: today)])
                                 }
                                 
                             }
@@ -443,7 +477,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                             else
                             {
                                 
-                                if locationName != "Unknown" {
+                                if location_Name != "Unknown" {
                                 self!.firestoreDatabase.collection("AreasAccelerometer").document(location_Name).setData(["name":location_Name,
                                 "latitude":user_lat,
                                 "longitude":user_long,
@@ -460,7 +494,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     }
                    }
                 }
-
+        }
 }
     
     ///This function adds  new defect to an existing or current location on  firebase for the image AI Analysis
@@ -526,7 +560,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                     locationName in self!.title = "Analyzing Road"
                     location_Name = locationName ?? "Unknown"
                     
-                    
+                    //print(location_Name as Any)
                 
                     self!.firestoreDatabase.collection("Areas").document(location_Name).getDocument{(document, error) in
                         
@@ -535,7 +569,8 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                             // Add and update information for existing area
                             if document != nil && document!.exists{
                                 
-                                if locationName != "Unknown" {
+                                if location_Name != "Unknown" {
+                                    print(location_Name as Any)
                                     
                                     self!.firestoreDatabase.collection("Areas").document(location_Name).setData([
                                     "Last Updated":formatter1.string(from: today)
@@ -592,7 +627,8 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                                 "Last Updated":formatter1.string(from: today)
                                 ],merge: true)
                                 
-                                if locationName != "Unknown" {
+                                if location_Name != "Unknown" {
+                                    print(location_Name as Any)
                                 self!.firestoreDatabase.collection("Areas").document(location_Name).setData(["name":location_Name,
                                 "latitude":user_lat,
                                 "longitude":user_long,

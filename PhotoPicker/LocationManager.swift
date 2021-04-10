@@ -81,11 +81,19 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
             }
             
             
-            self.postal_Code = place.postalCode ?? ""
+            self.postal_Code = place.postalCode ?? "None"
+            
             if self.postal_Code != "None"{
             self.name += self.postal_Code
             }
-        
+            
+            
+            if self.name == ""{
+                self.name = "Unknown"
+            }
+            
+            
+            
             completion(self.name)
             
         }

@@ -32,7 +32,7 @@ class ViewControllerML: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
         
         ///Display alert to user to inform that phone should be placed before running AI Analysis
         let alert = UIAlertController(title:"Welcome to the Analysis Section",
-                                      message: "Please position your phone close to the wind shield facing the road as much as possible and click on 'Ok' when you are ready\n For Better results put your phone in Landscape Mode",
+                                      message: "Please position your phone in landscape mode close to the windshield\n Note: Do not look at the screen while driving",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok",
                                       style: .default,
