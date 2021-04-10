@@ -348,7 +348,7 @@ class VisionObjectRecognitionViewController: ViewControllerML, CLLocationManager
                 }
                 else
                 {
-                    roughnessIndex = (sqrt(pow(myData.acceleration.z-averageZValue,2))/speed)*100
+                    roughnessIndex = (sqrt(pow(myData.acceleration.x-averageZValue,2))/speed)*100
                     
                     if (roughnessIndex > 1.5)
                     {

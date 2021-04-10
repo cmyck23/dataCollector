@@ -60,6 +60,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.delegate = self
         
         
+        
         // Getting the records from firebase firestore
         firestoreDatabase.collection("Areas").order(by: "Priority",descending: true)
             .addSnapshotListener { querySnapshot, error in
@@ -214,6 +215,7 @@ class ViewControllerPlanner: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.textLabel?.textColor = UIColor(displayP3Red: 0.10980, green:0.26275, blue:0.56471, alpha: 1.0)
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        
         
         // We want to return the cell to fill the table view.
         return cell

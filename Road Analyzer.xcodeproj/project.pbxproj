@@ -367,6 +367,7 @@
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		53A851381FE1D3460003FE24 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
